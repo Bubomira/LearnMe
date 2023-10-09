@@ -25,5 +25,7 @@ namespace Server.Models
         public ICollection<NoteUser> LikedNotesUsers { get; set; } = new List<NoteUser>();
 
         public ICollection<FlashcardUser> OwnedFlashcards { get; set; } = new List<FlashcardUser>();
+
+        public ICollection<LikedUserDeck> LikedDecks { get; set; } = new List<LikedUserDeck>();
     }
 }

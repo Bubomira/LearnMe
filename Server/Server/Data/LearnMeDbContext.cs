@@ -17,15 +17,12 @@ namespace Server.Data
         public DbSet<DeckFlashcard> DecksFlashcards { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<DeckTag> DecksTags { get; set; }
-
         public DbSet<User> Users { get; set; }
-
         public DbSet<Note> Notes { get; set; }
-
         public DbSet<NoteUser> LikedNotesUsers { get; set; }
-
         public DbSet<NoteTag> NotesTags { get; set; }
         public DbSet<FlashcardUser> OwnedUserFlashcards { get; set; }
+        public DbSet<LikedUserDeck> LikedUserDecks { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -107,6 +104,26 @@ namespace Server.Data
 
             modelBuilder.Entity<NoteTag>()
                 .HasKey(nt => new { nt.NoteId, nt.TagId });
+
+
+            //many-to-many user -> deck  (liking) 
+
+            modelBuilder.Entity<LikedUserDeck>()
+                .HasOne(lud => lud.Deck)
+                .WithMany(lud => lud.LikedDecks)
+                .HasForeignKey(lud => lud.DeckId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<LikedUserDeck>()
+               .HasOne(lud => lud.LikerUser)
+               .WithMany(lud => lud.LikedDecks)
+               .HasForeignKey(lud => lud.LikerUserId);
+
+            modelBuilder.Entity<LikedUserDeck>()
+                .HasKey(lud => new {lud.DeckId,lud.LikerUserId});
+
+
+
 
         }
     }

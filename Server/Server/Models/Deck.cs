@@ -20,6 +20,8 @@ namespace Server.Models
 
         public ICollection<DeckTag> DecksTags { get; set; } = new List<DeckTag>();
 
+        public ICollection<LikedUserDeck> LikedDecks { get; set; } = new List<LikedUserDeck>();
+
         public int OwnerId { get; set; }
 
         public User Owner{ get; set; }
