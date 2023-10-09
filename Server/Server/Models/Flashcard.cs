@@ -20,8 +20,9 @@ namespace Server.Models
         public string Explanation { get; set; }
 
         public ICollection<DeckFlashcard> DecksFlashcards { get; set; } = new List<DeckFlashcard>();
+        public ICollection<FlashcardUser> OwnedFlashcards { get; set; } = new List<FlashcardUser>();
 
-        //todo: OwnerId
+
 
 
 

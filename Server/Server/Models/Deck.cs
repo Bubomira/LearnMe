@@ -20,7 +20,9 @@ namespace Server.Models
 
         public ICollection<DeckTag> DecksTags { get; set; } = new List<DeckTag>();
 
-        //todo: OwnerId
+        public int OwnerId { get; set; }
+
+        public User Owner{ get; set; }
 
     }
 }

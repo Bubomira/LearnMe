@@ -2,17 +2,14 @@
 
 namespace Server.Models
 {
-    public class DeckFlashcard
+    public class FlashcardUser
     {
         [Required]
         public int FlashcardId { get; set; }
-
         public Flashcard Flashcard { get; set; }
 
         [Required]
-        public int DeckId { get; set; }
-
-        public Deck Deck { get; set; }
-
+        public int OwnerId { get; set; }
+        public User Owner { get; set; }
     }
 }
