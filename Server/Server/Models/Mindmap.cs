@@ -2,19 +2,20 @@
 
 namespace Server.Models
 {
-    public class Tag
+    public class Mindmap
     {
         [Key]
         [Required]
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
         public string Name { get; set; }
 
-        public ICollection<DeckTag> DecksTags { get; set; } = new List<DeckTag>();
+        public int OwnerId { get; set; }
 
-        public ICollection<NoteTag> NotesTags { get; set; } = new List<NoteTag>();
+        public User Owner { get; set; }
+
         public ICollection<MindmapTag> MindmapsTags { get; set; } = new List<MindmapTag>();
+        public ICollection<LikedUserMindmap> LikedMindmaps { get; set; } = new List<LikedUserMindmap>();
     }
 }

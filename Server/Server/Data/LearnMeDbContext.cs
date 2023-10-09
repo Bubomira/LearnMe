@@ -23,6 +23,9 @@ namespace Server.Data
         public DbSet<NoteTag> NotesTags { get; set; }
         public DbSet<FlashcardUser> OwnedUserFlashcards { get; set; }
         public DbSet<LikedUserDeck> LikedUserDecks { get; set; }
+        public DbSet<Mindmap> Mindmaps { get; set; }
+        public DbSet<MindmapTag> MindmapsTags { get; set; }
+        public DbSet<LikedUserMindmap> LikedUsersMindmaps { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -122,7 +125,37 @@ namespace Server.Data
             modelBuilder.Entity<LikedUserDeck>()
                 .HasKey(lud => new {lud.DeckId,lud.LikerUserId});
 
+            //many-to-many mindmap -> tag 
 
+            modelBuilder.Entity<MindmapTag>()
+                .HasOne(mt => mt.Tag)
+                .WithMany(mt => mt.MindmapsTags)
+                .HasForeignKey(mt => mt.TagId);
+
+            modelBuilder.Entity<MindmapTag>()
+                .HasOne(mt => mt.Mindmap)
+                .WithMany(mt => mt.MindmapsTags)
+                .HasForeignKey(mt => mt.MindmapId);
+
+            modelBuilder.Entity<MindmapTag>()
+                .HasKey(mt => new { mt.MindmapId, mt.TagId });
+
+
+            //many-to-many user -> mindmap (liking) 
+
+            modelBuilder.Entity<LikedUserMindmap>()
+                .HasOne(lum => lum.Mindmap)
+                .WithMany(lum => lum.LikedMindmaps)
+                .HasForeignKey(lum => lum.MindmapId);
+
+            modelBuilder.Entity<LikedUserMindmap>()
+                .HasOne(lum => lum.LikerUser)
+                .WithMany(lum => lum.LikedMindmaps)
+                .HasForeignKey(lum => lum.LikerUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<LikedUserMindmap>()
+                .HasKey(lum => new { lum.MindmapId, lum.LikerUserId });
 
 
         }
