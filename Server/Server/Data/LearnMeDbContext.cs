@@ -26,6 +26,7 @@ namespace Server.Data
         public DbSet<Mindmap> Mindmaps { get; set; }
         public DbSet<MindmapTag> MindmapsTags { get; set; }
         public DbSet<LikedUserMindmap> LikedUsersMindmaps { get; set; }
+        public DbSet<InvalidToken> InvalidTokens { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
