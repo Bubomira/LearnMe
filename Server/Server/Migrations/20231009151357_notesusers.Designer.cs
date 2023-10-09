@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Data;
 
@@ -10,9 +11,11 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(LearnMeDbContext))]
-    partial class LearnMeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009151357_notesusers")]
+    partial class notesusers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,21 +102,6 @@ namespace Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Flashcards");
-                });
-
-            modelBuilder.Entity("Server.Models.FlashcardUser", b =>
-                {
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FlashcardId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OwnerId", "FlashcardId");
-
-                    b.HasIndex("FlashcardId");
-
-                    b.ToTable("OwnedUserFlashcards");
                 });
 
             modelBuilder.Entity("Server.Models.Note", b =>
@@ -259,25 +247,6 @@ namespace Server.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Server.Models.FlashcardUser", b =>
-                {
-                    b.HasOne("Server.Models.Flashcard", "Flashcard")
-                        .WithMany("OwnedFlashcards")
-                        .HasForeignKey("FlashcardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Server.Models.User", "Owner")
-                        .WithMany("OwnedFlashcards")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Flashcard");
-
-                    b.Navigation("Owner");
-                });
-
             modelBuilder.Entity("Server.Models.Note", b =>
                 {
                     b.HasOne("Server.Models.User", "Owner")
@@ -337,8 +306,6 @@ namespace Server.Migrations
             modelBuilder.Entity("Server.Models.Flashcard", b =>
                 {
                     b.Navigation("DecksFlashcards");
-
-                    b.Navigation("OwnedFlashcards");
                 });
 
             modelBuilder.Entity("Server.Models.Note", b =>
@@ -360,8 +327,6 @@ namespace Server.Migrations
                     b.Navigation("LikedNotesUsers");
 
                     b.Navigation("OwnedDecks");
-
-                    b.Navigation("OwnedFlashcards");
 
                     b.Navigation("OwnedNotes");
                 });
