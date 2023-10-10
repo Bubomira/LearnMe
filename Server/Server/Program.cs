@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Server.Authentication;
 using Server.Data;
+using Server.Interfaces.AuthInterface;
 using Server.Interfaces.ServiceInterfaces;
+using Server.Repositories;
 using Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 builder.Services.AddScoped<AuthFilter>();
 
