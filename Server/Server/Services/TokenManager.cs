@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Server.Data;
 using Server.Interfaces.ServiceInterfaces;
 using Server.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Text;
 
 namespace Server.Services
@@ -15,12 +17,14 @@ namespace Server.Services
         private readonly SigningCredentials _signingCredentials;
         private readonly IConfiguration _configuration;
         private readonly LearnMeDbContext _learnMeDbContext;
+        private readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler;
         public TokenManager(IConfiguration config, LearnMeDbContext learnMeDbContext)
         {
             _configuration = config;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
             _signingCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
             _learnMeDbContext = learnMeDbContext;
+            _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
         }
         public Task<string> CreateToken(User user)
         {
@@ -59,5 +63,30 @@ namespace Server.Services
             return _learnMeDbContext.InvalidTokens.AnyAsync(x => x.ValueOfInvalidToken == token);
         }
 
+        public Task<bool> CheckIfTokenIsValid(string tokenToBeChecked)
+        {
+            try
+            {
+            SecurityToken validatedToken;
+            var tokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidateLifetime = false, 
+                ValidateAudience = false,
+                ValidateIssuer = false, 
+                ValidIssuer = "Sample",
+                ValidAudience = "Sample",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])) // The same key as the one that generate the token
+            };
+            IPrincipal principal = _jwtSecurityTokenHandler
+                .ValidateToken(tokenToBeChecked,tokenValidationParameters,out validatedToken);
+
+                return Task.Run(() => true);
+            }
+            catch (Exception)
+            {
+                return Task.Run(() => false);
+            }
+
+        }
     }
 }

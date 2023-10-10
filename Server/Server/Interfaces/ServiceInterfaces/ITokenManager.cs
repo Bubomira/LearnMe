@@ -9,5 +9,7 @@ namespace Server.Interfaces.ServiceInterfaces
         public Task BlackListToken(string token);
 
         public Task<bool> CheckIfTokenIsBlacklisted(string token);
+
+        public Task<bool> CheckIfTokenIsValid(string tokenToBeChecked);
     }
 }
