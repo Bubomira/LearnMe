@@ -53,5 +53,18 @@ namespace Server.Repositories
 
             return user;
         }
+
+        public async Task LogoutUser(string token)
+        {
+            InvalidToken invalidToken = new InvalidToken()
+            {
+                ValueOfInvalidToken = token
+            };
+
+            await _learnMeDbContext.InvalidTokens.AddAsync(invalidToken);
+
+            await _learnMeDbContext.SaveChangesAsync();
+
+        }
     }
 }

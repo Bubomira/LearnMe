@@ -11,5 +11,7 @@ namespace Server.Interfaces.AuthInterface
         public Task<User> RegisterUser(UserRegisterDto userRegisterDto,string passHash);
         public Task<User> LoginUser(UserLoginDto userRegisterDto);
 
+        public Task LogoutUser(string token);
+
     }
 }

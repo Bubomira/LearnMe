@@ -92,5 +92,16 @@ namespace Server.Controllers
                 Token = token
             });
         }
+
+        [HttpGet("/logout")]
+        [ServiceFilter(typeof(AuthFilter))]
+        public async Task<IActionResult> LogoutUser()
+        {
+            var token = Request.Headers.Authorization.ToString();
+
+            _authRepository.LogoutUser(token);
+
+            return NoContent();
+        }
     }
 }
