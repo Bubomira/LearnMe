@@ -11,5 +11,7 @@ namespace Server.Interfaces.ServiceInterfaces
         public Task<bool> CheckIfTokenIsBlacklisted(string token);
 
         public Task<bool> CheckIfTokenIsValid(string tokenToBeChecked);
+
+        public Task<IDictionary<string, object>> DesipherToken(string token);
     }
 }

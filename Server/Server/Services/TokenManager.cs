@@ -26,7 +26,7 @@ namespace Server.Services
             _learnMeDbContext = learnMeDbContext;
             _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
         }
-        public Task<string> CreateToken(User user)
+        public async Task<string> CreateToken(User user)
         {
             var claims = new[]
           {
@@ -45,7 +45,7 @@ namespace Server.Services
 
             string verifyedToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-            return Task.Run(() => verifyedToken);
+            return verifyedToken;
         }
 
         public async Task BlackListToken(string token)
@@ -63,30 +63,37 @@ namespace Server.Services
             return _learnMeDbContext.InvalidTokens.AnyAsync(x => x.ValueOfInvalidToken == token);
         }
 
-        public Task<bool> CheckIfTokenIsValid(string tokenToBeChecked)
+        public async Task<bool> CheckIfTokenIsValid(string tokenToBeChecked)
         {
-            try
+            var tokenValidationParameters = await GetTokenParameters();
+
+            var result = await _jwtSecurityTokenHandler
+                .ValidateTokenAsync(tokenToBeChecked, tokenValidationParameters);
+
+            return result.IsValid;
+
+        }
+        public async Task<IDictionary<string, object>> DesipherToken(string token)
+        {
+            var tokenValidationParameters = await GetTokenParameters();
+
+            var result = await _jwtSecurityTokenHandler
+                .ValidateTokenAsync(token, tokenValidationParameters);
+
+            return result.Claims;
+        }
+
+        private async Task<TokenValidationParameters> GetTokenParameters()
+        {
+            return new TokenValidationParameters()
             {
-            SecurityToken validatedToken;
-            var tokenValidationParameters = new TokenValidationParameters()
-            {
-                ValidateLifetime = false, 
+                ValidateLifetime = false,
                 ValidateAudience = false,
-                ValidateIssuer = false, 
-                ValidIssuer = "Sample",
-                ValidAudience = "Sample",
+                ValidateIssuer = false,
+                ValidIssuer = null,
+                ValidAudience = null,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])) // The same key as the one that generate the token
             };
-            IPrincipal principal = _jwtSecurityTokenHandler
-                .ValidateToken(tokenToBeChecked,tokenValidationParameters,out validatedToken);
-
-                return Task.Run(() => true);
-            }
-            catch (Exception)
-            {
-                return Task.Run(() => false);
-            }
-
         }
     }
 }
