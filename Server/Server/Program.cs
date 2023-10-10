@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Server.Authentication;
 using Server.Data;
 using Server.Interfaces.ServiceInterfaces;
 using Server.Services;
@@ -14,6 +16,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+builder.Services.AddScoped<AuthFilter>();
+
+
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>
 {
@@ -31,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<AuthenticationMiddleware>();
 
 app.UseAuthorization();
 
