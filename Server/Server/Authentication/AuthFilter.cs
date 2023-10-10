@@ -39,9 +39,7 @@ namespace Server.Authentication
                 context.Result = new UnauthorizedObjectResult("The token is blacklisted!");
                 return;
             }
-
-
-
+            context.HttpContext.Items.Add("userData", await _tokenChecker.DesipherToken(token));
         }
     }
 }
