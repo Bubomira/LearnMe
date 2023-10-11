@@ -5,6 +5,7 @@ using Server.DTOs.AuthDtos.ExportDtos;
 using Server.DTOs.AuthDtos.ImportDtos;
 using Server.Interfaces.AuthInterface;
 using Server.Interfaces.ServiceInterfaces;
+using System.Security.Claims;
 
 namespace Server.Controllers
 {
@@ -99,7 +100,7 @@ namespace Server.Controllers
         {
             var token = Request.Headers.Authorization.ToString();
 
-            _authRepository.LogoutUser(token);
+            await _authRepository.LogoutUser(token);
 
             return NoContent();
         }
