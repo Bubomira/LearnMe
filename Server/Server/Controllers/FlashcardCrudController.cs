@@ -10,14 +10,14 @@ using Server.Interfaces.FlashcardInterfaces;
 namespace Server.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class FlashcardController : Controller
+    [Route("api")]
+    public class FlashcardCrudController : Controller
     {
         private readonly IFlashcardRepository _flashcardRepository;
 
         private readonly IMapper _mapper;
 
-        public FlashcardController(IFlashcardRepository flashcardRepository, IMapper mapper)
+        public FlashcardCrudController(IFlashcardRepository flashcardRepository, IMapper mapper)
         {
             _flashcardRepository = flashcardRepository;
             _mapper = mapper;
@@ -65,6 +65,50 @@ namespace Server.Controllers
             return Ok();
 
         }
+        [HttpPut("flashcard/update/{flashcardId}")]
+        [ServiceFilter(typeof(AuthFilter))]
 
+        public async Task<IActionResult> UpdateFlashcard(int flashcardId, [FromBody] FlashcardInfoDto flashcardInfoDto)
+        {
+            if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
+            {
+                return NotFound("Flashcard with such id does not exist!");
+            }
+
+            int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            if (!await _flashcardRepository.CheckIfUserOwnsTheFlashcard(ownerId, flashcardId))
+            {
+                return Unauthorized("U cannot modify this flashcard!");
+            }
+
+            await _flashcardRepository.UpdateFlashcard(flashcardId, flashcardInfoDto);
+
+            return NoContent();
+        }
+
+        [HttpDelete("flashcard/delete/{flashcardId}")]
+        [ServiceFilter(typeof(AuthFilter))]
+
+        public async Task<IActionResult> Delete(int flashcardId)
+        {
+            if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
+            {
+                return NotFound("Flashcard with such id does not exist!");
+            }
+
+            int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            if (!await _flashcardRepository.CheckIfUserOwnsTheFlashcard(ownerId, flashcardId))
+            {
+                return Unauthorized("U cannot delete this flashcard!");
+            }
+
+            await _flashcardRepository.DeleteFlashcard(flashcardId);
+
+            return NoContent();
+        }
     }
+
 }
+

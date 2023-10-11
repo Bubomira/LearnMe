@@ -27,7 +27,7 @@ namespace Server.Repositories.EntityRepositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task CreateFlashcard(FlashcardInfoDto flashcardInfoDto, FlashcardType type ,int ownerId)
+        public async Task CreateFlashcard(FlashcardInfoDto flashcardInfoDto, FlashcardType type, int ownerId)
         {
             Flashcard flashcard = new Flashcard()
             {
@@ -49,14 +49,28 @@ namespace Server.Repositories.EntityRepositories
             await _learnMeDbContext.SaveChangesAsync();
         }
 
-        public Task DeleteFlashcard(int id)
+        public async Task DeleteFlashcard(int id)
         {
-            throw new NotImplementedException();
+            var flashcard = await _learnMeDbContext.Flashcards.FirstOrDefaultAsync(f => f.Id == id);
+
+            _learnMeDbContext.Remove(flashcard);
+
+            await _learnMeDbContext.SaveChangesAsync();
         }
 
-        public Task UpdateFlashcard(int id)
+        public async Task UpdateFlashcard(int id, FlashcardInfoDto flashcardInfoDto)
         {
-            throw new NotImplementedException();
+            var flashcard = await _learnMeDbContext.Flashcards.FirstOrDefaultAsync(f => f.Id == id);
+
+            flashcard.Explanation = flashcardInfoDto.Explanation;
+            flashcard.Definition = flashcardInfoDto.Definition;
+
+            await _learnMeDbContext.SaveChangesAsync();
+        }
+
+        public Task<bool> CheckIfUserOwnsTheFlashcard(int ownerId, int flashcardId)
+        {
+            return _learnMeDbContext.OwnedUserFlashcards.AnyAsync(ouf => ouf.FlashcardId == flashcardId && ouf.OwnerId == ownerId);
         }
     }
 }
