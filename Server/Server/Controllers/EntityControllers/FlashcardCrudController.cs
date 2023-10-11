@@ -51,9 +51,9 @@ namespace Server.Controllers.EntityControllers
 
             Enum.TryParse(flashcardInfoDto.Type, out FlashcardType type);
 
-            if (string.IsNullOrEmpty(flashcardInfoDto.Definition) ||
+            if (string.IsNullOrEmpty(flashcardInfoDto.Explanation) ||
                 type == FlashcardType.Text &&
-               string.IsNullOrEmpty(flashcardInfoDto.Explanation))
+               string.IsNullOrEmpty(flashcardInfoDto.Definition))
             {
                 return BadRequest("Please fill in all fields!");
             }
