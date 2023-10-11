@@ -5,12 +5,12 @@ using Server.Authentication;
 using Server.DTOs.FlashcardDtos.ExportDtos;
 using Server.DTOs.FlashcardDtos.ImportDtos;
 using Server.Enums;
-using Server.Interfaces.FlashcardInterfaces;
+using Server.Interfaces.EntityInterface;
 
-namespace Server.Controllers
+namespace Server.Controllers.EntityControllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("api/flashcard")]
     public class FlashcardCrudController : Controller
     {
         private readonly IFlashcardRepository _flashcardRepository;
@@ -22,7 +22,7 @@ namespace Server.Controllers
             _flashcardRepository = flashcardRepository;
             _mapper = mapper;
         }
-        [HttpGet("/flashcard/details/{flashCardId}")]
+        [HttpGet("/details/{flashCardId}")]
         public async Task<IActionResult> GetFlashcardDetails(int flashCardId)
         {
 
@@ -39,7 +39,7 @@ namespace Server.Controllers
             return Ok(flashcardDto);
         }
 
-        [HttpPost("/flashcard/create")]
+        [HttpPost("/create")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> CreateFlashcard([FromBody] FlashcardInfoDto flashcardInfoDto)
         {
@@ -52,8 +52,8 @@ namespace Server.Controllers
             Enum.TryParse(flashcardInfoDto.Type, out FlashcardType type);
 
             if (string.IsNullOrEmpty(flashcardInfoDto.Definition) ||
-                (type == FlashcardType.Text &&
-               string.IsNullOrEmpty(flashcardInfoDto.Explanation)))
+                type == FlashcardType.Text &&
+               string.IsNullOrEmpty(flashcardInfoDto.Explanation))
             {
                 return BadRequest("Please fill in all fields!");
             }
@@ -62,10 +62,10 @@ namespace Server.Controllers
 
             await _flashcardRepository.CreateFlashcard(flashcardInfoDto, type, ownerId);
 
-            return Ok();
+            return Ok("Successfully created!");
 
         }
-        [HttpPut("flashcard/update/{flashcardId}")]
+        [HttpPut("/update/{flashcardId}")]
         [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> UpdateFlashcard(int flashcardId, [FromBody] FlashcardInfoDto flashcardInfoDto)
@@ -84,10 +84,10 @@ namespace Server.Controllers
 
             await _flashcardRepository.UpdateFlashcard(flashcardId, flashcardInfoDto);
 
-            return NoContent();
+            return Ok("Successfully updated!");
         }
 
-        [HttpDelete("flashcard/delete/{flashcardId}")]
+        [HttpDelete("/delete/{flashcardId}")]
         [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> Delete(int flashcardId)
@@ -106,7 +106,7 @@ namespace Server.Controllers
 
             await _flashcardRepository.DeleteFlashcard(flashcardId);
 
-            return NoContent();
+            return Ok("Successfully deleted!");
         }
     }
 

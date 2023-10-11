@@ -2,7 +2,7 @@
 using Server.Data;
 using Server.DTOs.FlashcardDtos.ImportDtos;
 using Server.Enums;
-using Server.Interfaces.FlashcardInterfaces;
+using Server.Interfaces.EntityInterface;
 using Server.Models;
 
 namespace Server.Repositories.EntityRepositories

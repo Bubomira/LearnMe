@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Server.Authentication;
 using Server.Data;
 using Server.Interfaces.AuthInterface;
-using Server.Interfaces.FlashcardInterfaces;
+using Server.Interfaces.EntityInterface;
 using Server.Interfaces.ServiceInterfaces;
 using Server.Repositories;
 using Server.Repositories.EntityRepositories;
@@ -27,8 +27,7 @@ builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 
 builder.Services.AddScoped<IFlashcardRepository,FlashcardRepository>();
-
-
+builder.Services.AddScoped<IDeckRepository, DeckRepository>();
 
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>
