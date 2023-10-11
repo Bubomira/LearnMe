@@ -13,7 +13,6 @@ namespace Server.Models
         public string Name { get; set; }
 
         public ICollection<DeckTag> DecksTags { get; set; } = new List<DeckTag>();
-
         public ICollection<NoteTag> NotesTags { get; set; } = new List<NoteTag>();
         public ICollection<MindmapTag> MindmapsTags { get; set; } = new List<MindmapTag>();
     }
