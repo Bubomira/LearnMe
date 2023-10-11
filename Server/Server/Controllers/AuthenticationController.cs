@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace Server.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api")]
     public class AuthenticationController : Controller
     {
         private readonly ITokenManager _tokenManager;

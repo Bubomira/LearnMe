@@ -11,10 +11,7 @@ namespace Server.Services
             CreateMap<Flashcard, FlashcardDetailsDto>()
                  .ForMember(f => f.OwnerId,
                 opt => opt.MapFrom(src =>
-                src.OwnedFlashcards.Select(x => x.OwnerId)))
-                 .ForMember(f => f.Tags,
-                opt => opt.MapFrom(src =>
-                src.DecksFlashcards.FirstOrDefault().Deck.Tags));
+                src.OwnedFlashcards.Select(x => x.OwnerId).FirstOrDefault()));
 
         }
     }
