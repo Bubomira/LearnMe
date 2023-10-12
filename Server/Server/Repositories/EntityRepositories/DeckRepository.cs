@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
+using Server.Migrations;
 using Server.Models;
 
 namespace Server.Repositories.EntityRepositories
@@ -13,34 +15,56 @@ namespace Server.Repositories.EntityRepositories
         {
             _learnMeDbContext = learnMeDbContext;
         }
+
         public Task<bool> CheckIfDeckExists(int deckId) =>
             _learnMeDbContext.Decks.AnyAsync(d => d.Id == deckId);
 
 
         public Task<bool> CheckIfDeckIsOwnedByUser(int deckId, int userId)
-        {
-            throw new NotImplementedException();
-        }
+            => _learnMeDbContext.Decks.AnyAsync(d => d.Id == deckId && d.OwnerId == userId);
 
-        public Task CreateDeck()
+
+        public async Task<Deck> CreateDeck(DeckInfoDto deckInfoDto, int ownerId)
         {
-            throw new NotImplementedException();
+            Deck deck = new Deck()
+            {
+                Name = deckInfoDto.Name,
+                OwnerId = ownerId
+            };
+            await _learnMeDbContext.Decks.AddAsync(deck);
+
+            await _learnMeDbContext.SaveChangesAsync();
+
+            return deck;
         }
 
         public Task DeleteDeck(int deckId)
         {
-            throw new NotImplementedException();
+            var deck = await GetDeck(deckId);
+
+            deck.Name = deckName;
+
+            await _learnMeDbContext.SaveChangesAsync();
         }
+
+        public Task<Deck> GetDeck(int deckId) =>
+             _learnMeDbContext.Decks.FirstOrDefaultAsync(d => d.Id == deckId);
+
 
         public Task<Deck> GetDeckDetails(int deckId) =>
              _learnMeDbContext.Decks.Where(d => d.Id == deckId)
             .Include(d => d.DecksFlashcards)
-            .Include(f=>f.DecksTags)
+            .Include(f => f.DecksTags)
             .FirstOrDefaultAsync();
-                    
-        public Task UpdateDeck(int deckId)
+
+        public async Task UpdateDeck(int deckId,string deckName)
         {
-            throw new NotImplementedException();
+            var deck =await GetDeck(deckId);
+
+            deck.Name = deckName;
+
+            await _learnMeDbContext.SaveChangesAsync();
         }
+
     }
 }
