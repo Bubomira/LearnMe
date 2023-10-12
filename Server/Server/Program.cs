@@ -28,6 +28,8 @@ builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 builder.Services.AddScoped<IFlashcardRepository,FlashcardRepository>();
 builder.Services.AddScoped<IDeckRepository, DeckRepository>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<IDeckTagRepository, IDeckTagRepository>();
 
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>

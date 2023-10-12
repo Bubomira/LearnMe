@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\DeckDtos\ImportDtos\" />
     <Folder Include="Middlewares\" />
   </ItemGroup>
 
