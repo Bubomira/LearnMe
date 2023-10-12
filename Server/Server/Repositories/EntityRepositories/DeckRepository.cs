@@ -38,11 +38,11 @@ namespace Server.Repositories.EntityRepositories
             return deck;
         }
 
-        public Task DeleteDeck(int deckId)
+        public async Task DeleteDeck(int deckId)
         {
             var deck = await GetDeck(deckId);
 
-            deck.Name = deckName;
+            _learnMeDbContext.Decks.Remove(deck);
 
             await _learnMeDbContext.SaveChangesAsync();
         }
@@ -57,9 +57,9 @@ namespace Server.Repositories.EntityRepositories
             .Include(f => f.DecksTags)
             .FirstOrDefaultAsync();
 
-        public async Task UpdateDeck(int deckId,string deckName)
+        public async Task UpdateDeck(int deckId, string deckName)
         {
-            var deck =await GetDeck(deckId);
+            var deck = await GetDeck(deckId);
 
             deck.Name = deckName;
 

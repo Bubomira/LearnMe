@@ -29,7 +29,10 @@ namespace Server.Repositories.EntityRepositories
         }
 
         public Task<bool> CheckIfTagExistsByName(string tagName) =>
-            _learnMeDbContext.Tags.AnyAsync(t => t.Name == tagName); 
+            _learnMeDbContext.Tags.AnyAsync(t => t.Name == tagName);
 
-    }
+        public Task<Tag> GetTagByName(string tagName) =>
+            _learnMeDbContext.Tags.FirstOrDefaultAsync(t => t.Name == tagName);
+
+}
 }

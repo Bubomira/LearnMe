@@ -26,6 +26,20 @@ namespace Server.Repositories.EntityRepositories
             await _learnMeDbContext.SaveChangesAsync();
 
         }
+        public async Task AttachTagsToDeck(List<int> tagIds, int deckId)
+        {
+            foreach (var tagId in tagIds)
+            {
+                DeckTag deckTag = new DeckTag()
+                {
+                    TagId = tagId,
+                    DeckId = deckId
+                };
+                await _learnMeDbContext.DecksTags.AddAsync(deckTag);
+            }
+            await _learnMeDbContext.SaveChangesAsync();
+
+        }
 
         public async Task DetachTagFromDeck(int tagId, int deckId)
         {
