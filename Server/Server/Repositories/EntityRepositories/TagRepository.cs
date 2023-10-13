@@ -34,5 +34,9 @@ namespace Server.Repositories.EntityRepositories
         public Task<Tag> GetTagByName(string tagName) =>
             _learnMeDbContext.Tags.FirstOrDefaultAsync(t => t.Name == tagName);
 
-}
+        public Task<bool> CheckIfTagExistsById(int tagId)=>
+            _learnMeDbContext.Tags.AnyAsync(t => t.Id == tagId);
+
+
+    }
 }
