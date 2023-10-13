@@ -24,7 +24,7 @@ namespace Server.Controllers.EntityControllers
             _decktagRepository = decktagRepository;
         }
 
-        [HttpGet("/details/{id}")]
+        [HttpGet("/detailsDeck/{deckId}")]
         public async Task<IActionResult> GetDeckDetails(int deckId)
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
@@ -37,7 +37,7 @@ namespace Server.Controllers.EntityControllers
 
             return Ok(deckDto);
         }
-        [HttpPost("/create")]
+        [HttpPost("/createDeck")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> GetDeckDetails([FromBody] DeckInfoDto deckInfoDto)
         {
@@ -71,7 +71,7 @@ namespace Server.Controllers.EntityControllers
             return Ok("The deck has succesfully been created!");
         }
 
-        [HttpPut("/update/{deckId}")]
+        [HttpPut("/updateDeck/{deckId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateDeck([FromBody] string newDeckName, int deckId)
         {
@@ -95,7 +95,7 @@ namespace Server.Controllers.EntityControllers
             return Ok();
 
         }
-        [HttpDelete("/delete/{deckId}")]
+        [HttpDelete("/deleteDeck/{deckId}")]
         public async Task<IActionResult> DeleteDeck(int deckId)
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))

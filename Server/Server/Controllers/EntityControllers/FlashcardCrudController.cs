@@ -22,7 +22,7 @@ namespace Server.Controllers.EntityControllers
             _flashcardRepository = flashcardRepository;
             _mapper = mapper;
         }
-        [HttpGet("/details/{flashCardId}")]
+        [HttpGet("/detailsFlashcard/{flashCardId}")]
         public async Task<IActionResult> GetFlashcardDetails(int flashCardId)
         {
 
@@ -39,7 +39,7 @@ namespace Server.Controllers.EntityControllers
             return Ok(flashcardDto);
         }
 
-        [HttpPost("/create")]
+        [HttpPost("/createFlashcard")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> CreateFlashcard([FromBody] FlashcardInfoDto flashcardInfoDto)
         {
@@ -65,7 +65,7 @@ namespace Server.Controllers.EntityControllers
             return Ok("Successfully created!");
 
         }
-        [HttpPut("/update/{flashcardId}")]
+        [HttpPut("/updateFlashcard/{flashcardId}")]
         [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> UpdateFlashcard(int flashcardId, [FromBody] FlashcardInfoDto flashcardInfoDto)
@@ -87,7 +87,7 @@ namespace Server.Controllers.EntityControllers
             return Ok("Successfully updated!");
         }
 
-        [HttpDelete("/delete/{flashcardId}")]
+        [HttpDelete("/deleteFlashcard/{flashcardId}")]
         [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> Delete(int flashcardId)

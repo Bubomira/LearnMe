@@ -54,7 +54,9 @@ namespace Server.Repositories.EntityRepositories
         public Task<Deck> GetDeckDetails(int deckId) =>
              _learnMeDbContext.Decks.Where(d => d.Id == deckId)
             .Include(d => d.DecksFlashcards)
+            .ThenInclude(d=>d.Flashcard)
             .Include(f => f.DecksTags)
+            .ThenInclude(d => d.Tag)
             .FirstOrDefaultAsync();
 
         public async Task UpdateDeck(int deckId, string deckName)
