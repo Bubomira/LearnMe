@@ -30,6 +30,7 @@ builder.Services.AddScoped<IFlashcardRepository,FlashcardRepository>();
 builder.Services.AddScoped<IDeckRepository, DeckRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IDeckTagRepository, DeckTagRepository>();
+builder.Services.AddScoped<IDeckFlashcardRepository, DeckFlashcardRepository>();
 
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>

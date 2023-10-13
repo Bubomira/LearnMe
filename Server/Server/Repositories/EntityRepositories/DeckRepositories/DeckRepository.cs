@@ -5,7 +5,7 @@ using Server.Interfaces.EntityInterface;
 using Server.Migrations;
 using Server.Models;
 
-namespace Server.Repositories.EntityRepositories
+namespace Server.Repositories.EntityRepositories.DeckRepositories
 {
     public class DeckRepository : IDeckRepository
     {
@@ -54,7 +54,7 @@ namespace Server.Repositories.EntityRepositories
         public Task<Deck> GetDeckDetails(int deckId) =>
              _learnMeDbContext.Decks.Where(d => d.Id == deckId)
             .Include(d => d.DecksFlashcards)
-            .ThenInclude(d=>d.Flashcard)
+            .ThenInclude(d => d.Flashcard)
             .Include(f => f.DecksTags)
             .ThenInclude(d => d.Tag)
             .FirstOrDefaultAsync();

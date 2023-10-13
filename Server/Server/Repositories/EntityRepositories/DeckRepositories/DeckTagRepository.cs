@@ -3,7 +3,7 @@ using Server.Data;
 using Server.Interfaces.EntityInterface;
 using Server.Models;
 
-namespace Server.Repositories.EntityRepositories
+namespace Server.Repositories.EntityRepositories.DeckRepositories
 {
     public class DeckTagRepository : IDeckTagRepository
     {
