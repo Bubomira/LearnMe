@@ -2,6 +2,7 @@
 using Server.Data;
 using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
+using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Migrations;
 using Server.Models;
 

@@ -4,9 +4,11 @@ using Server.Authentication;
 using Server.Data;
 using Server.Interfaces.AuthInterface;
 using Server.Interfaces.EntityInterface;
+using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Interfaces.ServiceInterfaces;
 using Server.Repositories;
 using Server.Repositories.EntityRepositories;
+using Server.Repositories.EntityRepositories.DeckRepositories;
 using Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);

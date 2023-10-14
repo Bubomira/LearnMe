@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Server.Authentication;
 using Server.Interfaces.EntityInterface;
+using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Models;
 
 namespace Server.Controllers.EntityControllers.DeckControllers

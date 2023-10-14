@@ -4,6 +4,7 @@ using Server.Authentication;
 using Server.DTOs.DeckDtos.ExportDtos;
 using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
+using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Models;
 
 namespace Server.Controllers.EntityControllers.DeckControllers

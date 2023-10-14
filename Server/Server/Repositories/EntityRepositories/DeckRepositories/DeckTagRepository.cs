@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Interfaces.EntityInterface;
+using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Models;
 
 namespace Server.Repositories.EntityRepositories.DeckRepositories
