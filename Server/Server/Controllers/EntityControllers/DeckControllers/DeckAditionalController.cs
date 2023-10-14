@@ -12,14 +12,20 @@ namespace Server.Controllers.EntityControllers.DeckControllers
     public class DeckAditionalController : Controller
     {
         private readonly IDeckRepository _deckRepository;
+
         private readonly IDeckTagRepository _deckTagRepository;
         private readonly ITagRepository _tagRepository;
 
-        public DeckAditionalController(IDeckRepository deckRepository, IDeckTagRepository deckTagRepository, ITagRepository tagRepository)
+        private readonly IFlashcardRepository _flashcardRepository;
+        private readonly IDeckFlashcardRepository _deckFlashcardRepository;
+
+        public DeckAditionalController(IDeckRepository deckRepository, IDeckTagRepository deckTagRepository, ITagRepository tagRepository, IFlashcardRepository flashcardRepository, IDeckFlashcardRepository deckFlashcardRepository)
         {
             _deckRepository = deckRepository;
             _deckTagRepository = deckTagRepository;
             _tagRepository = tagRepository;
+            _flashcardRepository = flashcardRepository;
+            _deckFlashcardRepository = deckFlashcardRepository;
         }
 
         [HttpPost("attach/tag/{deckId}")]
@@ -89,6 +95,53 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             }
 
             await _deckTagRepository.DetachTagFromDeck(tagId, deckId);
+
+            return NoContent();
+        }
+
+        [HttpPost("/attach/flashcard/deck/{deckId}")]
+        public async Task<IActionResult> AttachFlashcardToDesk([FromBody] int flashcardId, int deckId)
+        {
+            if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
+            {
+                return NotFound("Flashcard does not exist!");
+            }
+
+            if (!await _deckRepository.CheckIfDeckExists(deckId))
+            {
+                return NotFound("Deck does not exist!");
+            }
+
+            if (await _deckFlashcardRepository.CheckIfFlashcardIsAttachedToDeck(flashcardId, deckId))
+            {
+                return BadRequest("Flashcard is already attached to the deck!");
+            }
+
+            await _deckFlashcardRepository.AttachFlashcardToDeck(flashcardId, deckId);
+
+            return NoContent();
+        }
+
+        [HttpPost("remove/flashcard/from/deck{deckId}")]
+
+        public async Task<IActionResult> RemoveFlashcardFromDeck([FromBody] int flashcardId, int deckId)
+        {
+            if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
+            {
+                return NotFound("Flashcard does not exist!");
+            }
+
+            if (!await _deckRepository.CheckIfDeckExists(deckId))
+            {
+                return NotFound("Deck does not exist!");
+            }
+
+            if (!await _deckFlashcardRepository.CheckIfFlashcardIsAttachedToDeck(flashcardId, deckId))
+            {
+                return BadRequest("Flashcard is not attached to the deck!");
+            }
+
+            await _deckFlashcardRepository.RemoveFlashcardFromDeck(flashcardId, deckId);
 
             return NoContent();
         }
