@@ -15,11 +15,14 @@ namespace Server.Controllers.EntityControllers
     {
         private readonly IFlashcardRepository _flashcardRepository;
 
+        private readonly IDeckRepository _deckRepository;
+
         private readonly IMapper _mapper;
 
-        public FlashcardCrudController(IFlashcardRepository flashcardRepository, IMapper mapper)
+        public FlashcardCrudController(IFlashcardRepository flashcardRepository, IMapper mapper, IDeckRepository deckRepository)
         {
             _flashcardRepository = flashcardRepository;
+            _deckRepository = deckRepository;
             _mapper = mapper;
         }
         [HttpGet("/details/{flashCardId}")]
@@ -56,6 +59,11 @@ namespace Server.Controllers.EntityControllers
                string.IsNullOrEmpty(flashcardInfoDto.Definition))
             {
                 return BadRequest("Please fill in all fields!");
+            }
+
+            if (!await _deckRepository.CheckIfDeckExists(flashcardInfoDto.DeckId))
+            {
+                return BadRequest("Deck does not exist!");
             }
 
             int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());

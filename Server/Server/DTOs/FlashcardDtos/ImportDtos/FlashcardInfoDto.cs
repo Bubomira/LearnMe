@@ -11,5 +11,7 @@ namespace Server.DTOs.FlashcardDtos.ImportDtos
 
         public string Explanation { get; set; }
 
+        public int DeckId { get; set; }
+
     }
 }

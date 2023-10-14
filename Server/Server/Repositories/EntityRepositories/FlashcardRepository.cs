@@ -45,6 +45,14 @@ namespace Server.Repositories.EntityRepositories
                 OwnerId = ownerId
             };
 
+            DeckFlashcard deckFlashcard = new DeckFlashcard()
+            {
+                DeckId = flashcardInfoDto.DeckId,
+                Flashcard = flashcard
+            };
+
+            await _learnMeDbContext.DecksFlashcards.AddAsync(deckFlashcard);
+
             await _learnMeDbContext.OwnedUserFlashcards.AddAsync(ownerRelationship);
             await _learnMeDbContext.SaveChangesAsync();
         }
