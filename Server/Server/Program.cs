@@ -5,10 +5,12 @@ using Server.Data;
 using Server.Interfaces.AuthInterface;
 using Server.Interfaces.EntityInterface;
 using Server.Interfaces.EntityInterface.IDeckRepositories;
+using Server.Interfaces.EntityInterface.INotesRepositories;
 using Server.Interfaces.ServiceInterfaces;
 using Server.Repositories;
 using Server.Repositories.EntityRepositories;
 using Server.Repositories.EntityRepositories.DeckRepositories;
+using Server.Repositories.EntityRepositories.NotesRepositories;
 using Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,11 +30,17 @@ builder.Services.AddScoped<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 
-builder.Services.AddScoped<IFlashcardRepository,FlashcardRepository>();
+builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
+
 builder.Services.AddScoped<IDeckRepository, DeckRepository>();
-builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IDeckTagRepository, DeckTagRepository>();
 builder.Services.AddScoped<IDeckFlashcardRepository, DeckFlashcardRepository>();
+builder.Services.AddScoped<IDeckUserRepository,DeckUserRepository>();
+
+builder.Services.AddScoped<ITagRepository, TagRepository>();
+
+builder.Services.AddScoped<INoteUserRepository, NoteUserRepository>();
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
 
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>
