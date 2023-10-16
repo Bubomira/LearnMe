@@ -75,5 +75,46 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return Ok(note);
         }
 
+        [HttpPut("/update/{noteId}")]
+        [ServiceFilter(typeof(AuthFilter))]
+        public async Task<IActionResult> UpdateNote([FromBody] string content, int noteId)
+        {
+            if (string.IsNullOrEmpty(content))
+            {
+                return BadRequest("Please fill in all fields!");
+            }
+            if (!await _noteRepository.CheckIfNoteExists(noteId))
+            {
+                return NotFound("Note does not exist!");
+            }
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            if (!await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
+            {
+                return Forbid("You canot modify this note!");
+            }
+
+            await _noteRepository.UpdateNote(content, noteId);
+            return NoContent();
+        }
+
+        [HttpDelete("/delete/{noteId}")]
+        [ServiceFilter(typeof(AuthFilter))]
+        public async Task<IActionResult> DeleteNote(int noteId)
+        {
+            if (!await _noteRepository.CheckIfNoteExists(noteId))
+            {
+                return NotFound("Note does not exist!");
+            }
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            if (!await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
+            {
+                return Forbid("You canot delete this note!");
+            }
+
+            await _noteRepository.DeleteNote(noteId);
+            return NoContent();
+        }
     }
 }
