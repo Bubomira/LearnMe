@@ -41,6 +41,8 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 
 builder.Services.AddScoped<INoteUserRepository, NoteUserRepository>();
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
+builder.Services.AddScoped<INoteTagRepository, NoteTagRepository>();
+
 
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>

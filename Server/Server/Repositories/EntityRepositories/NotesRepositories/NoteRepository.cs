@@ -1,37 +1,62 @@
-﻿using Server.Interfaces.EntityInterface.INotesRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Server.Data;
+using Server.DTOs.NoteDtos.ImportDtos;
+using Server.Interfaces.EntityInterface.INotesRepositories;
 using Server.Models;
 
 namespace Server.Repositories.EntityRepositories.NotesRepositories
 {
     public class NoteRepository : INoteRepository
     {
-        public Task<bool> CheckIfNoteExists(int noteId)=>
+        private readonly LearnMeDbContext _learnMeDbContext;
 
-       
-
-        public Task<bool> CheckIfNoteIsOwnedByUser(int noteId, int userId)
+        public NoteRepository(LearnMeDbContext learnMeDbContext)
         {
-            throw new NotImplementedException();
+            _learnMeDbContext = learnMeDbContext;
+        }
+        public Task<bool> CheckIfNoteExists(int noteId) =>
+            _learnMeDbContext.Notes.AnyAsync(n => n.Id == noteId);
+
+        public Task<bool> CheckIfNoteIsOwnedByUser(int noteId, int userId) =>
+            _learnMeDbContext.Notes.AnyAsync(n => n.Id == noteId && n.OwnerId == userId);
+
+
+        public async Task<Note> CreateNote(NoteInfoDto noteInfoDto, int userId)
+        {
+            Note note = new Note()
+            {
+                Content = noteInfoDto.Content,
+                OwnerId = userId,
+            };
+
+            await _learnMeDbContext.Notes.AddAsync(note);
+
+            await _learnMeDbContext.SaveChangesAsync();
+
+            return note;
         }
 
-        public Task<Note> CreateNote()
+        public async Task DeleteNote(int noteId)
         {
-            throw new NotImplementedException();
+            Note note = await _learnMeDbContext.Notes.FirstOrDefaultAsync(n => n.Id == noteId);
+
+            _learnMeDbContext.Notes.Remove(note);
+
+            await _learnMeDbContext.SaveChangesAsync();
         }
 
-        public Task DeleteNote(int noteId)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Note> GetNotesDetails(int noteId) =>
+            _learnMeDbContext.Notes.Where(n => n.Id == noteId)
+            .Include(n => n.NotesTags)
+            .ThenInclude(nt => nt.Note)
+            .FirstOrDefaultAsync();
 
-        public Task<Note> GetNotesDetails(int noteId)
+        public async Task UpdateNote(string content, int noteId)
         {
-            throw new NotImplementedException();
-        }
+            Note note = await _learnMeDbContext.Notes.FirstOrDefaultAsync(n => n.Id == noteId);
 
-        public Task UpdateNote(int noteId)
-        {
-            throw new NotImplementedException();
+            note.Content = content;
+            await _learnMeDbContext.SaveChangesAsync();
         }
     }
 }
