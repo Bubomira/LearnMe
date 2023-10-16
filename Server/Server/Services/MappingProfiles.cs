@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Server.DTOs.DeckDtos.ExportDtos;
 using Server.DTOs.FlashcardDtos.ExportDtos;
+using Server.DTOs.NoteDtos.ExportDtos;
 using Server.Models;
 
 namespace Server.Services
@@ -27,6 +28,12 @@ namespace Server.Services
                 opt => opt.MapFrom(src =>
                 src.DecksTags.Select(dt =>
                     dt.Tag.Name).ToList()));
+
+            CreateMap<Note, NoteDetailsDto>()
+               .ForMember(n => n.Tags,
+               opt => opt.MapFrom(src =>
+               src.NotesTags.Select(dt =>
+                   dt.Tag.Name).ToList()));
         }
     }
 }
