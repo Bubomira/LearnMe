@@ -67,7 +67,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
                 }
                 tagIds.Add(tag.Id);
             }
-            await _decktagRepository.AttachTagsToDeck(tagIds, deck.Id);
+            await _decktagRepository.AttachTagToDeck(tagIds, deck.Id);
 
             return Ok("The deck has succesfully been created!");
         }

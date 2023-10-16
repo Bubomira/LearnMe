@@ -64,7 +64,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
                 return BadRequest("Tag is already attached to deck!");
             }
 
-            await _deckTagRepository.AttachTagToDeck(tag.Id, deckId);
+            await _deckTagRepository.AttachTagToDeck(new List<int>() { tag.Id }, deckId);
 
             return NoContent();
         }
