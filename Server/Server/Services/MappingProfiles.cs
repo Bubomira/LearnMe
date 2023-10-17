@@ -49,14 +49,19 @@ namespace Server.Services
               src.DecksTags.Select(dt =>
                   dt.Tag.Name).ToList()));
 
-            CreateMap<NoteUser,NotePreviewDto>()
-                .ForMember(nu=>nu.Title,
-                opt=>opt.MapFrom(src=>src.Note.Title))
+            CreateMap<NoteUser, NotePreviewDto>()
+                .ForMember(nu => nu.Title,
+                opt => opt.MapFrom(src => src.Note.Title))
                   .ForMember(nu => nu.OwnerId,
                 opt => opt.MapFrom(src => src.Note.OwnerId))
                    .ForMember(nu => nu.Tags, opt => opt.MapFrom(src =>
                src.Note.NotesTags.Select(dt =>
                    dt.Tag.Name).ToList()));
+
+            CreateMap<Note, NotePreviewDto>()
+                .ForMember(n => n.Tags,
+                opt => opt.MapFrom(src =>
+                src.NotesTags.Select(nt => nt.Tag.Name).ToList()));
 
         }
     }
