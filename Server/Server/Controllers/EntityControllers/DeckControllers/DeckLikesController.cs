@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Server.Authentication;
+using Server.DTOs.DeckDtos.ExportDtos;
 using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
 using Server.Interfaces.EntityInterface.IDeckRepositories;
@@ -77,7 +78,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            var deckDtos = _mapper.Map<List<DeckInfoDto>>(decks);
+            var deckDtos = _mapper.Map<List<DeckPreviewDto>>(decks);
 
             return Ok(deckDtos);
 
@@ -92,7 +93,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             if (!ModelState.IsValid) { return BadRequest(ModelState); }
 
-            var deckDtos = _mapper.Map<List<DeckInfoDto>>(decks);
+            var deckDtos = _mapper.Map<List<DeckPreviewDto>>(decks);
 
             return Ok(deckDtos);
         }

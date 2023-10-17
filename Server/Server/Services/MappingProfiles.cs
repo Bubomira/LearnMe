@@ -34,6 +34,19 @@ namespace Server.Services
                opt => opt.MapFrom(src =>
                src.NotesTags.Select(dt =>
                    dt.Tag.Name).ToList()));
+
+            CreateMap<LikedUserDeck, DeckPreviewDto>()
+                .ForMember(lud => lud.Name,
+                opt => opt.MapFrom(src => src.Deck.Name))
+                .ForMember(lud => lud.Tags, opt => opt.MapFrom(src =>
+               src.Deck.DecksTags.Select(dt =>
+                   dt.Tag.Name).ToList()));
+
+            CreateMap<Deck, DeckPreviewDto>()
+               .ForMember(lud => lud.Tags, opt => opt.MapFrom(src =>
+              src.DecksTags.Select(dt =>
+                  dt.Tag.Name).ToList()));
+
         }
     }
 }

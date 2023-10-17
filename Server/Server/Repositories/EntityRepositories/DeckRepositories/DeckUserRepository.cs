@@ -25,14 +25,17 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
 
             await _learnMeDbContext.SaveChangesAsync();
         }
-
-        public Task<List<Deck>> GetLikedDecks(int userId) =>
+        //!!
+        public Task<List<LikedUserDeck>> GetLikedDecks(int userId) =>
             _learnMeDbContext.LikedUserDecks.Where(lud => lud.LikerUserId == userId)
-            .Select(lud => lud.Deck)
+            .Include(lud => lud.Deck.DecksTags)
+            .ThenInclude(dt => dt.Tag)
             .ToListAsync();
 
         public Task<List<Deck>> GetOwnedDecks(int userId) =>
          _learnMeDbContext.Decks.Where(d => d.OwnerId == userId)
+            .Include(d => d.DecksTags)
+            .ThenInclude(dt => dt.Tag)
             .ToListAsync();
 
         public async Task LikeDeck(int deckId, int userId)
