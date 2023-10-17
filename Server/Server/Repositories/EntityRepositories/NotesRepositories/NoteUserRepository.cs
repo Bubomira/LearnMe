@@ -27,6 +27,17 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             await _learnMeDbContext.SaveChangesAsync();
         }
 
+        public Task<List<Note>> GetLikedNotes(int userId) =>
+            _learnMeDbContext.LikedNotesUsers.Where(lnu => lnu.LikerUserId == userId)
+            .Select(lnu => lnu.Note)
+            .ToListAsync();
+
+
+        public Task<List<Note>> GetOwnedNotes(int userId) =>
+            _learnMeDbContext.Notes.Where(n => n.OwnerId == userId)
+            .ToListAsync();
+
+
         public async Task LikeNote(int noteId, int userId)
         {
             NoteUser noteUser = new NoteUser()
