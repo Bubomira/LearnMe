@@ -11,6 +11,6 @@ namespace Server.Interfaces.EntityInterface.IDeckRepositories
         public Task DislikeDeck(int deckId,int userId);
 
         public Task<List<Deck>> GetOwnedDecks(int userId);
-        public Task<List<Deck>> GetLikedDecks(int userId);
+        public Task<List<LikedUserDeck>> GetLikedDecks(int userId);
     }
 }
