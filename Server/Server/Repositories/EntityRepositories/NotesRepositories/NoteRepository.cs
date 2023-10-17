@@ -49,7 +49,7 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
         public Task<Note> GetNotesDetails(int noteId) =>
             _learnMeDbContext.Notes.Where(n => n.Id == noteId)
             .Include(n => n.NotesTags)
-            .ThenInclude(nt => nt.Note)
+            .ThenInclude(nt => nt.Tag)
             .FirstOrDefaultAsync();
 
         public async Task UpdateNote(NoteUpdateDto noteUpdateDto, int noteId)

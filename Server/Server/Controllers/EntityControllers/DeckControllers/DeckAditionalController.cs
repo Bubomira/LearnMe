@@ -69,7 +69,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             return NoContent();
         }
 
-        [HttpPost("deck/remove/tag/{deckId}")]
+        [HttpPost("/deck/remove/tag/{deckId}")]
         public async Task<IActionResult> RemoveTagFromDeck([FromBody] int tagId, int deckId)
         {
             if (!await _tagRepository.CheckIfTagExistsById(tagId))
@@ -89,7 +89,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
                 return Forbid("You cannot modify this deck!");
             }
 
-            if (!await _deckTagRepository.CheckIfTagIsAttachedToDeck(deckId, tagId))
+            if (!await _deckTagRepository.CheckIfTagIsAttachedToDeck(tagId, deckId))
             {
                 return BadRequest("Tag is not attached to deck!");
             }

@@ -33,7 +33,9 @@ namespace Server.Services
                .ForMember(n => n.Tags,
                opt => opt.MapFrom(src =>
                src.NotesTags.Select(dt =>
-                   dt.Tag.Name).ToList()));
+                   dt.Tag.Name).ToList()))
+               .ForMember(n => n.Title,
+               opt => opt.MapFrom(nt => nt.Title));
 
             CreateMap<LikedUserDeck, DeckPreviewDto>()
                 .ForMember(lud => lud.Name,
