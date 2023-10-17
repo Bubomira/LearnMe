@@ -11,6 +11,8 @@ namespace Server.Models
         [Required]
         public string Content { get; set; }
 
+        public string Title { get; set; }
+
         public int OwnerId { get; set; }
 
         public User Owner { get; set; }

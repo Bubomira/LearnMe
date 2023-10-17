@@ -1,9 +1,8 @@
 ﻿namespace Server.DTOs.NoteDtos.ImportDtos
 {
-    public class NoteInfoDto
+    public class NoteUpdateDto
     {
         public string Content { get; set; }
-        public string[] Tags { get; set; }
         public string Title { get; set; }
     }
 }

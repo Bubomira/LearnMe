@@ -27,6 +27,7 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             {
                 Content = noteInfoDto.Content,
                 OwnerId = userId,
+                Title = noteInfoDto.Title
             };
 
             await _learnMeDbContext.Notes.AddAsync(note);
@@ -51,11 +52,12 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             .ThenInclude(nt => nt.Note)
             .FirstOrDefaultAsync();
 
-        public async Task UpdateNote(string content, int noteId)
+        public async Task UpdateNote(NoteUpdateDto noteUpdateDto, int noteId)
         {
             Note note = await _learnMeDbContext.Notes.FirstOrDefaultAsync(n => n.Id == noteId);
 
-            note.Content = content;
+            note.Content = noteUpdateDto.Content;
+            note.Title = noteUpdateDto.Title;
             await _learnMeDbContext.SaveChangesAsync();
         }
     }

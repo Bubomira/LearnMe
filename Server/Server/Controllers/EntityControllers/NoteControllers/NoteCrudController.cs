@@ -45,7 +45,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         public async Task<IActionResult> CreateNote([FromBody] NoteInfoDto noteInfoDto)
         {
             if (noteInfoDto == null || string.IsNullOrEmpty(noteInfoDto.Content)
-                || noteInfoDto.Tags.Length == 0)
+                || noteInfoDto.Tags.Length == 0 || string.IsNullOrEmpty(noteInfoDto.Title))
             {
                 return BadRequest("Please fill in all fields!");
             }
@@ -77,9 +77,9 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
         [HttpPut("/update/{noteId}")]
         [ServiceFilter(typeof(AuthFilter))]
-        public async Task<IActionResult> UpdateNote([FromBody] string content, int noteId)
+        public async Task<IActionResult> UpdateNote([FromBody] NoteUpdateDto noteUpdateDto, int noteId)
         {
-            if (string.IsNullOrEmpty(content))
+            if (string.IsNullOrEmpty(noteUpdateDto.Content) || string.IsNullOrEmpty(noteUpdateDto.Title))
             {
                 return BadRequest("Please fill in all fields!");
             }
@@ -94,7 +94,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
                 return Forbid("You canot modify this note!");
             }
 
-            await _noteRepository.UpdateNote(content, noteId);
+            await _noteRepository.UpdateNote(noteUpdateDto, noteId);
             return NoContent();
         }
 

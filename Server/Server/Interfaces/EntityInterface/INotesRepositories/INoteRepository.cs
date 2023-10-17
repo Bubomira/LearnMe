@@ -7,7 +7,7 @@ namespace Server.Interfaces.EntityInterface.INotesRepositories
     {
         public Task<Note> GetNotesDetails(int noteId);
         public Task<Note> CreateNote(NoteInfoDto noteInfoDto,int userId);
-        public Task UpdateNote(string content,int noteId);
+        public Task UpdateNote(NoteUpdateDto noteUpdateDto, int noteId);
         public Task DeleteNote(int noteId);
         public Task<bool> CheckIfNoteExists(int noteId);
         public Task<bool> CheckIfNoteIsOwnedByUser(int noteId, int userId);
