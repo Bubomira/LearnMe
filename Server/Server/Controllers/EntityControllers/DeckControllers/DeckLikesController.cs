@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Server.Authentication;
+using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
 using Server.Interfaces.EntityInterface.IDeckRepositories;
 
@@ -13,10 +15,13 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         private readonly IDeckRepository _deckRepository;
 
         private readonly IDeckUserRepository _deckUserRepository;
-        public DeckLikesController(IDeckRepository deckRepository, IDeckUserRepository deckUserRepository)
+
+        private readonly IMapper _mapper;
+        public DeckLikesController(IDeckRepository deckRepository, IDeckUserRepository deckUserRepository, IMapper mapper)
         {
             _deckRepository = deckRepository;
             _deckUserRepository = deckUserRepository;
+            _mapper = mapper;
         }
 
         [HttpGet("/like/deck/{deckId}")]
@@ -62,6 +67,34 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             await _deckUserRepository.DislikeDeck(deckId, userId);
 
             return Ok($"Successfully disliked deck {deckId}!");
+        }
+        [HttpGet("/get/ownedDecks")]
+        public async Task<IActionResult> GetOwnedDecks()
+        {
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            var decks = await _deckUserRepository.GetOwnedDecks(userId);
+
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            var deckDtos = _mapper.Map<List<DeckInfoDto>>(decks);
+
+            return Ok(deckDtos);
+
+        }
+
+        [HttpGet("/get/likedDecks")]
+        public async Task<IActionResult> GetLikedDecks()
+        {
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            var decks = await _deckUserRepository.GetLikedDecks(userId);
+
+            if (!ModelState.IsValid) { return BadRequest(ModelState); }
+
+            var deckDtos = _mapper.Map<List<DeckInfoDto>>(decks);
+
+            return Ok(deckDtos);
         }
     }
 }
