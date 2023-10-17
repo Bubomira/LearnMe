@@ -25,7 +25,7 @@ namespace Server.Controllers.EntityControllers
             _deckRepository = deckRepository;
             _mapper = mapper;
         }
-        [HttpGet("/note/details/{flashCardId}")]
+        [HttpGet("/flashcard/details/{flashCardId}")]
         public async Task<IActionResult> GetFlashcardDetails(int flashCardId)
         {
 
