@@ -26,7 +26,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             _noteTagRepository = noteTagRepository;
         }
 
-        [HttpGet("/details/{noteId}")]
+        [HttpGet("/note/details/{noteId}")]
         public async Task<IActionResult> GetNoteDetails(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
@@ -39,7 +39,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
             return Ok(noteDto);
         }
-        [HttpPost("/create")]
+        [HttpPost("/note/create")]
         [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> CreateNote([FromBody] NoteInfoDto noteInfoDto)
@@ -75,7 +75,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return Ok(note);
         }
 
-        [HttpPut("/update/{noteId}")]
+        [HttpPut("/note/update/{noteId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateNote([FromBody] NoteUpdateDto noteUpdateDto, int noteId)
         {
@@ -98,7 +98,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpDelete("/delete/{noteId}")]
+        [HttpDelete("/note/delete/{noteId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> DeleteNote(int noteId)
         {

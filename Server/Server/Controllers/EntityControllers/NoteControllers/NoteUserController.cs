@@ -4,6 +4,7 @@ using Server.Authentication;
 using Server.DTOs.NoteDtos.ExportDtos;
 using Server.Interfaces.EntityInterface.INotesRepositories;
 
+
 namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ServiceFilter(typeof(AuthFilter))]
@@ -21,7 +22,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             _mapper = mapper;
         }
 
-        [HttpGet("/like/{noteId")]
+        [HttpGet("/like/note/{noteId}")]
         public async Task<IActionResult> LikeNote(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
@@ -45,7 +46,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpGet("/dislike/{noteId")]
+        [HttpGet("/dislike/note/{noteId}")]
         public async Task<IActionResult> DislikeNote(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))

@@ -5,11 +5,12 @@ using Server.Interfaces.EntityInterface.INotesRepositories;
 using Server.Models;
 using Server.Repositories.EntityRepositories.DeckRepositories;
 
+
 namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ServiceFilter(typeof(AuthFilter))]
     [ApiController]
-    [Route("api/[controller]")]
+    [System.Web.Http.RoutePrefix("api/note/tag")]
     public class NoteTagController : Controller
     {
         private readonly INoteTagRepository _noteTagRepository;
@@ -23,7 +24,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             _tagRepository = tagRepository;
         }
 
-        [HttpPost("/attach/tag/{noteId}")]
+        [HttpPost("/note/attach/tag/{noteId}")]
         public async Task<IActionResult> AttachNoteToTag([FromBody] string tagName, int noteId)
         {
             if (string.IsNullOrEmpty(tagName))
@@ -63,7 +64,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpPost("/detach/tag/{noteId}")]
+        [HttpPost("/note/detach/tag/{noteId}")]
 
         public async Task<IActionResult> DetachTagFromNote([FromBody] int tagId, int noteId)
         {

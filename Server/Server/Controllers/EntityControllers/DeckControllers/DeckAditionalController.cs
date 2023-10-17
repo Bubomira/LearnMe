@@ -28,7 +28,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             _deckFlashcardRepository = deckFlashcardRepository;
         }
 
-        [HttpPost("attach/tag/{deckId}")]
+        [HttpPost("/deck/attach/tag/{deckId}")]
         public async Task<IActionResult> AddTagToDeck([FromBody] string tagName, int deckId)
         {
             if (string.IsNullOrEmpty(tagName))
@@ -69,7 +69,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             return NoContent();
         }
 
-        [HttpPost("remove/tag/{deckId}")]
+        [HttpPost("deck/remove/tag/{deckId}")]
         public async Task<IActionResult> RemoveTagFromDeck([FromBody] int tagId, int deckId)
         {
             if (!await _tagRepository.CheckIfTagExistsById(tagId))
@@ -99,7 +99,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             return NoContent();
         }
 
-        [HttpPost("/attach/flashcard/deck/{deckId}")]
+        [HttpPost("/deck/attach/flashcard/deck/{deckId}")]
         public async Task<IActionResult> AttachFlashcardToDesk([FromBody] int flashcardId, int deckId)
         {
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
@@ -122,7 +122,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             return NoContent();
         }
 
-        [HttpPost("remove/flashcard/from/deck{deckId}")]
+        [HttpPost("/deck/remove/flashcard/from/deck{deckId}")]
 
         public async Task<IActionResult> RemoveFlashcardFromDeck([FromBody] int flashcardId, int deckId)
         {
