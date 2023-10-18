@@ -1,6 +1,7 @@
 ﻿using Azure;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
 using Server.Models;
 
@@ -37,6 +38,24 @@ namespace Server.Repositories.EntityRepositories
         public Task<bool> CheckIfTagExistsById(int tagId)=>
             _learnMeDbContext.Tags.AnyAsync(t => t.Id == tagId);
 
+        public async Task<List<int>> GetTagIds(string[] tagNames)
+        {
+            List<int> tagIds = new List<int>();
 
+            foreach (var tagName in tagNames)
+            {
+                Tag tag;
+                if (!await CheckIfTagExistsByName(tagName))
+                {
+                    tag = await CreateTag(tagName);
+                }
+                else
+                {
+                    tag = await GetTagByName(tagName);
+                }
+                tagIds.Add(tag.Id);
+            }
+            return tagIds;
+        }
     }
 }

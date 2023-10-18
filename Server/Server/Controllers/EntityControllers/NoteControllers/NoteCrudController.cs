@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Server.Authentication;
+using Server.DTOs.DeckDtos.ImportDtos;
 using Server.DTOs.NoteDtos.ExportDtos;
 using Server.DTOs.NoteDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
@@ -49,24 +50,10 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             {
                 return BadRequest("Please fill in all fields!");
             }
-
+          
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
-
-            List<int> tagIds = new List<int>();
-
-            foreach (var tagName in noteInfoDto.Tags)
-            {
-                Tag tag;
-                if (!await _tagRepository.CheckIfTagExistsByName(tagName))
-                {
-                    tag = await _tagRepository.CreateTag(tagName);
-                }
-                else
-                {
-                    tag = await _tagRepository.GetTagByName(tagName);
-                }
-                tagIds.Add(tag.Id);
-            }
+          
+            var tagIds = await _tagRepository.GetTagIds(deckInfoDto.Tags);
 
             var note = await _noteRepository.CreateNote(noteInfoDto, userId);
 

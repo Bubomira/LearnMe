@@ -52,21 +52,8 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             var deck = await _deckRepository.CreateDeck(deckInfoDto, ownerId);
 
-            List<int> tagIds = new List<int>();
+            var tagIds = await _tagRepository.GetTagIds(deckInfoDto.Tags);
 
-            foreach (var tagName in deckInfoDto.Tags)
-            {
-                Tag tag;
-                if (!await _tagRepository.CheckIfTagExistsByName(tagName))
-                {
-                    tag = await _tagRepository.CreateTag(tagName);
-                }
-                else
-                {
-                    tag = await _tagRepository.GetTagByName(tagName);
-                }
-                tagIds.Add(tag.Id);
-            }
             await _decktagRepository.AttachTagToDeck(tagIds, deck.Id);
 
             return Ok("The deck has succesfully been created!");

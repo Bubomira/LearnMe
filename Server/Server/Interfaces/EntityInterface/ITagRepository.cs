@@ -9,6 +9,8 @@ namespace Server.Interfaces.EntityInterface
 
         public Task<bool> CheckIfTagExistsById(int tagId);
 
+        public Task<List<int>> GetTagIds(string[] tagNames);
+
         public Task<Tag> GetTagByName(string tagName);
     }
 }
