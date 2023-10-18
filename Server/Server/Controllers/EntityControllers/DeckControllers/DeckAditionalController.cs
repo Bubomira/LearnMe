@@ -48,23 +48,14 @@ namespace Server.Controllers.EntityControllers.DeckControllers
                 return Forbid("You cannot modify this deck!");
             }
 
-            Tag tag;
+            var tagId =( await _tagRepository.GetTagIds(new string[1] { tagName }))[0];
 
-            if (!await _tagRepository.CheckIfTagExistsByName(tagName))
-            {
-                tag = await _tagRepository.CreateTag(tagName);
-            }
-            else
-            {
-                tag = await _tagRepository.GetTagByName(tagName);
-            }
-
-            if (await _deckTagRepository.CheckIfTagIsAttachedToDeck(deckId, tag.Id))
+            if (await _deckTagRepository.CheckIfTagIsAttachedToDeck(deckId, tagId))
             {
                 return BadRequest("Tag is already attached to deck!");
             }
 
-            await _deckTagRepository.AttachTagToDeck(new List<int>() { tag.Id }, deckId);
+            await _deckTagRepository.AttachTagToDeck(new List<int>() { tagId }, deckId);
 
             return NoContent();
         }

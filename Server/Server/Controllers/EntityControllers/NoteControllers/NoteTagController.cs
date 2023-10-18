@@ -44,22 +44,14 @@ namespace Server.Controllers.EntityControllers.NoteControllers
                 return Forbid("You cannot modify this note!");
             }
 
-            Tag tag;
-            if (!await _tagRepository.CheckIfTagExistsByName(tagName))
-            {
-                tag = await _tagRepository.CreateTag(tagName);
-            }
-            else
-            {
-                tag = await _tagRepository.GetTagByName(tagName);
-            }
+            var tagId = (await _tagRepository.GetTagIds(new string[1] { tagName }))[0];
 
-            if (await _noteTagRepository.CheckIfTagIsAttachedToNote(tag.Id, noteId))
+            if (await _noteTagRepository.CheckIfTagIsAttachedToNote(tagId, noteId))
             {
                 return BadRequest("Tag is already attached to note!");
             }
 
-            await _noteTagRepository.AttachTagToNote(new List<int>() { tag.Id }, noteId);
+            await _noteTagRepository.AttachTagToNote(new List<int>() { tagId }, noteId);
 
             return NoContent();
         }
