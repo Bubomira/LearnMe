@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.DTOs.MindmapDtos.Import;
 using Server.Interfaces.EntityInterface.IMindmapRepository;
+using Server.Migrations;
 using Server.Models;
 
 namespace Server.Repositories.EntityRepositories.MindmapRepositories
@@ -19,28 +21,44 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
         public Task<bool> CheckIfMindmapIsOwnedByUser(int mindmapId, int userId) =>
             _learnMeDbContext.Mindmaps.AnyAsync(m => m.Id == mindmapId && m.OwnerId == userId);
 
-        public Task<Mindmap> CreateMindmap()
+        public async Task<Mindmap> CreateMindmap(MindmapInfoDto mindmapInfoDto,int ownerId)
         {
-            throw new NotImplementedException();
+            Mindmap mindmap = new Mindmap()
+            {
+                OwnerId = ownerId,
+                Name = mindmapInfoDto.Name,
+            };
+
+            await _learnMeDbContext.Mindmaps.AddAsync(mindmap);
+
+            await _learnMeDbContext.SaveChangesAsync();
+
+            return mindmap;
         }
 
         public async Task DeleteMindmap(int mindmapId)
         {
-            var mindmap = await _learnMeDbContext.Mindmaps.FirstOrDefaultAsync(m => m.Id = mindmapId);
+            var mindmap = await _learnMeDbContext.Mindmaps.FirstOrDefaultAsync(m => m.Id == mindmapId);
 
             _learnMeDbContext.Mindmaps.Remove(mindmap);
 
             await _learnMeDbContext.SaveChangesAsync();
         }
 
-        public Task<Mindmap> GetMindmapDetails(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Mindmap> GetMindmapDetails(int id) =>
+            _learnMeDbContext.Mindmaps.Where(m => m.Id == id)
+            .Include(m => m.MindmapsTags)
+            .ThenInclude(mt => mt.Tag)
+            .FirstOrDefaultAsync();
 
-        public Task UpdateMindmap(int mindmapId)
+
+        public async Task UpdateMindmap(int mindmapId,string newName)
         {
-            throw new NotImplementedException();
+            var mindmap = await _learnMeDbContext.Mindmaps.FirstOrDefaultAsync(m => m.Id == mindmapId);
+
+            mindmap.Name = newName;
+
+            await _learnMeDbContext.SaveChangesAsync();
         }
     }
 }

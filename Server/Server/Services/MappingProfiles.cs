@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Server.DTOs.DeckDtos.ExportDtos;
 using Server.DTOs.FlashcardDtos.ExportDtos;
+using Server.DTOs.MindmapDtos.Export;
 using Server.DTOs.NoteDtos.ExportDtos;
 using Server.Models;
 
@@ -64,6 +65,11 @@ namespace Server.Services
                 .ForMember(n => n.Tags,
                 opt => opt.MapFrom(src =>
                 src.NotesTags.Select(nt => nt.Tag.Name).ToList()));
+
+            CreateMap<Mindmap, MindmapDetailsDto>()
+                .ForMember(mdd => mdd.Tags, opt =>
+                opt.MapFrom(src =>
+                src.MindmapsTags.Select(mt => mt.Tag.Name).ToList()));
 
         }
     }
