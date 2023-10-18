@@ -10,7 +10,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ServiceFilter(typeof(AuthFilter))]
     [ApiController]
-    [System.Web.Http.RoutePrefix("api/note/tag")]
+    [Route("api/note/tag")]
     public class NoteTagController : Controller
     {
         private readonly INoteTagRepository _noteTagRepository;
