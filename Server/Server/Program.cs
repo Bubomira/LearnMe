@@ -5,11 +5,13 @@ using Server.Data;
 using Server.Interfaces.AuthInterface;
 using Server.Interfaces.EntityInterface;
 using Server.Interfaces.EntityInterface.IDeckRepositories;
+using Server.Interfaces.EntityInterface.IMindmapRepository;
 using Server.Interfaces.EntityInterface.INotesRepositories;
 using Server.Interfaces.ServiceInterfaces;
 using Server.Repositories;
 using Server.Repositories.EntityRepositories;
 using Server.Repositories.EntityRepositories.DeckRepositories;
+using Server.Repositories.EntityRepositories.MindmapRepositories;
 using Server.Repositories.EntityRepositories.NotesRepositories;
 using Server.Services;
 
@@ -42,6 +44,10 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<INoteUserRepository, NoteUserRepository>();
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
 builder.Services.AddScoped<INoteTagRepository, NoteTagRepository>();
+
+builder.Services.AddScoped<IMindmapRepository, MindmapRepository>();
+builder.Services.AddScoped<IMindmapTagRepository, MindmapTagRepository>();
+builder.Services.AddScoped<IMindmapUserRepository, MindmapUserRepository>();
 
 
 
