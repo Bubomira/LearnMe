@@ -10,22 +10,22 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 {
     [ServiceFilter(typeof(AuthFilter))]
     [ApiController]
-    [Route("api/[controller]")]
-    public class DeckLikesController : Controller
+    [Route("api/deck/user")]
+    public class DeckUserController : Controller
     {
         private readonly IDeckRepository _deckRepository;
 
         private readonly IDeckUserRepository _deckUserRepository;
 
         private readonly IMapper _mapper;
-        public DeckLikesController(IDeckRepository deckRepository, IDeckUserRepository deckUserRepository, IMapper mapper)
+        public DeckUserController(IDeckRepository deckRepository, IDeckUserRepository deckUserRepository, IMapper mapper)
         {
             _deckRepository = deckRepository;
             _deckUserRepository = deckUserRepository;
             _mapper = mapper;
         }
 
-        [HttpGet("/like/deck/{deckId}")]
+        [HttpGet("like/deck/{deckId}")]
         public async Task<IActionResult> LikeDeck(int deckId)
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
@@ -50,7 +50,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             return Ok($"Successfully liked deck {deckId}!");
         }
 
-        [HttpGet("/dislike/deck/{deckId}")]
+        [HttpGet("dislike/deck/{deckId}")]
         public async Task<IActionResult> Dislike(int deckId)
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
@@ -69,7 +69,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             return Ok($"Successfully disliked deck {deckId}!");
         }
-        [HttpGet("/get/ownedDecks")]
+        [HttpGet("get/ownedDecks")]
         public async Task<IActionResult> GetOwnedDecks()
         {
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
@@ -84,7 +84,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
         }
 
-        [HttpGet("/get/likedDecks")]
+        [HttpGet("get/likedDecks")]
         public async Task<IActionResult> GetLikedDecks()
         {
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());

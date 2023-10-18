@@ -12,7 +12,7 @@ using Server.Models;
 namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/note")]
     public class NoteCrudController : Controller
     {
         private readonly INoteRepository _noteRepository;
@@ -27,7 +27,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             _noteTagRepository = noteTagRepository;
         }
 
-        [HttpGet("/note/details/{noteId}")]
+        [HttpGet("details/{noteId}")]
         public async Task<IActionResult> GetNoteDetails(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
@@ -40,7 +40,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
             return Ok(noteDto);
         }
-        [HttpPost("/note/create")]
+        [HttpPost("create")]
         [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> CreateNote([FromBody] NoteInfoDto noteInfoDto)
@@ -53,7 +53,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
           
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
           
-            var tagIds = await _tagRepository.GetTagIds(deckInfoDto.Tags);
+            var tagIds = await _tagRepository.GetTagIds(noteInfoDto.Tags);
 
             var note = await _noteRepository.CreateNote(noteInfoDto, userId);
 
@@ -62,7 +62,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return Ok();
         }
 
-        [HttpPut("/note/update/{noteId}")]
+        [HttpPut("update/{noteId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateNote([FromBody] NoteUpdateDto noteUpdateDto, int noteId)
         {
@@ -85,7 +85,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpDelete("/note/delete/{noteId}")]
+        [HttpDelete("delete/{noteId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> DeleteNote(int noteId)
         {

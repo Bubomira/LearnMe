@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace Server.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/auth")]
     public class AuthenticationController : Controller
     {
         private readonly ITokenManager _tokenManager;
@@ -25,7 +25,7 @@ namespace Server.Controllers
         }
 
 
-        [HttpPost("/register")]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegisterDto userRegisterDto)
         {
             if (userRegisterDto == null ||
@@ -62,7 +62,7 @@ namespace Server.Controllers
 
         }
 
-        [HttpPost("/login")]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginUser([FromBody] UserLoginDto userLoginDto)
         {
             if (userLoginDto == null ||
@@ -94,7 +94,7 @@ namespace Server.Controllers
             });
         }
 
-        [HttpGet("/logout")]
+        [HttpGet("logout")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> LogoutUser()
         {

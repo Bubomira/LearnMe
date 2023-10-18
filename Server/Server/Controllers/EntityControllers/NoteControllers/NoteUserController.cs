@@ -9,7 +9,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ServiceFilter(typeof(AuthFilter))]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/note/user")]
     public class NoteUserController : Controller
     {
         private readonly INoteRepository _noteRepository;
@@ -22,7 +22,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             _mapper = mapper;
         }
 
-        [HttpGet("/like/note/{noteId}")]
+        [HttpGet("like/{noteId}")]
         public async Task<IActionResult> LikeNote(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
@@ -46,7 +46,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpGet("/dislike/note/{noteId}")]
+        [HttpGet("dislike/{noteId}")]
         public async Task<IActionResult> DislikeNote(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
@@ -65,7 +65,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpGet("/get/liked/notes")]
+        [HttpGet("liked/notes")]
         public async Task<IActionResult> GetLikedNotes()
         {
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
@@ -78,7 +78,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
         }
 
-        [HttpGet("/get/owned/notes")]
+        [HttpGet("owned/notes")]
         public async Task<IActionResult> GetOwnedNotes()
         {
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());

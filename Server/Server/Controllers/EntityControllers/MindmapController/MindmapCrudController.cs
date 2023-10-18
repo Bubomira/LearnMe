@@ -11,7 +11,7 @@ using Server.Models;
 namespace Server.Controllers.EntityControllers.MindmapController
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/mindmap")]
     public class MindmapCrudController : Controller
     {
         private readonly IMindmapRepository _mindmapRepository;
@@ -26,7 +26,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
             _mapper = mapper;
         }
 
-        [HttpGet("/details/{mindmapId}")]
+        [HttpGet("details/{mindmapId}")]
         public async Task<IActionResult> GetMindmapDetails(int mindmapId)
         {
             if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
@@ -40,7 +40,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
             return Ok(mindmapDto);
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> CreateMindmap([FromBody] MindmapInfoDto mindmapInfoDto)
         {
@@ -62,7 +62,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
             return Ok(mindmapDto);
         }
 
-        [HttpPut("/update/{mindmapId}")]
+        [HttpPut("update/{mindmapId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateMindmap([FromBody] string newName, int mindmapId)
         {
@@ -89,7 +89,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
 
         }
 
-        [HttpDelete("/delete/{mindmapId}")]
+        [HttpDelete("delete/{mindmapId}")]
         [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> DeleteMindmap( int mindmapId)
         {

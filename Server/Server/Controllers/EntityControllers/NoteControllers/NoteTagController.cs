@@ -24,7 +24,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             _tagRepository = tagRepository;
         }
 
-        [HttpPost("/note/attach/tag/{noteId}")]
+        [HttpPost("attach/tag/{noteId}")]
         public async Task<IActionResult> AttachNoteToTag([FromBody] string tagName, int noteId)
         {
             if (string.IsNullOrEmpty(tagName))
@@ -56,7 +56,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             return NoContent();
         }
 
-        [HttpPost("/note/detach/tag/{noteId}")]
+        [HttpPost("detach/tag/{noteId}")]
 
         public async Task<IActionResult> DetachTagFromNote([FromBody] int tagId, int noteId)
         {
