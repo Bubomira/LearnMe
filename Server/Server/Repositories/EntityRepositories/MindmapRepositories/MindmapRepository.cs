@@ -51,6 +51,14 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
             .ThenInclude(mt => mt.Tag)
             .FirstOrDefaultAsync();
 
+        public Task<List<Mindmap>> SearchMindmapsByName(string mindmapName)=>
+             _learnMeDbContext.Mindmaps
+            .Where(m => m.Name.ToLower().StartsWith(mindmapName.ToLower()) ||
+            m.Name.ToLower().EndsWith(mindmapName.ToLower()) ||
+           m.Name.ToLower().Contains(mindmapName.ToLower()))
+            .Include(m => m.MindmapsTags)
+            .ThenInclude(mt => mt.Tag)
+            .ToListAsync();
 
         public async Task UpdateMindmap(int mindmapId,string newName)
         {

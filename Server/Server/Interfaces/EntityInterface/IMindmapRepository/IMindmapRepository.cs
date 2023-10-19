@@ -12,5 +12,7 @@ namespace Server.Interfaces.EntityInterface.IMindmapRepository
         public Task<bool> CheckIfMindmapExists(int mindmapId);
         public Task<bool> CheckIfMindmapIsOwnedByUser(int mindmapId,int userId);
 
+        public Task<List<Mindmap>> SearchMindmapsByName(string mindmapName);
+
     }
 }
