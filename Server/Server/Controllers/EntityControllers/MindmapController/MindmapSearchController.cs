@@ -37,7 +37,6 @@ namespace Server.Controllers.EntityControllers.MindmapController
         }
 
         [HttpPost("by/tag")]
-
         public async Task<IActionResult> SearchNoteByTitle([FromBody] string tagName)
         {
 
