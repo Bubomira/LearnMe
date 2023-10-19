@@ -7,10 +7,10 @@ using Server.DTOs.FlashcardDtos.ImportDtos;
 using Server.Enums;
 using Server.Interfaces.EntityInterface;
 
-namespace Server.Controllers.EntityControllers
+namespace Server.Controllers.EntityControllers.FlashcardControlls
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/flashcard")]
     public class FlashcardCrudController : Controller
     {
         private readonly IFlashcardRepository _flashcardRepository;

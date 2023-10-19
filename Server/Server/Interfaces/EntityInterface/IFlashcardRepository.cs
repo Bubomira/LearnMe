@@ -13,7 +13,7 @@ namespace Server.Interfaces.EntityInterface
         public Task<bool> CheckIfFlashcardExists(int id);
 
         public Task<bool> CheckIfUserOwnsTheFlashcard(int ownerId, int flashcardId);
-
+        public Task<List<Flashcard>> SearchFlashcardsByDefinition(string name);
 
     }
 }

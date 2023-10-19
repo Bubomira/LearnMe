@@ -80,5 +80,14 @@ namespace Server.Repositories.EntityRepositories
         {
             return _learnMeDbContext.OwnedUserFlashcards.AnyAsync(ouf => ouf.FlashcardId == flashcardId && ouf.OwnerId == ownerId);
         }
+
+        public Task<List<Flashcard>> SearchFlashcardsByDefinition(string name)=>
+            _learnMeDbContext.Flashcards
+            .Where(f => f.Definition.ToLower().StartsWith(name.ToLower()) ||
+            f.Definition.ToLower().EndsWith(name.ToLower()) ||
+            f.Definition.ToLower().Contains(name.ToLower()))
+           .ToListAsync();
+
+       
     }
 }
