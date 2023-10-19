@@ -42,5 +42,12 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
 
             await _learnMeDbContext.SaveChangesAsync();
         }
+
+        public Task<List<NoteTag>> SearchNotesByTag(int tagId) =>
+            _learnMeDbContext.NotesTags.Where(nt => nt.TagId == tagId)
+            .Include(nt => nt.Note)
+            .Include(nt => nt.Tag)
+            .ToListAsync();
+       
     }
 }

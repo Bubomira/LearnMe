@@ -12,5 +12,7 @@ namespace Server.Interfaces.EntityInterface.INotesRepositories
         public Task<bool> CheckIfNoteExists(int noteId);
         public Task<bool> CheckIfNoteIsOwnedByUser(int noteId, int userId);
 
+        public Task<List<Note>> SearchNotesByTitle(string noteName);
+
     }
 }

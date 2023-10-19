@@ -52,6 +52,17 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             .ThenInclude(nt => nt.Tag)
             .FirstOrDefaultAsync();
 
+        public Task<List<Note>> SearchNotesByTitle(string noteName)=>
+             _learnMeDbContext.Notes
+            .Where(n => n.Title.ToLower().StartsWith(noteName.ToLower()) ||
+            n.Title.ToLower().EndsWith(noteName.ToLower()) ||
+           n.Title.ToLower().Contains(noteName.ToLower()))
+            .Include(n=>n.NotesTags)
+            .ThenInclude(nt=>nt.Tag)
+            .ToListAsync();
+
+
+
         public async Task UpdateNote(NoteUpdateDto noteUpdateDto, int noteId)
         {
             Note note = await _learnMeDbContext.Notes.FirstOrDefaultAsync(n => n.Id == noteId);
