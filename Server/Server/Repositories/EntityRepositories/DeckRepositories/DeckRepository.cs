@@ -60,6 +60,15 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
             .ThenInclude(d => d.Tag)
             .FirstOrDefaultAsync();
 
+        public Task<List<Deck>> SearchDeckByName(string deckName) =>
+            _learnMeDbContext.Decks
+            .Where(d => d.Name.ToLower().StartsWith(deckName.ToLower()) ||
+            d.Name.ToLower().EndsWith(deckName.ToLower()) ||
+           d.Name.ToLower().Contains(deckName.ToLower()))
+            .ToListAsync();
+
+
+
         public async Task UpdateDeck(int deckId, string deckName)
         {
             var deck = await GetDeck(deckId);

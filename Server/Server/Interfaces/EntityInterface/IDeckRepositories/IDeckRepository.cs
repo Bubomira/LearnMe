@@ -11,7 +11,7 @@ namespace Server.Interfaces.EntityInterface
         public Task UpdateDeck(int deckId,string deckName);
         public Task<bool> CheckIfDeckIsOwnedByUser(int deckId, int userId);
         public Task<bool> CheckIfDeckExists(int deckId);
-
         public Task<Deck> GetDeck(int deckId);
+        public Task<List<Deck>> SearchDeckByName(string deckName);
     }
 }

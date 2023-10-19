@@ -3,6 +3,7 @@ using Server.Data;
 using Server.Interfaces.EntityInterface;
 using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Server.Repositories.EntityRepositories.DeckRepositories
 {
@@ -42,6 +43,11 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
         public Task<bool> CheckIfTagIsAttachedToDeck(int tagId, int deckId) =>
             _learnMeDbContext.DecksTags.AnyAsync(dt => dt.DeckId == deckId && dt.TagId == tagId);
 
-
+        public Task<List<DeckTag>> SearchDecksByTag(int tagId) =>
+           _learnMeDbContext.DecksTags.Where(dt => dt.TagId == tagId)
+            .Include(dt => dt.Deck)
+            .Include(dt=>dt.Tag)
+            .ToListAsync();
+       
     }
 }
