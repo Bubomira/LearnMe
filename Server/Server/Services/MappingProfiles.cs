@@ -71,6 +71,50 @@ namespace Server.Services
                 opt.MapFrom(src =>
                 src.MindmapsTags.Select(mt => mt.Tag.Name).ToList()));
 
+            CreateMap<MindmapTag,MindmapDetailsDto>()
+                .ForMember(mdd=>mdd.Id, opt=>
+                opt.MapFrom(src=>
+                src.Mindmap.Id))
+                .ForMember(mdd => mdd.Name, opt =>
+                opt.MapFrom(src =>
+                src.Mindmap.Name))
+                .ForMember(mdd => mdd.OwnerId, opt =>
+                opt.MapFrom(src =>
+                src.Mindmap.OwnerId))
+                .ForMember(mdd => mdd.Tags, opt =>
+                opt.MapFrom(src =>
+                src.Mindmap.MindmapsTags.Select(mt => mt.Tag.Name).ToList()));
+
+            CreateMap<NoteTag, NotePreviewDto>()
+               .ForMember(npd => npd.Id, opt =>
+               opt.MapFrom(src =>
+               src.Note.Id))
+               .ForMember(npd => npd.Title, opt =>
+               opt.MapFrom(src =>
+               src.Note.Title))
+               .ForMember(npd => npd.OwnerId, opt =>
+               opt.MapFrom(src =>
+               src.Note.OwnerId))
+               .ForMember(npd => npd.Tags, opt =>
+               opt.MapFrom(src =>
+               src.Note.NotesTags.Select(mt => mt.Tag.Name).ToList()));
+
+
+            CreateMap<DeckTag, DeckPreviewDto>()
+              .ForMember(dpd => dpd.Id, opt =>
+              opt.MapFrom(src =>
+              src.Deck.Id))
+              .ForMember(dpd => dpd.Name, opt =>
+              opt.MapFrom(src =>
+              src.Deck.Name))
+              .ForMember(dpd => dpd.OwnerId, opt =>
+              opt.MapFrom(src =>
+              src.Deck.OwnerId))
+              .ForMember(dpd => dpd.Tags, opt =>
+              opt.MapFrom(src =>
+              src.Deck.DecksTags.Select(mt => mt.Tag.Name).ToList()));
+
+
         }
     }
 }
