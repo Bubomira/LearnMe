@@ -34,7 +34,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         }
 
         [HttpPost("by/tag")]
-        public async Task<IActionResult> SearchNoteByTitle([FromBody] string tagName)
+        public async Task<IActionResult> SearchNoteByTag([FromBody] string tagName)
         {
             
             if(! await _tagRepository.CheckIfTagExistsByName(tagName))
