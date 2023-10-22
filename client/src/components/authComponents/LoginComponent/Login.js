@@ -1,8 +1,25 @@
 import './Login.css'
-import { Link } from 'react-router-dom'
 import studyGirl from '../../../static/img/studyGirl.jpg'
 
+import { useState } from 'react'
+
+import { Link } from 'react-router-dom'
+
 export default function Login(){
+
+  const [values,setValues] = useState({
+    emailOrUsername: '',
+    password: '',
+  })
+
+  const onChangeHandler = (e)=>{
+      setValues(oldState=>({
+        ...oldState,
+        [e.target.name]: e.target.value
+      }))     
+  }
+
+
 
   return(
     <div className='login-holder'>
@@ -15,6 +32,7 @@ export default function Login(){
                  name="emailOrUsername" 
                  id="emailOrUsername" 
                  placeholder='Email or Username'
+                 onChange={onChangeHandler}
                  />
             </section>
             <section className='info-section'>
@@ -23,6 +41,7 @@ export default function Login(){
                  name="password" 
                  id="password"
                   placeholder='Password'
+                  onChange={onChangeHandler}
                   />
             </section>
            <section className="submit-section">

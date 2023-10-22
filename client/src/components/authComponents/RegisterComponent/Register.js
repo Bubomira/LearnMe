@@ -3,8 +3,21 @@ import { Link } from 'react-router-dom'
 import studyRegisterGirl from '../../../static/img/studyRegisterGirl.jpg'
 import { useState } from 'react'
 
-export default function Login(){
+export default function Register(){
 
+    const[values,setValues] =useState({
+        username:'',
+        password:'',
+        email:'',
+        rePass:''
+    })
+
+    const onChangeHandler =(e)=>{
+        setValues((oldState)=>({
+            ...oldState,
+           [e.target.name]:e.target.value
+        }))
+    }
   return(
     <div className='register-holder'>
        <div className="form-holder">
@@ -15,6 +28,7 @@ export default function Login(){
                  name="username" 
                  id="username" 
                  placeholder='Username'
+                 onChange={onChangeHandler}
                  />
             </section>
             <section className='register-info-section'>    
@@ -22,6 +36,7 @@ export default function Login(){
                  name="email" 
                  id="email" 
                  placeholder='Email'
+                 onChange={onChangeHandler}
                  />
             </section>
             <section className='register-info-section'>
@@ -30,13 +45,15 @@ export default function Login(){
                  name="password" 
                  id="password"
                   placeholder='Password'
+                  onChange={onChangeHandler}
                   />
             </section>
             <section className='register-info-section'>    
                  <input type="text" 
-                 name="re-pass" 
+                 name="rePass" 
                  id="re-pass" 
                  placeholder='Repeat Password'
+                 onChange={onChangeHandler}
                  />
             </section>
            <section className="register-submit-section">
