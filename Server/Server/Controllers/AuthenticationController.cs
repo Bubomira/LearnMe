@@ -33,18 +33,18 @@ namespace Server.Controllers
                 string.IsNullOrEmpty(userRegisterDto.Username) ||
                 string.IsNullOrEmpty(userRegisterDto.Password))
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
 
             if (await _authRepository.CheckIfUserExistByEmail(userRegisterDto.Email)
                 || await _authRepository.CheckIfUserExistByUsername(userRegisterDto.Username))
             {
-                return BadRequest("Such user already exists!");
+                return BadRequest(new string[] { "Such user already exists!" });
             }
 
             if (userRegisterDto.RePass != userRegisterDto.Password)
             {
-                return BadRequest("Passwords do not match!");
+                return BadRequest(new string[] { "Passwords do not match!" });
             }
 
             var passwordHashed = await _passwordHasher.CreatePasswordHash(userRegisterDto.Password);
@@ -69,19 +69,19 @@ namespace Server.Controllers
                  string.IsNullOrEmpty(userLoginDto.Password) ||
                  string.IsNullOrEmpty(userLoginDto.Password))
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
 
             if (!await _authRepository.CheckIfUserExistByUsernameOrEmail(userLoginDto.LoginString))
             {
-                return NotFound("User not found!");
+                return NotFound(new string[] { "User not found!" });
             }
 
             var user = await _authRepository.LoginUser(userLoginDto);
 
             if (!await _passwordHasher.CheckIfPasswordsAreEqual(userLoginDto.Password, user.PasswordHash))
             {
-                return BadRequest("Username/email or password do not match!");
+                return BadRequest(new string[] { "Username/email or password do not match!" });
             }
 
             var token = await _tokenManager.CreateToken(user);

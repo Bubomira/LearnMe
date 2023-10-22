@@ -32,7 +32,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
-                return NotFound("Note does not exist!");
+                return NotFound(new string[] { "Note does not exist!" });
             }
             var note = await _noteRepository.GetNotesDetails(noteId);
 
@@ -48,7 +48,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             if (noteInfoDto == null || string.IsNullOrEmpty(noteInfoDto.Content)
                 || noteInfoDto.Tags.Length == 0 || string.IsNullOrEmpty(noteInfoDto.Title))
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
           
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
@@ -68,17 +68,17 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (string.IsNullOrEmpty(noteUpdateDto.Content) || string.IsNullOrEmpty(noteUpdateDto.Title))
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
-                return NotFound("Note does not exist!");
+                return NotFound(new string[] { "Note does not exist!" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
             {
-                return Forbid("You canot modify this note!");
+                return Forbid(new string[] { "You canot modify this note!" });
             }
 
             await _noteRepository.UpdateNote(noteUpdateDto, noteId);
@@ -91,13 +91,13 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
-                return NotFound("Note does not exist!");
+                return NotFound(new string[] { "Note does not exist!" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
             {
-                return Forbid("You canot delete this note!");
+                return Forbid(new string[] { "You canot delete this note!" });
             }
 
             await _noteRepository.DeleteNote(noteId);

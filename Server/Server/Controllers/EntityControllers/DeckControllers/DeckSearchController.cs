@@ -39,7 +39,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if(!await _tagRepository.CheckIfTagExistsByName(tagName))
             {
-                return NotFound("Nothing using this tag has been found!");
+                return NotFound(new string[] { "Nothing using this tag has been found!" });
             }
 
             Tag tag = await _tagRepository.GetTagByName(tagName);

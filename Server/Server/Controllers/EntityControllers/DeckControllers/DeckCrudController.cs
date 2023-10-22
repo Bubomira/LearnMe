@@ -30,7 +30,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("The deck does not exist!");
+                return NotFound(new string[] { "The deck does not exist!" });
             }
             var deck = await _deckRepository.GetDeckDetails(deckId);
 
@@ -45,7 +45,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             if (string.IsNullOrEmpty(deckInfoDto.Name) ||
                 deckInfoDto.Tags.Length == 0)
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
 
             int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
@@ -56,7 +56,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             await _decktagRepository.AttachTagToDeck(tagIds, deck.Id);
 
-            return Ok("The deck has succesfully been created!");
+            return Ok();
         }
 
         [HttpPut("update/{deckId}")]
@@ -65,17 +65,17 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (string.IsNullOrEmpty(newDeckName))
             {
-                return BadRequest("Incorrect name format!");
+                return BadRequest(new string[] { "Incorrect name format!" });
             }
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound($"Deck with {deckId} does not exist!");
+                return NotFound(new string[] { $"Deck with {deckId} does not exist!" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _deckRepository.CheckIfDeckIsOwnedByUser(deckId, userId))
             {
-                return Unauthorized("You cannot modify this deck!");
+                return Unauthorized(new string[] { "You cannot modify this deck!" });
             }
 
             await _deckRepository.UpdateDeck(deckId, newDeckName);
@@ -88,13 +88,13 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound($"Deck with {deckId} does not exist!");
+                return NotFound(new string[] { $"Deck with {deckId} does not exist!" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _deckRepository.CheckIfDeckIsOwnedByUser(deckId, userId))
             {
-                return Unauthorized("You cannot delete this deck!");
+                return Unauthorized(new string[] { "You cannot delete this deck!" });
             }
             await _deckRepository.DeleteDeck(deckId);
 

@@ -31,7 +31,7 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
 
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashCardId))
             {
-                return NotFound("Invalid flashcard Id!");
+                return NotFound(new string[] { "Invalid flashcard Id!" });
             }
 
 
@@ -49,7 +49,7 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
             if (string.IsNullOrEmpty(flashcardInfoDto.Type) ||
                 flashcardInfoDto.Type != "Text" && flashcardInfoDto.Type != "Image")
             {
-                return BadRequest("Please specify a correct type!");
+                return BadRequest(new string[] { "Please specify a correct type!" });
             }
 
             Enum.TryParse(flashcardInfoDto.Type, out FlashcardType type);
@@ -58,19 +58,19 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
                 type == FlashcardType.Text &&
                string.IsNullOrEmpty(flashcardInfoDto.Definition))
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
 
             if (!await _deckRepository.CheckIfDeckExists(flashcardInfoDto.DeckId))
             {
-                return BadRequest("Deck does not exist!");
+                return BadRequest(new string[] { "Deck does not exist!" });
             }
 
             int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             await _flashcardRepository.CreateFlashcard(flashcardInfoDto, type, ownerId);
 
-            return Ok("Successfully created!");
+            return Ok(new string[] { "Successfully created!" });
 
         }
         [HttpPut("update/{flashcardId}")]
@@ -80,19 +80,19 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
         {
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
             {
-                return NotFound("Flashcard with such id does not exist!");
+                return NotFound(new string[] { "Flashcard with such id does not exist!" });
             }
 
             int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _flashcardRepository.CheckIfUserOwnsTheFlashcard(ownerId, flashcardId))
             {
-                return Unauthorized("U cannot modify this flashcard!");
+                return Unauthorized(new string[] { "U cannot modify this flashcard!" });
             }
 
             await _flashcardRepository.UpdateFlashcard(flashcardId, flashcardInfoDto);
 
-            return Ok("Successfully updated!");
+            return Ok(new string[] { "Successfully updated!" });
         }
 
         [HttpDelete("delete/{flashcardId}")]
@@ -102,19 +102,19 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
         {
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
             {
-                return NotFound("Flashcard with such id does not exist!");
+                return NotFound(new string[] { "Flashcard with such id does not exist!" });
             }
 
             int ownerId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _flashcardRepository.CheckIfUserOwnsTheFlashcard(ownerId, flashcardId))
             {
-                return Unauthorized("U cannot delete this flashcard!");
+                return Unauthorized(new string[] { "U cannot delete this flashcard!" });
             }
 
             await _flashcardRepository.DeleteFlashcard(flashcardId);
 
-            return Ok("Successfully deleted!");
+            return Ok(new string[] { "Successfully deleted!" });
         }
     }
 

@@ -29,26 +29,26 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (string.IsNullOrEmpty(tagName))
             {
-                return BadRequest("Tag name is empty");
+                return BadRequest(new string[] { "Tag name is empty" });
             }
 
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
-                return NotFound($"Note with id {noteId} does not exist!");
+                return NotFound(new string[] { $"Note with id {noteId} does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
             {
-                return Forbid("You cannot modify this note!");
+                return Forbid(new string[] { "You cannot modify this note!" });
             }
 
             var tagId = (await _tagRepository.GetTagIds(new string[1] { tagName }))[0];
 
             if (await _noteTagRepository.CheckIfTagIsAttachedToNote(tagId, noteId))
             {
-                return BadRequest("Tag is already attached to note!");
+                return BadRequest(new string[] { "Tag is already attached to note!" });
             }
 
             await _noteTagRepository.AttachTagToNote(new List<int>() { tagId }, noteId);
@@ -62,7 +62,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (!await _tagRepository.CheckIfTagExistsById(tagId))
             {
-                return NotFound("Invalid tag id!");
+                return NotFound(new string[] { "Invalid tag id!" });
             }
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
@@ -73,12 +73,12 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
             if (!await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
             {
-                return Forbid("You cannot remove this tag!");
+                return Forbid(new string[] { "You cannot remove this tag!" });
             }
 
             if (!await _noteTagRepository.CheckIfTagIsAttachedToNote(tagId, noteId))
             {
-                return BadRequest("Tag is not attached to note!");
+                return BadRequest(new string[] { "Tag is not attached to note!" });
             }
 
             await _noteTagRepository.DetachTagFromNote(tagId, noteId);

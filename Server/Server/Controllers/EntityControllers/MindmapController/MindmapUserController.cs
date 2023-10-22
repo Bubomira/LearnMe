@@ -51,18 +51,18 @@ namespace Server.Controllers.EntityControllers.MindmapController
         {
             if(! await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
-                return NotFound($"Mindmap with id{mindmapId} does not exist!");
+                return NotFound(new string[] { $"Mindmap with id{mindmapId} does not exist!" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (await _mindmapUserRepository.CheckIfMindmapIsLikedByUser(mindmapId, userId))
             {
-                return BadRequest("User has already liked mindmap!");
+                return BadRequest(new string[] { "User has already liked mindmap!" });
             }
 
             if(await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
             {
-                return BadRequest("Owner cannot like the mindmap!");
+                return BadRequest(new string[] { "Owner cannot like the mindmap!" });
             }
 
             await _mindmapUserRepository.LikeMindmap(mindmapId, userId);
@@ -75,18 +75,18 @@ namespace Server.Controllers.EntityControllers.MindmapController
         {
             if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
-                return NotFound($"Mindmap with id{mindmapId} does not exist!");
+                return NotFound(new string[] { $"Mindmap with id{mindmapId} does not exist!" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _mindmapUserRepository.CheckIfMindmapIsLikedByUser(mindmapId, userId))
             {
-                return BadRequest("User has not liked mindmap!");
+                return BadRequest(new string[] { "User has not liked mindmap!" });
             }
 
             if (await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
             {
-                return BadRequest("Owner cannot like the mindmap!");
+                return BadRequest(new string[] { "Owner cannot like the mindmap!" });
             }
 
             await _mindmapUserRepository.DislikeMindmap(mindmapId, userId);

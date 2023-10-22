@@ -27,18 +27,18 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
-                return NotFound($"Note with id {noteId} does not exist");
+                return NotFound(new string[] { $"Note with id {noteId} does not exist" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (await _noteRepository.CheckIfNoteIsOwnedByUser(noteId, userId))
             {
-                return Forbid("You cannot like your own note!");
+                return Forbid(new string[] { "You cannot like your own note!" });
             }
 
             if (await _noteUserRepository.CheckIfNoteIsLikedByUser(noteId, userId))
             {
-                return BadRequest("You have already liked this note!");
+                return BadRequest(new string[] { "You have already liked this note!" });
             }
 
             await _noteUserRepository.LikeNote(noteId, userId);
@@ -51,13 +51,13 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))
             {
-                return NotFound($"Note with id {noteId} does not exist");
+                return NotFound(new string[] { $"Note with id {noteId} does not exist" });
             }
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _noteUserRepository.CheckIfNoteIsLikedByUser(noteId, userId))
             {
-                return BadRequest("You cannot dislike a note you have not liked!");
+                return BadRequest(new string[] { "You cannot dislike a note you have not liked!" });
             }
 
             await _noteUserRepository.DislikeNote(noteId, userId);

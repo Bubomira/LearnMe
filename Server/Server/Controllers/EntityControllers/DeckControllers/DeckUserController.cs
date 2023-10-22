@@ -30,24 +30,24 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("Deck does not exist!");
+                return NotFound(new string[] { "Deck does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (await _deckRepository.CheckIfDeckIsOwnedByUser(deckId, userId))
             {
-                return Forbid("You cannot like your own deck!");
+                return Forbid(new string[] { "You cannot like your own deck!" });
             }
 
             if (await _deckUserRepository.CheckIfDeckIsLikedByUser(deckId, userId))
             {
-                return Forbid("You cannot like this deck twice!");
+                return Forbid(new string[] { "You cannot like this deck twice!" });
             }
 
             await _deckUserRepository.LikeDeck(deckId, userId);
 
-            return Ok($"Successfully liked deck {deckId}!");
+            return Ok(new string[] { $"Successfully liked deck {deckId}!" });
         }
 
         [HttpGet("dislike/deck/{deckId}")]
@@ -55,19 +55,19 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("Deck does not exist!");
+                return NotFound(new string[] { "Deck does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _deckUserRepository.CheckIfDeckIsLikedByUser(deckId, userId))
             {
-                return Forbid("You cannot dislike this deck!");
+                return Forbid(new string[] { "You cannot dislike this deck!" });
             }
 
             await _deckUserRepository.DislikeDeck(deckId, userId);
 
-            return Ok($"Successfully disliked deck {deckId}!");
+            return Ok(new string[] { $"Successfully disliked deck {deckId}!" });
         }
         [HttpGet("get/ownedDecks")]
         public async Task<IActionResult> GetOwnedDecks()

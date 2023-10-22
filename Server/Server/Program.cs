@@ -66,7 +66,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(builder => builder.WithOrigins("https://localhost:3000")
+app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
 .AllowAnyMethod()
 .WithHeaders("accept", "content-type", "origin"));
 

@@ -31,7 +31,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
         {
             if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
-                return NotFound($"Mindmap with id {mindmapId} does not exist!");
+                return NotFound(new string[] { $"Mindmap with id {mindmapId} does not exist!" });
             }
             var mindmap = await _mindmapRepository.GetMindmapDetails(mindmapId);
 
@@ -47,7 +47,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
             if (string.IsNullOrEmpty(mindmapInfoDto.Name)
                 || mindmapInfoDto.Tags.Length == 0)
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
             var tagIds = await _tagRepository.GetTagIds(mindmapInfoDto.Tags);
 
@@ -68,19 +68,19 @@ namespace Server.Controllers.EntityControllers.MindmapController
         {
             if (string.IsNullOrEmpty(newName))
             {
-                return BadRequest("Please fill in all fields!");
+                return BadRequest(new string[] { "Please fill in all fields!" });
             }
 
             if(!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
-                return NotFound($"Mindmap with id {mindmapId} does not exist!");
+                return NotFound(new string[] { $"Mindmap with id {mindmapId} does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if(! await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
             {
-                return Forbid("You cannot midify this mindmap!");
+                return Forbid(new string[] { "You cannot midify this mindmap!" });
             }
 
             await _mindmapRepository.UpdateMindmap(mindmapId, newName);
@@ -96,14 +96,14 @@ namespace Server.Controllers.EntityControllers.MindmapController
           
             if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
-                return NotFound($"Mindmap with id {mindmapId} does not exist!");
+                return NotFound(new string[] { $"Mindmap with id {mindmapId} does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
             {
-                return Forbid("You cannot midify this mindmap!");
+                return Forbid(new string[] { "You cannot midify this mindmap!" });
             }
 
             await _mindmapRepository.DeleteMindmap(mindmapId);

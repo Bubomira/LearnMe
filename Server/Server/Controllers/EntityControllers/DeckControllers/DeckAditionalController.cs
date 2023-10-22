@@ -33,26 +33,26 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (string.IsNullOrEmpty(tagName))
             {
-                return BadRequest("Please fill in valid tag name!");
+                return BadRequest(new string[] { "Please fill in valid tag name!" });
             }
 
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("Deck does not exist!");
+                return NotFound(new string[] { "Deck does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _deckRepository.CheckIfDeckIsOwnedByUser(deckId, userId))
             {
-                return Forbid("You cannot modify this deck!");
+                return Forbid(new string[] { "You cannot modify this deck!" });
             }
 
             var tagId =( await _tagRepository.GetTagIds(new string[1] { tagName }))[0];
 
             if (await _deckTagRepository.CheckIfTagIsAttachedToDeck(deckId, tagId))
             {
-                return BadRequest("Tag is already attached to deck!");
+                return BadRequest(new string[] { "Tag is already attached to deck!" });
             }
 
             await _deckTagRepository.AttachTagToDeck(new List<int>() { tagId }, deckId);
@@ -65,24 +65,24 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _tagRepository.CheckIfTagExistsById(tagId))
             {
-                return BadRequest("Tag does not exist!");
+                return BadRequest(new string[] { "Tag does not exist!" });
             }
 
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("Deck does not exist!");
+                return NotFound(new string[] { "Deck does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
             if (!await _deckRepository.CheckIfDeckIsOwnedByUser(deckId, userId))
             {
-                return Forbid("You cannot modify this deck!");
+                return Forbid(new string[] { "You cannot modify this deck!" });
             }
 
             if (!await _deckTagRepository.CheckIfTagIsAttachedToDeck(tagId, deckId))
             {
-                return BadRequest("Tag is not attached to deck!");
+                return BadRequest(new string[] { "Tag is not attached to deck!" });
             }
 
             await _deckTagRepository.DetachTagFromDeck(tagId, deckId);
@@ -95,17 +95,17 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
             {
-                return NotFound("Flashcard does not exist!");
+                return NotFound(new string[] { "Flashcard does not exist!" });
             }
 
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("Deck does not exist!");
+                return NotFound(new string[] { "Deck does not exist!" });
             }
 
             if (await _deckFlashcardRepository.CheckIfFlashcardIsAttachedToDeck(flashcardId, deckId))
             {
-                return BadRequest("Flashcard is already attached to the deck!");
+                return BadRequest(new string[] { "Flashcard is already attached to the deck!" });
             }
 
             await _deckFlashcardRepository.AttachFlashcardToDeck(flashcardId, deckId);
@@ -119,17 +119,17 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         {
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
             {
-                return NotFound("Flashcard does not exist!");
+                return NotFound(new string[] { "Flashcard does not exist!" });
             }
 
             if (!await _deckRepository.CheckIfDeckExists(deckId))
             {
-                return NotFound("Deck does not exist!");
+                return NotFound(new string[] { "Deck does not exist!" });
             }
 
             if (!await _deckFlashcardRepository.CheckIfFlashcardIsAttachedToDeck(flashcardId, deckId))
             {
-                return BadRequest("Flashcard is not attached to the deck!");
+                return BadRequest(new string[] { "Flashcard is not attached to the deck!" });
             }
 
             await _deckFlashcardRepository.RemoveFlashcardFromDeck(flashcardId, deckId);

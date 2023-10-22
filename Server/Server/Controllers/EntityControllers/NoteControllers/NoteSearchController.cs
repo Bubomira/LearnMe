@@ -39,7 +39,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
             
             if(! await _tagRepository.CheckIfTagExistsByName(tagName))
             {
-                return BadRequest("Cannot find anything with that tag!");
+                return BadRequest(new string[] { "Cannot find anything with that tag!" });
             }
             Tag tag = await _tagRepository.GetTagByName(tagName);
 
