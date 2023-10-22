@@ -18,6 +18,7 @@ export default function Register(){
            [e.target.name]:e.target.value
         }))
     }
+    
   return(
     <div className='register-holder'>
        <div className="form-holder">
