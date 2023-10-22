@@ -1,6 +1,6 @@
 import './Login.css'
 import { Link } from 'react-router-dom'
-import studyGirl from '../../../img/studyGirl.jpg'
+import studyGirl from '../../../static/img/studyGirl.jpg'
 
 export default function Login(){
 
