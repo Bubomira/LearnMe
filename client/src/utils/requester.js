@@ -1,18 +1,24 @@
 const requester =async(method,url,data)=>{
+    let customHeaders = {};
 
-    //to be extended
+   const user = localStorage.getItem('user');
+   const userData = JSON.parse(user||'{}');
+   
+   if(userData.Token){
+      customHeaders['Authenication'] = JSON.parse(user).Token;
+   }
      let request;
-
-     let customHeaders = {};
 
      if(method=='GET'){
         request = fetch(url,{
+            method,
             headers:{...customHeaders}
         })
      }else{
         request = fetch(url,{
-            headers:{customHeaders,
-            'content-type':'application-json'},
+            method,
+            headers:{...customHeaders,
+            'content-type':'application/json'},
             body:JSON.stringify(data)
         })
      }
@@ -23,12 +29,9 @@ const requester =async(method,url,data)=>{
         const result  = await response.json();
         return result;
      }else{
-        const error =  await response.json();
-        throw new error;
+        throw new Error(await response.json())
      }
 }
-
-
 
 
 export const get = requester.bind(null,'GET')
