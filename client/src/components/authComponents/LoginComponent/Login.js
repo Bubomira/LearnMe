@@ -29,7 +29,7 @@ export default function Login(){
               <button className='submit-login-button' type="submit">Login</button>
            </section>
          </form>
-         <p className='register-message'>Do not have an account? <Link to='register'>Register here</Link></p>
+         <p className='register-message'>Do not have an account? <Link to='/register'>Register here</Link></p>
       </div>
      </div>
     )
