@@ -1,15 +1,26 @@
 import './Login.css'
 import studyGirl from '../../../static/img/studyGirl.jpg'
 
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import { AuthContext } from '../../../contexts/AuthContext'
+
+import { login } from '../../../services/authServises'
+
+
 
 export default function Login(){
 
+  const {loginUser} = useContext(AuthContext);
+
+  const navigate  = useNavigate();
+
   const [values,setValues] = useState({
-    emailOrUsername: '',
-    password: '',
+    LoginString: '',
+    Password: '',
   })
 
   const onChangeHandler = (e)=>{
@@ -19,17 +30,24 @@ export default function Login(){
       }))     
   }
 
-
+  const onSubmitHandler = (e)=>{
+      e.preventDefault();
+     login(values).then(user=>{
+       loginUser(user);
+       navigate('/');
+     }).catch(err=>
+      alert(err))
+  }
 
   return(
     <div className='login-holder'>
       <img src={studyGirl}/>
        <div className="form-holder">
          <h2 className='login-heading'>Login</h2>
-         <form className='login-form' action="">
+         <form className='login-form' action="" onSubmit={onSubmitHandler}>
             <section className='info-section'>            
                  <input type="text" 
-                 name="emailOrUsername" 
+                 name="LoginString" 
                  id="emailOrUsername" 
                  placeholder='Email or Username'
                  onChange={onChangeHandler}
@@ -38,7 +56,7 @@ export default function Login(){
             <section className='info-section'>
                  <input 
                  type="password" 
-                 name="password" 
+                 name="Password" 
                  id="password"
                   placeholder='Password'
                   onChange={onChangeHandler}
