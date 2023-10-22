@@ -33,7 +33,7 @@ export default function Register(){
         register(values)
         .then(user=>{
             loginUser(user);
-            navigate('/')
+            navigate('/welcome')
         }).catch(err=>{
             alert(err)
         })

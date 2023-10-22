@@ -34,7 +34,7 @@ export default function Login(){
       e.preventDefault();
      login(values).then(user=>{
        loginUser(user);
-       navigate('/');
+       navigate('/welcome');
      }).catch(err=>
       alert(err))
   }
