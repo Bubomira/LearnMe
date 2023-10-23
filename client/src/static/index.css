@@ -3,7 +3,7 @@ body {
   font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, #aec5eb,#dedbd2);
+  background: linear-gradient(to right,#aec5eb,#f7e1d7);
 }
 
 code {

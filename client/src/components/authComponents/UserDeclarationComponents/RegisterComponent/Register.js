@@ -82,7 +82,7 @@ export default function Register(){
          </form>
          <p className='auth-message'>Already have an account? <Link to='/login'>Login here</Link></p>
       </div>
-        <img src={studyRegisterGirl}/>
+        <img width='60%' src={studyRegisterGirl}/>
      </div>
     )
 }

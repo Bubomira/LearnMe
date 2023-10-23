@@ -1,0 +1,122 @@
+
+
+.banner{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 auto;
+    display: flex;
+    padding: 2em;
+    background-color: white;
+    justify-content: center;
+}
+
+.banner img{
+    width: 35%;
+    height: auto;
+   
+}
+
+.banner .content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.banner .content h1{
+    font-size: 5em;
+    padding-top: 0.3em;
+    margin-bottom: 0;
+    color: #3a505a;
+    text-align: center;
+   letter-spacing: 3px;
+}
+
+.banner .content h3{
+    text-align: center;
+    color: #3a505a;
+    font-size: 1.7em;
+}
+
+.banner .content .banner-button{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #708099;
+    border: none;
+    padding: 0.7em 5em;
+    border-radius: 1em;
+    font-size: 1.1em;
+}
+
+.banner .content .banner-button a{
+    color: white;
+    font-size: 1.4em;
+    text-decoration: none;
+}
+
+.app-usage-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.app-usage-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 3em;
+    padding-bottom: 7em;
+}
+
+.app-usage-container h2{
+    letter-spacing: 0.3em;
+     color: #3a505a;
+     font-size: 2em;
+     padding: 2em;
+}
+
+.app-usage-card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+   flex: 0 1 20%;
+   padding: 0.7em;
+   background-color: #ffffffda;
+   border-radius: 2em;
+
+}
+
+.app-usage-card img{
+    width: 20em;
+    border-radius: 1.5em;
+}
+
+.app-usage-card main h5{
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 0;
+    margin-top: 1em;
+    color: #3a505a;
+    letter-spacing: 0.2em;
+}
+
+.app-usage-card main p{
+    text-align: justify;
+    padding: 0.4em;
+}
+
+footer{
+    background-color: #3a505a;
+    margin-bottom: 0;
+}
+
+.prices{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 1em;
+    background-color: white;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.prices h3{
+    color: #3a505a;
+    font-size: 1.7em;
+    letter-spacing: 0.15em;
+}
