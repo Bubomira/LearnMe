@@ -18,7 +18,7 @@ namespace Server.Authentication
             if (!context.HttpContext.Request.Headers.TryGetValue("Authorization",
                 out var extractedApiKey))
             {
-                context.Result = new UnauthorizedObjectResult("Authorization header is missing!");
+                context.Result = new UnauthorizedObjectResult(new string[] { "Authorization header is missing!" });
                 return;
             }
 
@@ -30,13 +30,13 @@ namespace Server.Authentication
 
             if (!await _tokenChecker.CheckIfTokenIsValid(token))
             {
-                context.Result = new UnauthorizedObjectResult("The token is invalid!");
+                context.Result = new UnauthorizedObjectResult(new string[]{"The token is invalid!"});
                 return;
             }
 
             if (await _tokenChecker.CheckIfTokenIsBlacklisted(token))
             {
-                context.Result = new UnauthorizedObjectResult("The token is blacklisted!");
+                context.Result = new UnauthorizedObjectResult(new string[] { "The token is blacklisted!" });
                 return;
             }
             context.HttpContext.Items.Add("userData", await _tokenChecker.DesipherToken(token));

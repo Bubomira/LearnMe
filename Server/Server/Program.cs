@@ -68,7 +68,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
 .AllowAnyMethod()
-.WithHeaders("accept", "content-type", "origin"));
+.WithHeaders("accept", "content-type", "origin", "authorization"));
 
 app.UseHttpsRedirection();
 
