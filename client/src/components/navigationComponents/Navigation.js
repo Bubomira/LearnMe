@@ -11,6 +11,7 @@ export default function  Navigation(){
     const {user} = useContext(AuthContext)
 
     return(
+        <>
         <header className='header-navigation' >
             <nav>
                 <ul className="navigation-list">
@@ -19,9 +20,7 @@ export default function  Navigation(){
                        <li className="navigation-element"><Link to="/welcome">Welcome back!</Link></li>
                        <li className="navigation-element"><Link to="/agenda">Agenda</Link></li>
 
-                       <li className="navigation-element"><Link to="/mindmaps">Mindmap Creator</Link></li>
-                       <li className="navigation-element"><Link to="/decks">Memory cards</Link></li>
-                       <li className="navigation-element"><Link to="/notes">Notes</Link></li>
+                       <li className="navigation-element"><Link to="/create">Create Hub</Link></li>
                        <li className="navigation-element"><Link to="/logout">Logout</Link></li>
                     </>
                     :
@@ -31,10 +30,9 @@ export default function  Navigation(){
                       <li className="navigation-element"><Link to="/register">Register</Link></li>
                     </>
                     }
-
-                    {/* user links */}
                 </ul>
             </nav>
         </header>
+        </>
     )
 }
