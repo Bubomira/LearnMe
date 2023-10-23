@@ -1,7 +1,7 @@
 import { Route,Routes } from "react-router-dom";
 import Navigation from "./components/navigationComponents/Navigation";
-import Login from "./components/authComponents/LoginComponent/Login";
-import Register from "./components/authComponents/RegisterComponent/Register"
+import Login from "./components/authComponents/UserDeclarationComponents/LoginComponent/Login";
+import Register from "./components/authComponents/UserDeclarationComponents/RegisterComponent/Register"
 import { AuthProvider } from "./contexts/AuthContext";
 
 

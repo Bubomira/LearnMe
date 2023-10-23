@@ -1,14 +1,14 @@
-import './Login.css'
-import studyGirl from '../../../static/img/studyGirl.jpg'
+import '../Auth.css'
+import studyGirl from '../../../../static/img/studyGirl.jpg'
 
 import { useState,useContext } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-import { AuthContext } from '../../../contexts/AuthContext'
+import { AuthContext } from '../../../../contexts/AuthContext'
 
-import { login } from '../../../services/authServises'
+import { login } from '../../../../services/authServises'
 
 
 
@@ -40,12 +40,12 @@ export default function Login(){
   }
 
   return(
-    <div className='login-holder'>
+    <div className='auth-holder'>
       <img src={studyGirl}/>
-       <div className="form-holder">
-         <h2 className='login-heading'>Login</h2>
-         <form className='login-form' action="" onSubmit={onSubmitHandler}>
-            <section className='info-section'>            
+       <div className="auth-form-holder">
+         <h2 className='auth-heading'>Login</h2>
+         <form className='auth-form' action="" onSubmit={onSubmitHandler}>
+            <section className='auth-info-section'>            
                  <input type="text" 
                  name="LoginString" 
                  id="emailOrUsername" 
@@ -53,7 +53,7 @@ export default function Login(){
                  onChange={onChangeHandler}
                  />
             </section>
-            <section className='info-section'>
+            <section className='auth-info-section'>
                  <input 
                  type="password" 
                  name="Password" 
@@ -62,11 +62,11 @@ export default function Login(){
                   onChange={onChangeHandler}
                   />
             </section>
-           <section className="submit-section">
-              <button className='submit-login-button' type="submit">Login</button>
+           <section className="auth-submit-section">
+              <button className='submit-auth-button' type="submit">Login</button>
            </section>
          </form>
-         <p className='register-message'>Do not have an account? <Link to='/register'>Register here</Link></p>
+         <p className='auth-message'>Do not have an account? <Link to='/register'>Register here</Link></p>
       </div>
      </div>
     )

@@ -1,14 +1,14 @@
-import './Register.css'
-import studyRegisterGirl from '../../../static/img/studyRegisterGirl.jpg'
+import '../Auth.css'
+import studyRegisterGirl from '../../../../static/img/studyRegisterGirl.jpg'
 
 import { useState,useContext } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-import { register } from '../../../services/authServises'
+import { register } from '../../../../services/authServises'
 
-import { AuthContext } from '../../../contexts/AuthContext'
+import { AuthContext } from '../../../../contexts/AuthContext'
 
 export default function Register(){
     const navigate = useNavigate();
@@ -39,11 +39,11 @@ export default function Register(){
         })
     }
   return(
-    <div className='register-holder'>
+    <div className='auth-holder'>
        <div className="form-holder">
-         <h2 className='register-heading'>Register</h2>
-         <form className='register-form' action="" onSubmit={onSubmitHandler}>
-            <section className='register-info-section'>    
+         <h2 className='auth-heading'>Register</h2>
+         <form className='auth-form' action="" onSubmit={onSubmitHandler}>
+            <section className='auth-info-section'>    
                  <input type="text" 
                  name="Username" 
                  id="username" 
@@ -51,7 +51,7 @@ export default function Register(){
                  onChange={onChangeHandler}
                  />
             </section>
-            <section className='register-info-section'>    
+            <section className='auth-info-section'>    
                  <input type="text" 
                  name="Email" 
                  id="email" 
@@ -59,7 +59,7 @@ export default function Register(){
                  onChange={onChangeHandler}
                  />
             </section>
-            <section className='register-info-section'>
+            <section className='auth-info-section'>
                  <input 
                  type="Password" 
                  name="password" 
@@ -68,7 +68,7 @@ export default function Register(){
                   onChange={onChangeHandler}
                   />
             </section>
-            <section className='register-info-section'>    
+            <section className='auth-info-section'>    
                  <input type="text" 
                  name="RePass" 
                  id="re-pass" 
@@ -76,11 +76,11 @@ export default function Register(){
                  onChange={onChangeHandler}
                  />
             </section>
-           <section className="register-submit-section">
-              <button className='submit-register-button' type="submit">Register</button>
+           <section className="auth-submit-section">
+              <button className='submit-auth-button' type="submit">Register</button>
            </section>
          </form>
-         <p className='login-message'>Already have an account? <Link to='/login'>Login here</Link></p>
+         <p className='auth-message'>Already have an account? <Link to='/login'>Login here</Link></p>
       </div>
         <img src={studyRegisterGirl}/>
      </div>
