@@ -3,6 +3,7 @@ import mindmaps from '../../static/img/mindmaps.jpg'
 import agenda from '../../static/img/agenda.jpg'
 import playlists from '../../static/img/playlists.jpg'
 import notes from '../../static/img/notes.jpg'
+import search from '../../static/img/search.jpg'
 
 import girl from '../../static/img/bannerGirl.jpg'
 
@@ -70,6 +71,17 @@ export default function LandingPage(){
                     <p>Cannot focus during a study session!
                         We have your back again! Discover the best playlists for learning,
                          which will make your study experience better!
+                    </p>
+                 </main>
+              </article>
+              <article className='app-usage-card'>
+                <img src={search} alt="mindmaps" />
+                 <main className='app-usage-card-main'>
+                    <h5>Search engine</h5> 
+                    <p>Not sute where to find the right study materials?
+                        Learn me comes to the rescue again,
+                         because it allows you to search notes, decks, flashcards and mindmaps by their name or tag! This will 
+                         give you the possibility to stumble across great study materials, which you will be able to save for later!
                     </p>
                  </main>
               </article>
