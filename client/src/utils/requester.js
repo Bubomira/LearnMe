@@ -3,12 +3,11 @@ const requester =async(method,url,data)=>{
 
    const user = localStorage.getItem('user');
    const userData = JSON.parse(user||'{}');
-   
-   if(userData.Token){
-      customHeaders['Authenication'] = JSON.parse(user).Token;
+
+   if(userData.token){
+      customHeaders.Authorization = JSON.parse(user).token;
    }
      let request;
-
      if(method=='GET'){
         request = fetch(url,{
             method,
