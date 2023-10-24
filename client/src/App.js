@@ -5,6 +5,7 @@ import Register from "./components/authComponents/UserDeclarationComponents/Regi
 import { AuthProvider } from "./contexts/AuthContext";
 import Logout from "./components/authComponents/LogoutComponent/Logout";
 import LandingPage from "./components/landingPageComponent/LandingPage";
+import CreateMenu from "./components/entityComponents/creatorHubComponents/createMenu/CreateMenu";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
          <Route path="/login" element={<Login/>}/>
          <Route path="/register" element={<Register/>}/>
          <Route path="/logout" element={<Logout/>}/>
+         <Route path="/create" element={<CreateMenu/>}/>
        </Routes>
     </AuthProvider>
     </>
