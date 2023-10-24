@@ -19,7 +19,7 @@ export default function CreateMenu(){
            <section className="create-section">
             <h4>Decks with flashcards</h4>
             <img src={flashcards} alt="" />
-            <button className='createBtn'><Link to='/create/flashcards'>Get started...</Link></button>
+            <button className='createBtn'><Link to='/create/decks'>Get started...</Link></button>
            </section>
            <section className="create-section">
                  <h4>Mindmaps</h4>
