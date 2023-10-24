@@ -1,0 +1,60 @@
+.create-deck-wrapper{
+    gap: 1.5em;
+    display: flex;
+    background-color: #ffffffd8;
+    margin: 0 auto;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 1em;
+}
+
+.create-deck-wrapper img{
+    margin: 1em;
+    border-radius: 0.7em;
+}
+
+.create-deck-wrapper h2{
+    letter-spacing: 0.12em;
+    color: #3a405a;
+    font-size: 2em;
+    text-align: center;
+}
+
+.create-deck-form-holder{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.create-deck-form{
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.create-deck-form input{
+    border: 1px solid #3a405a96;
+    border-radius: 0.5em;
+    padding: 0.9em;
+    width: 15em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.create-deck-form input:nth-of-type(2){
+    height: 5em;
+    padding-top: 0;
+    padding-bottom: 2em;
+}
+.create-deck-form  .create-deck-btn{
+font-size: 1.3em;
+border-radius: 0.6em;
+padding: 0.5em ;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+background-color:#3a405a;
+border: none;
+margin-bottom: 0.8em;
+color: #ffffffdc;
+text-align: center;
+margin-bottom: 0;
+letter-spacing: 0.13em;
+}

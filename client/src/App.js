@@ -6,6 +6,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Logout from "./components/authComponents/LogoutComponent/Logout";
 import LandingPage from "./components/landingPageComponent/LandingPage";
 import CreateMenu from "./components/entityComponents/creatorHubComponents/createMenu/CreateMenu";
+import CreateDeck from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createDeckComponent/CreateDeck";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
          <Route path="/login" element={<Login/>}/>
          <Route path="/register" element={<Register/>}/>
          <Route path="/logout" element={<Logout/>}/>
+         <Route path="/create/decks" element={<CreateDeck/>}/>
          <Route path="/create" element={<CreateMenu/>}/>
        </Routes>
     </AuthProvider>
