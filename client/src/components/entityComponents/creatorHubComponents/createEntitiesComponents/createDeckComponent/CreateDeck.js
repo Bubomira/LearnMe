@@ -5,6 +5,7 @@ import flashcards from '../../../../../static/img/flashcards.jpg'
 import { useNavigate } from "react-router-dom";
 
 import useChangeInput from '../../../../../hooks/useChangeInput';
+import { createDeck } from '../../../../../services/deckServices';
 
 export default function CreateDeck(){
      const navigate = useNavigate();
@@ -14,13 +15,23 @@ export default function CreateDeck(){
         Tags:''
      });
 
+     const onSubmitHandler =(e)=>{
+        e.preventDefault()
+       values.Tags= values.Tags===String? values.Tags.split(/\s+/):values.Tags
+        createDeck(values).then(deck=>{
+              navigate(`/deck/details/${deck.id}`)
+        }).catch(err=>{
+            alert(err);
+        })
+        
+     }
 
      return(
        <div className="create-deck-wrapper">
         <img width='50%' src={flashcards} alt="decks" />
         <section className="create-deck-form-holder">
             <h2>Create Deck</h2>
-            <form className="create-deck-form">
+            <form className="create-deck-form" onSubmit={onSubmitHandler}>
               <input
                  type="text"
                  name="Name"
