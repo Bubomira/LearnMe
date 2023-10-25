@@ -40,7 +40,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         }
         [HttpPost("create")]
         [ServiceFilter(typeof(AuthFilter))]
-        public async Task<IActionResult> GetDeckDetails([FromBody] DeckInfoDto deckInfoDto)
+        public async Task<IActionResult> CreateDeck([FromBody] DeckInfoDto deckInfoDto)
         {
             if (string.IsNullOrEmpty(deckInfoDto.Name) ||
                 deckInfoDto.Tags.Length == 0)
@@ -56,7 +56,8 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             await _decktagRepository.AttachTagToDeck(tagIds, deck.Id);
 
-            return Ok();
+            var deckDto = _mapper.Map<DeckPreviewDto>(deck);
+            return Ok(deckDto);
         }
 
         [HttpPut("update/{deckId}")]
@@ -80,7 +81,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             await _deckRepository.UpdateDeck(deckId, newDeckName);
 
-            return Ok();
+            return Ok(new string[] { "Successfully updated deck!" });
 
         }
         [HttpDelete("delete/{deckId}")]
@@ -98,7 +99,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             }
             await _deckRepository.DeleteDeck(deckId);
 
-            return NoContent();
+            return Ok(new string[] { "Successfully deleted deck!" });
         }
     }
 }
