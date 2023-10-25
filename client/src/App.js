@@ -7,6 +7,7 @@ import Logout from "./components/authComponents/LogoutComponent/Logout";
 import LandingPage from "./components/landingPageComponent/LandingPage";
 import CreateMenu from "./components/entityComponents/creatorHubComponents/createMenu/CreateMenu";
 import CreateDeck from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createDeckComponent/CreateDeck";
+import DeckDetails from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/DeckDetails";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
          <Route path="/logout" element={<Logout/>}/>
          <Route path="/create/decks" element={<CreateDeck/>}/>
          <Route path="/create" element={<CreateMenu/>}/>
+         <Route path="/deck/:deckId" element={<DeckDetails/>}/>
        </Routes>
     </AuthProvider>
     </>
