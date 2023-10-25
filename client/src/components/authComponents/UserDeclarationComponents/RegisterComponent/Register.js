@@ -1,7 +1,7 @@
 import '../Auth.css'
 import studyRegisterGirl from '../../../../static/img/studyRegisterGirl.jpg'
 
-import { useState,useContext } from 'react'
+import { useContext } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
@@ -9,25 +9,19 @@ import { useNavigate } from 'react-router-dom'
 import { register } from '../../../../services/authServises'
 
 import { AuthContext } from '../../../../contexts/AuthContext'
+import useChangeInput from '../../../../hooks/useChangeInput'
 
 export default function Register(){
     const navigate = useNavigate();
 
     const {loginUser} = useContext(AuthContext)
 
-    const[values,setValues] =useState({
+    const[values,setValues] =useChangeInput({
         username:'',
         password:'',
         email:'',
         rePass:''
     })
-
-    const onChangeHandler =(e)=>{
-        setValues((oldState)=>({
-            ...oldState,
-           [e.target.name]:e.target.value
-        }))
-    }
     const onSubmitHandler=(e)=>{
          e.preventDefault();
         register(values)
@@ -48,7 +42,7 @@ export default function Register(){
                  name="Username" 
                  id="username" 
                  placeholder='Username'
-                 onChange={onChangeHandler}
+                 onChange={setValues}
                  />
             </section>
             <section className='auth-info-section'>    
@@ -56,7 +50,7 @@ export default function Register(){
                  name="Email" 
                  id="email" 
                  placeholder='Email'
-                 onChange={onChangeHandler}
+                 onChange={setValues}
                  />
             </section>
             <section className='auth-info-section'>
@@ -65,7 +59,7 @@ export default function Register(){
                  name="password" 
                  id="password"
                   placeholder='Password'
-                  onChange={onChangeHandler}
+                  onChange={setValues}
                   />
             </section>
             <section className='auth-info-section'>    
@@ -73,7 +67,7 @@ export default function Register(){
                  name="RePass" 
                  id="re-pass" 
                  placeholder='Repeat Password'
-                 onChange={onChangeHandler}
+                 onChange={setValues}
                  />
             </section>
            <section className="auth-submit-section">

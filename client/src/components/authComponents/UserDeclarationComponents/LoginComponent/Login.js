@@ -1,7 +1,7 @@
 import '../Auth.css'
 import studyGirl from '../../../../static/img/studyGirl.jpg'
 
-import { useState,useContext } from 'react'
+import { useContext } from 'react'
 
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../../contexts/AuthContext'
 
 import { login } from '../../../../services/authServises'
+
+import useChangeInput from '../../../../hooks/useChangeInput'
 
 
 
@@ -18,17 +20,10 @@ export default function Login(){
 
   const navigate  = useNavigate();
 
-  const [values,setValues] = useState({
+  const [values,setValues] = useChangeInput({
     LoginString: '',
     Password: '',
   })
-
-  const onChangeHandler = (e)=>{
-      setValues(oldState=>({
-        ...oldState,
-        [e.target.name]: e.target.value
-      }))     
-  }
 
   const onSubmitHandler = (e)=>{
       e.preventDefault();
@@ -50,7 +45,7 @@ export default function Login(){
                  name="LoginString" 
                  id="emailOrUsername" 
                  placeholder='Email or Username'
-                 onChange={onChangeHandler}
+                 onChange={setValues}
                  />
             </section>
             <section className='auth-info-section'>
@@ -59,7 +54,7 @@ export default function Login(){
                  name="Password" 
                  id="password"
                   placeholder='Password'
-                  onChange={onChangeHandler}
+                  onChange={setValues}
                   />
             </section>
            <section className="auth-submit-section">

@@ -4,8 +4,16 @@ import flashcards from '../../../../../static/img/flashcards.jpg'
 
 import { useNavigate } from "react-router-dom";
 
+import useChangeInput from '../../../../../hooks/useChangeInput';
+
 export default function CreateDeck(){
      const navigate = useNavigate();
+
+     const [values,setValues]= useChangeInput({
+        Name:'',
+        Tags:''
+     });
+
 
      return(
        <div className="create-deck-wrapper">
@@ -18,12 +26,14 @@ export default function CreateDeck(){
                  name="Name"
                  id="name"
                  placeholder="Name of deck"
+                 onChange={setValues}
                 />
                 <input
                  type="text"
                  name="Tags"
                  id="tags"
                  placeholder="Few tags that describe your deck!"
+                 onChange={setValues}
                 />
                 <button className='create-deck-btn' type="submit">Submit</button>
             </form>
