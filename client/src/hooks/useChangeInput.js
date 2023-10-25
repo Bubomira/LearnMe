@@ -8,7 +8,6 @@ export default function useChangeInput(defaultValues){
             ...oldState,
             [e.target.name] :e.target.value
         }))
-        console.log(e.target.value)
     }
     return[
         values,
