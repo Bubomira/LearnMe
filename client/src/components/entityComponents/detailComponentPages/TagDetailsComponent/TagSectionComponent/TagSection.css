@@ -1,0 +1,23 @@
+.tags{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.add-tag{
+    padding: 0.65em 1em;
+    background-color: #80A1D4;
+    font-size: 1.2em;
+    margin: 0;
+    border-radius: 50%;
+}
+
+.add-tag a{
+    color: #ffffffe5;
+    text-decoration: none;
+    font-weight: 900;
+
+}
