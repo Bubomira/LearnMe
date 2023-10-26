@@ -1,7 +1,7 @@
 import './Tag.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit,faRemove} from '@fortawesome/free-solid-svg-icons'
+import { faRemove} from '@fortawesome/free-solid-svg-icons'
 
 export default function Tag({tagName,isOwner}){
     return(
