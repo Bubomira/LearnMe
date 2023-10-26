@@ -6,6 +6,9 @@ import { useState, useEffect,useContext} from "react";
 
 import { AuthContext } from '../../../../contexts/AuthContext';
 import { getDeck } from "../../../../services/deckServices";
+import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
+import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
+import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
 
 export default function DeckDetails(){
     const {deckId} = useParams();
@@ -23,32 +26,33 @@ export default function DeckDetails(){
     },[deckId])
 
     return(
-        <article className="deck-details-wrapper">
-            <div className='deck-details-head'>
-               <h2 className="deck-details-name">{deck.name}</h2>
-               <section className='deck-details-tags'>
-                    {deck.tags?.map(tag=><div className='tag'>{tag}</div>)}
-                        {user.id==deck.ownerId?
-                         <div className='tag'><Link to='/'>Add tag...</Link></div>
-                        :
-                         <></>
-                        }
-               </section>
-            </div>
-
-            {deck.flashcards?.length==0?
-            <section className='no-flashcard-message'>
-                <h4>There aren't any flashcards in this deck...</h4>           
-                <button className='add-flashcard'>
-                    <Link to='/create/flashcard'>Create Flashcard</Link>
-                </button>
-            </section>:
-            <section className='deck-details-flashcards-container'>
-                 {/* to do: add flashcards and flashcard*/}
+      <section className='deck-details-wrapper'>
+         <header className="deck-details-header">
+            <section className='header-divider'>
+                  <h3>{deck.name}</h3>
+                 {user.id==deck.ownerId?
+                 <OwnerButtons  entityId={deck.id} entityType={'deck'}/>
+                 :
+                 <LikeButtons entityId={deck.id} entityType={'deck'}/>
+                }
             </section>
-}              
-{/* ownership buttons */}
-            
-        </article>
+                  {deck.tags?.length==0?
+                   <></>
+                   :
+                    <TagSection isOwner={user.id==deck.ownerId} entityType={'deck'} tags={deck.tags}/>
+                }
+         </header>
+         <main className="decl-details-main">
+           <section className="flashcards">
+                {/* todo */}
+           </section>         
+           <section className='deck-details-flashcards-buttons'>
+                <button className="flashcards-button">Add Flashcard</button>
+                <button className="flashcards-button">Seacrh Flashcards</button> 
+           </section>
+         </main>
+      </section>
+  
     )
 }
+        
