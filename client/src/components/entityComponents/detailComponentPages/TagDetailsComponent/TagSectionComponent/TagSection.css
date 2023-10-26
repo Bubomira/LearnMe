@@ -9,14 +9,15 @@
 
 .add-tag{
     padding: 0.65em 1em;
-    background-color: #80A1D4;
+    background:none;
     font-size: 1.2em;
     margin: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
     border-radius: 50%;
 }
 
 .add-tag a{
-    color: #ffffffe5;
+    color: #3a505a;
     text-decoration: none;
     font-weight: 900;
 

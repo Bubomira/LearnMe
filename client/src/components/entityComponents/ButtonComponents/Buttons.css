@@ -9,12 +9,13 @@
     padding: 0.7em 1em;
     border: none;
     font-size: 1em;
-    background-color: #3a505a;
     border-radius: 0.7em;
     font-weight: 600;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    background:none;
 }
 
 .buttons button a{
-    color: #ffffffe5;
     text-decoration: none;
+    color: #3a505a;
 }
