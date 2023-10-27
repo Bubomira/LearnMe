@@ -1,11 +1,11 @@
-import './CreateDeck.css'
+import '../Create.css'
 
 import flashcards from '../../../../../static/img/flashcards.jpg'
 
 import { useNavigate } from "react-router-dom";
 
 import useChangeInput from '../../../../../hooks/useChangeInput';
-import { createDeck } from '../../../../../services/deckServices';
+import { createDeck } from '../../../../../services/entityService/deckServices';
 
 export default function CreateDeck(){
      const navigate = useNavigate();
@@ -27,12 +27,13 @@ export default function CreateDeck(){
      }
 
      return(
-       <div className="create-deck-wrapper">
+       <div className="create-wrapper">
         <img width='50%' src={flashcards} alt="decks" />
-        <section className="create-deck-form-holder">
+        <section className="create-form-holder">
             <h2>Create Deck</h2>
-            <form className="create-deck-form" onSubmit={onSubmitHandler}>
+            <form className="create-form" onSubmit={onSubmitHandler}>
               <input
+              className='create-input'
                  type="text"
                  name="Name"
                  id="name"
@@ -40,13 +41,14 @@ export default function CreateDeck(){
                  onChange={setValues}
                 />
                 <input
+                className='create-tags create-input'
                  type="text"
                  name="Tags"
                  id="tags"
                  placeholder="Few tags that describe your deck!"
                  onChange={setValues}
                 />
-                <button className='create-deck-btn' type="submit">Submit</button>
+                <button className='creates-btn' type="submit">Submit</button>
             </form>
         </section>
        </div>
