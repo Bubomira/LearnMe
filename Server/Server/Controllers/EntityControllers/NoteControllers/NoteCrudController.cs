@@ -13,18 +13,21 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ApiController]
     [Route("api/note")]
+    [ServiceFilter(typeof(AuthFilter))]
     public class NoteCrudController : Controller
     {
         private readonly INoteRepository _noteRepository;
         private readonly IMapper _mapper;
         private readonly ITagRepository _tagRepository;
         private readonly INoteTagRepository _noteTagRepository;
-        public NoteCrudController(INoteRepository noteRepository, IMapper mapper, ITagRepository tagRepository, INoteTagRepository noteTagRepository)
+        private readonly INoteUserRepository _noteUserRepository;
+        public NoteCrudController(INoteRepository noteRepository, IMapper mapper, ITagRepository tagRepository, INoteTagRepository noteTagRepository, INoteUserRepository noteUserRepository)
         {
             _noteRepository = noteRepository;
             _mapper = mapper;
             _tagRepository = tagRepository;
             _noteTagRepository = noteTagRepository;
+            _noteUserRepository = noteUserRepository;
         }
 
         [HttpGet("details/{noteId}")]
@@ -38,10 +41,16 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
             var noteDto = _mapper.Map<NoteDetailsDto>(note);
 
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            noteDto.isOwnedByUser = userId == note.OwnerId;
+
+            noteDto.isLikedByUser = await _noteUserRepository.CheckIfNoteIsLikedByUser(noteId, userId);
+
             return Ok(noteDto);
         }
         [HttpPost("create")]
-        [ServiceFilter(typeof(AuthFilter))]
+        
 
         public async Task<IActionResult> CreateNote([FromBody] NoteInfoDto noteInfoDto)
         {
@@ -63,7 +72,6 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         }
 
         [HttpPut("update/{noteId}")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateNote([FromBody] NoteUpdateDto noteUpdateDto, int noteId)
         {
             if (string.IsNullOrEmpty(noteUpdateDto.Content) || string.IsNullOrEmpty(noteUpdateDto.Title))
@@ -86,7 +94,6 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         }
 
         [HttpDelete("delete/{noteId}")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> DeleteNote(int noteId)
         {
             if (!await _noteRepository.CheckIfNoteExists(noteId))

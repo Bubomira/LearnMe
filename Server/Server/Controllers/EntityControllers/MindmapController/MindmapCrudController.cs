@@ -12,18 +12,22 @@ namespace Server.Controllers.EntityControllers.MindmapController
 {
     [ApiController]
     [Route("api/mindmap")]
+
+    [ServiceFilter(typeof(AuthFilter))]
     public class MindmapCrudController : Controller
     {
         private readonly IMindmapRepository _mindmapRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IMindmapTagRepository _mindmapTagRepository;
+        private readonly IMindmapUserRepository _mindmapUserRepository;
         private readonly IMapper _mapper;
-        public MindmapCrudController(IMindmapRepository mindmapRepository, IMapper mapper, IMindmapTagRepository mindmapTagRepository, ITagRepository tagRepository)
+        public MindmapCrudController(IMindmapRepository mindmapRepository, IMapper mapper, IMindmapTagRepository mindmapTagRepository, ITagRepository tagRepository,IMindmapUserRepository mindmapUserRepository)
         {
             _mindmapTagRepository = mindmapTagRepository;
             _mindmapRepository = mindmapRepository;
             _tagRepository = tagRepository;
             _mapper = mapper;
+            _mindmapUserRepository = mindmapUserRepository;
         }
 
         [HttpGet("details/{mindmapId}")]
@@ -37,11 +41,15 @@ namespace Server.Controllers.EntityControllers.MindmapController
 
             var mindmapDto = _mapper.Map<MindmapDetailsDto>(mindmap);
 
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            mindmapDto.isOwnedByUser = userId == mindmap.OwnerId;
+            mindmapDto.isLikedByUser = await _mindmapUserRepository.CheckIfMindmapIsLikedByUser(mindmapId,userId);
+
             return Ok(mindmapDto);
         }
 
         [HttpPost("create")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> CreateMindmap([FromBody] MindmapInfoDto mindmapInfoDto)
         {
             if (string.IsNullOrEmpty(mindmapInfoDto.Name)
@@ -63,7 +71,6 @@ namespace Server.Controllers.EntityControllers.MindmapController
         }
 
         [HttpPut("update/{mindmapId}")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateMindmap([FromBody] string newName, int mindmapId)
         {
             if (string.IsNullOrEmpty(newName))
@@ -71,14 +78,14 @@ namespace Server.Controllers.EntityControllers.MindmapController
                 return BadRequest(new string[] { "Please fill in all fields!" });
             }
 
-            if(!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
+            if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
                 return NotFound(new string[] { $"Mindmap with id {mindmapId} does not exist!" });
             }
 
             int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
 
-            if(! await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
+            if (!await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
             {
                 return Forbid(new string[] { "You cannot midify this mindmap!" });
             }
@@ -90,10 +97,10 @@ namespace Server.Controllers.EntityControllers.MindmapController
         }
 
         [HttpDelete("delete/{mindmapId}")]
-        [ServiceFilter(typeof(AuthFilter))]
-        public async Task<IActionResult> DeleteMindmap( int mindmapId)
+
+        public async Task<IActionResult> DeleteMindmap(int mindmapId)
         {
-          
+
             if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
             {
                 return NotFound(new string[] { $"Mindmap with id {mindmapId} does not exist!" });

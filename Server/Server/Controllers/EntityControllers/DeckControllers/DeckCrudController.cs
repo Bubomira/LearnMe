@@ -11,18 +11,21 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 {
     [ApiController]
     [Route("api/deck")]
+    [ServiceFilter(typeof(AuthFilter))]
     public class DeckCrudController : Controller
     {
         private readonly IDeckRepository _deckRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IDeckTagRepository _decktagRepository;
+        private readonly IDeckUserRepository _deckUserRepository;
         private readonly IMapper _mapper;
-        public DeckCrudController(IDeckRepository deckRepository, IMapper mapper, ITagRepository tagRepository, IDeckTagRepository decktagRepository)
+        public DeckCrudController(IDeckRepository deckRepository, IMapper mapper, ITagRepository tagRepository, IDeckTagRepository decktagRepository, IDeckUserRepository deckUserRepository)
         {
             _deckRepository = deckRepository;
             _mapper = mapper;
             _tagRepository = tagRepository;
             _decktagRepository = decktagRepository;
+            _deckUserRepository = deckUserRepository;
         }
 
         [HttpGet("details/{deckId}")]
@@ -36,10 +39,14 @@ namespace Server.Controllers.EntityControllers.DeckControllers
 
             var deckDto = _mapper.Map<DeckDetailsDto>(deck);
 
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            deckDto.isOwnedByUser = userId == deck.OwnerId;
+            deckDto.isLikedByUser = await _deckUserRepository.CheckIfDeckIsLikedByUser(deck.Id, userId);
+
             return Ok(deckDto);
         }
         [HttpPost("create")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> CreateDeck([FromBody] DeckInfoDto deckInfoDto)
         {
             if (string.IsNullOrEmpty(deckInfoDto.Name) ||
@@ -57,11 +64,11 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             await _decktagRepository.AttachTagToDeck(tagIds, deck.Id);
 
             var deckDto = _mapper.Map<DeckPreviewDto>(deck);
+
             return Ok(deckDto);
         }
 
         [HttpPut("update/{deckId}")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> UpdateDeck([FromBody] string newDeckName, int deckId)
         {
             if (string.IsNullOrEmpty(newDeckName))

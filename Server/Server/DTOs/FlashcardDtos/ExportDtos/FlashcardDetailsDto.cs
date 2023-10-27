@@ -10,6 +10,6 @@ namespace Server.DTOs.FlashcardDtos.ExportDtos
         public string Definition { get; set; }
 
         public string Explanation { get; set; }
-        public int OwnerId { get; set; }
+        public bool isOwnedByUser { get; set; }
     }
 }

@@ -11,5 +11,9 @@ namespace Server.DTOs.NoteDtos.ExportDtos
         public int OwnerId { get; set; }
         public string[] Tags { get; set; }
 
+        public bool isOwnedByUser { get; set; }
+
+        public bool isLikedByUser { get; set; }
+
     }
 }

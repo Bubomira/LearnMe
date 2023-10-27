@@ -6,7 +6,8 @@ namespace Server.DTOs.DeckDtos.ExportDtos
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public int OwnerId { get; set; }
+        public bool isOwnedByUser { get; set; }
+        public bool isLikedByUser { get; set; }
 
         public ICollection<string> Tags { get; set; }
         public ICollection<string> Flashcards { get; set; }

@@ -11,6 +11,7 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
 {
     [ApiController]
     [Route("api/flashcard")]
+    [ServiceFilter(typeof(AuthFilter))]
     public class FlashcardCrudController : Controller
     {
         private readonly IFlashcardRepository _flashcardRepository;
@@ -34,16 +35,18 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
                 return NotFound(new string[] { "Invalid flashcard Id!" });
             }
 
-
             var flashcard = await _flashcardRepository.GetFlashcardById(flashCardId);
 
             var flashcardDto = _mapper.Map<FlashcardDetailsDto>(flashcard);
+           
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            flashcardDto.isOwnedByUser = await _flashcardRepository.CheckIfUserOwnsTheFlashcard(userId, flashCardId);
 
             return Ok(flashcardDto);
         }
 
         [HttpPost("create")]
-        [ServiceFilter(typeof(AuthFilter))]
         public async Task<IActionResult> CreateFlashcard([FromBody] FlashcardInfoDto flashcardInfoDto)
         {
             if (string.IsNullOrEmpty(flashcardInfoDto.Type) ||
@@ -74,7 +77,6 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
 
         }
         [HttpPut("update/{flashcardId}")]
-        [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> UpdateFlashcard(int flashcardId, [FromBody] FlashcardInfoDto flashcardInfoDto)
         {
@@ -96,7 +98,6 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
         }
 
         [HttpDelete("delete/{flashcardId}")]
-        [ServiceFilter(typeof(AuthFilter))]
 
         public async Task<IActionResult> Delete(int flashcardId)
         {

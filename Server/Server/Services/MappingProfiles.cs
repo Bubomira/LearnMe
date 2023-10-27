@@ -12,11 +12,14 @@ namespace Server.Services
         public MappingProfiles()
         {
             CreateMap<Flashcard, FlashcardDetailsDto>()
-                 .ForMember(f => f.OwnerId,
-                opt => opt.MapFrom(src =>
-                src.OwnedFlashcards.Select(x => x.OwnerId).FirstOrDefault()));
+                 .ForMember(f => f.isOwnedByUser,
+                 opt => opt.Ignore());
 
             CreateMap<Deck, DeckDetailsDto>()
+                .ForMember(d=>d.isLikedByUser,
+                opt=>opt.Ignore())
+                .ForMember(d => d.isOwnedByUser,
+                opt => opt.Ignore())
                 .ForMember(d => d.Flashcards,
                 opt => opt.MapFrom(src =>
                 src.DecksFlashcards.Select(df => new FlashcardBasicDto()
@@ -31,6 +34,10 @@ namespace Server.Services
                     dt.Tag.Name).ToList()));
 
             CreateMap<Note, NoteDetailsDto>()
+              .ForMember(n => n.isOwnedByUser,
+                 opt => opt.Ignore())
+                .ForMember(n => n.isLikedByUser,
+                 opt => opt.Ignore())
                .ForMember(n => n.Tags,
                opt => opt.MapFrom(src =>
                src.NotesTags.Select(dt =>
@@ -67,6 +74,10 @@ namespace Server.Services
                 src.NotesTags.Select(nt => nt.Tag.Name).ToList()));
 
             CreateMap<Mindmap, MindmapDetailsDto>()
+                  .ForMember(m => m.isOwnedByUser,
+                 opt => opt.Ignore())
+                    .ForMember(m => m.isLikedByUser,
+                 opt => opt.Ignore())
                 .ForMember(mdd => mdd.Tags, opt =>
                 opt.MapFrom(src =>
                 src.MindmapsTags.Select(mt => mt.Tag.Name).ToList()));
@@ -78,9 +89,8 @@ namespace Server.Services
                 .ForMember(mdd => mdd.Name, opt =>
                 opt.MapFrom(src =>
                 src.Mindmap.Name))
-                .ForMember(mdd => mdd.OwnerId, opt =>
-                opt.MapFrom(src =>
-                src.Mindmap.OwnerId))
+                  .ForMember(m => m.isLikedByUser,
+                 opt => opt.Ignore())
                 .ForMember(mdd => mdd.Tags, opt =>
                 opt.MapFrom(src =>
                 src.Mindmap.MindmapsTags.Select(mt => mt.Tag.Name).ToList()));

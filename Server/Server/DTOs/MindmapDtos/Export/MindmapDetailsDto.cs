@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string[] Tags { get; set; }
-        public int OwnerId { get; set; }
+        public bool isOwnedByUser { get; set; }
+
+        public bool isLikedByUser { get; set; }
     }
 }
