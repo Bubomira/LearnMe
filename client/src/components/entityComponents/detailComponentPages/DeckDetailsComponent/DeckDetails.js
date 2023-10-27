@@ -5,7 +5,7 @@ import { useParams,Link } from "react-router-dom";
 import { useState, useEffect,useContext} from "react";
 
 import { DeckContext } from '../../../../contexts/entityContexts/DeckContext';
-import { getDeck } from "../../../../services/deckServices";
+import { getDeck } from "../../../../services/entityService/deckServices";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
@@ -23,6 +23,7 @@ export default function DeckDetails(){
         })
     },[deckId])
 
+    console.log(deck);
     return(
       <section className='deck-details-wrapper'>
          <header className="deck-details-header">
@@ -45,7 +46,7 @@ export default function DeckDetails(){
                 {/* todo */}
            </section>         
            <section className='deck-details-flashcards-buttons'>
-                <button className="flashcards-button"><Link to='/add/flashcard'>Add Flashcard</Link></button>
+                <button className="flashcards-button"><Link to='/create/flashcard'>Add Flashcard</Link></button>
                 <button className="flashcards-button"><Link to='/search/flashcard'>Seacrh Flashcards</Link></button> 
            </section>
          </main>

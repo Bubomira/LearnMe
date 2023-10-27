@@ -12,7 +12,7 @@ export default function TagSection({entityType,info}){
     return(
         <section className="tags">
          {
-         info.tags?.map(tag=><Tag tagName={tag} isOwner={info.isOwnedByUser}/>)
+         info.tags?.map(tag=><Tag tagName={tag} isOwner={info.isOwnedByUser} key={tag}/>)
          }
         {info.isOwnedByUser?
         <p className='add-tag'><Link to={`/${entityType}/add/tag`}><FontAwesomeIcon icon={faAdd}/></Link></p>
