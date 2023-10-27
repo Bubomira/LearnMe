@@ -1,19 +1,17 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const DeckContext = createContext();
 
 export const DeckProvider = ({children})=>{
-    let [deckDetails,setDeck] =useLokalStorageAuth({
-
-    });
+    let [deckDetails,setDeck] =useState({});
 
     const setDeckDetailed = (newDeck)=>{
         setDeck(newDeck);
     }
 
     return (
-    <DeckProvider.Provider  value={{deck:deck, setDeckDetailed}}>
+    <DeckContext.Provider  value={{deck:deckDetails, setDeckDetailed}}>
          {children}
-    </DeckProvider.Provider>
+    </DeckContext.Provider>
     )
 }
