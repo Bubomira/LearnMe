@@ -1,4 +1,4 @@
-import {get, post,put,del } from "../utils/requester";
+import {get, post,put,del } from "../../utils/requester";
 
 const endpointUrl = 'https://localhost:7065/api/deck';
 
