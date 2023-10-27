@@ -1,6 +1,6 @@
 .tag{
     background-color: #3a505a;
-    padding: 0.1em 0.7em 0.1em 2em;
+    padding: 0.1em 1em;
     border-radius: 0.7em;
     font-size: 1em;
     color: antiquewhite;
@@ -21,6 +21,7 @@
 .remove-tag{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 0.5em 0.8em;
+    margin-right: -0.4em;
     color: #3a505a;
     border-radius: 0.5em;
     background-color: #ffffffe5;

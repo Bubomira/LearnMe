@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 export default function OwnerButtons({entityType,entityId}){
 
     return(
-        <secion className="buttons">
+        <section className="buttons">
         <button >
             <Link to={`/update/${entityType}/${entityId}`}><FontAwesomeIcon icon={faEdit} /></Link>
          </button>
         <button >
         <Link to={`/delete/${entityType}/${entityId}`}><FontAwesomeIcon icon={faRemove} /></Link>
         </button>
-        </secion>
+        </section>
     )
 }

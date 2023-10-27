@@ -4,7 +4,7 @@ import { useParams,Link } from "react-router-dom";
 
 import { useState, useEffect,useContext} from "react";
 
-import { AuthContext } from '../../../../contexts/AuthContext';
+import { DeckContext } from '../../../../contexts/entityContexts/DeckContext';
 import { getDeck } from "../../../../services/deckServices";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
@@ -12,14 +12,12 @@ import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons
 
 export default function DeckDetails(){
     const {deckId} = useParams();
-
-    const {user} = useContext(AuthContext);
-
-    const [deck,setDeck] = useState({});
+    
+    const {deck,setDeckDetailed} = useContext(DeckContext);
 
     useEffect(()=>{
         getDeck(deckId).then(deckDetailed=>{
-            setDeck(deckDetailed)
+            setDeckDetailed(deckDetailed)
         }).catch(err=>{
             alert(err)
         })
@@ -30,16 +28,16 @@ export default function DeckDetails(){
          <header className="deck-details-header">
             <section className='header-divider'>
                   <h3>{deck.name}</h3>
-                 {user.id==deck.ownerId?
-                 <OwnerButtons  entityId={deck.id} entityType={'deck'}/>
+                 {deck.isOwnedByUser?
+                 <OwnerButtons   entityType={'deck'}/>
                  :
-                 <LikeButtons entityId={deck.id} entityType={'deck'}/>
+                 <LikeButtons  entityType={'deck'}/>
                 }
             </section>
                   {deck.tags?.length==0?
                    <></>
                    :
-                    <TagSection isOwner={user.id==deck.ownerId} entityType={'deck'} tags={deck.tags}/>
+                    <TagSection info={deck}  entityType={'deck'} />
                 }
          </header>
          <main className="decl-details-main">
@@ -47,8 +45,8 @@ export default function DeckDetails(){
                 {/* todo */}
            </section>         
            <section className='deck-details-flashcards-buttons'>
-                <button className="flashcards-button">Add Flashcard</button>
-                <button className="flashcards-button">Seacrh Flashcards</button> 
+                <button className="flashcards-button"><Link to='/add/flashcard'>Add Flashcard</Link></button>
+                <button className="flashcards-button"><Link to='/search/flashcard'>Seacrh Flashcards</Link></button> 
            </section>
          </main>
       </section>
