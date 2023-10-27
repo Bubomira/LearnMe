@@ -1,4 +1,6 @@
 ﻿
+using Server.DTOs.FlashcardDtos.ExportDtos;
+
 namespace Server.DTOs.DeckDtos.ExportDtos
 {
     public class DeckDetailsDto
@@ -10,7 +12,7 @@ namespace Server.DTOs.DeckDtos.ExportDtos
         public bool isLikedByUser { get; set; }
 
         public ICollection<string> Tags { get; set; }
-        public ICollection<string> Flashcards { get; set; }
+        public ICollection<FlashcardBasicDto> Flashcards { get; set; }
 
     }
 }

@@ -22,7 +22,7 @@ namespace Server.Services
                 opt => opt.Ignore())
                 .ForMember(d => d.Flashcards,
                 opt => opt.MapFrom(src =>
-                src.DecksFlashcards.Select(df => new FlashcardBasicDto()
+                src.DecksFlashcards.Select(df => new FlashcardBasicDto
                 {
                     Definition = df.Flashcard.Definition,
                     Id = df.Flashcard.Id,
