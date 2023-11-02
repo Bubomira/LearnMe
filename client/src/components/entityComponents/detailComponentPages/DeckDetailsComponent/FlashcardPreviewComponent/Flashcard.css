@@ -1,9 +1,14 @@
 .flashcard-preview-wrapper{
-    padding: 1em 3em;
     background: none;  
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
     background: none;
     border-radius: 0.4em;
+    display: flex;
+   
+}
+
+.flashcard-content{
+    padding: 1em 3em ;
     display: flex;
     flex-direction: column;
     gap: 0.3em;
@@ -24,4 +29,14 @@
     color: #3a505a9c;
     font-size: 1em;  
     margin: 0;
+}
+
+.remove-flashcard{
+    color: #3a505a;
+    text-decoration: none;
+    font-size: 1.7em;
+    align-self: flex-start;
+    margin: 0;
+    padding-right: 0.4em;
+    padding-top: 0.1em;
 }

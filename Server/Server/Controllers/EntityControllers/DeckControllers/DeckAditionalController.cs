@@ -113,7 +113,7 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             return NoContent();
         }
 
-        [HttpPost("remove/flashcard/from/deck{deckId}")]
+        [HttpPost("remove/flashcard/from/deck/{deckId}")]
 
         public async Task<IActionResult> RemoveFlashcardFromDeck([FromBody] int flashcardId, int deckId)
         {

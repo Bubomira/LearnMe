@@ -24,6 +24,9 @@ const requester =async(method,url,data)=>{
 
      var response  = await request;
 
+     if(response.status==204){
+      return;
+     }
      if(response.ok){
         const result  = await response.json();
         return result;
