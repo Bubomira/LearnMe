@@ -8,12 +8,12 @@
 }
 
 .add-tag{
-    padding: 0.65em 1em;
+    padding: 0.6em 1em;
     background:none;
     font-size: 1.2em;
     margin: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
-    border-radius: 50%;
+    border-radius: 0.7em;
 }
 
 .add-tag a{

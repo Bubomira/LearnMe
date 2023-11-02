@@ -9,6 +9,7 @@ import { getDeck } from "../../../../services/entityService/deckServices";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
+import Flashcard from './FlashcardPreviewComponent/Flashcard';
 
 export default function DeckDetails(){
     const {deckId} = useParams();
@@ -22,6 +23,8 @@ export default function DeckDetails(){
             alert(err)
         })
     },[deckId])
+
+    console.log(deck)
     
     return(
       <section className='deck-details-wrapper'>
@@ -29,9 +32,9 @@ export default function DeckDetails(){
             <section className='header-divider'>
                   <h3>{deck.name}</h3>
                  {deck.isOwnedByUser?
-                 <OwnerButtons   entityType={'deck'}/>
+                 <OwnerButtons entityId={deck.id}  entityType={'deck'}/>
                  :
-                 <LikeButtons  entityType={'deck'}/>
+                 <LikeButtons entityId={deck.id} entityType={'deck'}/>
                 }
             </section>
                   {deck.tags?.length==0?
@@ -40,12 +43,12 @@ export default function DeckDetails(){
                     <TagSection info={deck}  entityType={'deck'} />
                 }
          </header>
-         <main className="decl-details-main">
+         <main className="deck-details-main">
            <section className="flashcards">
-                {/* todo */}
+                {deck.flashcards?.map(f=><Flashcard  flashcard={f} key={f.id}/>)}
            </section>         
            <section className='deck-details-flashcards-buttons'>
-                <button className="flashcards-button"><Link to='/create/flashcard'>Add Flashcard</Link></button>
+                <button className="flashcards-button "><Link to='/create/flashcard'>Add Flashcard</Link></button>
                 <button className="flashcards-button"><Link to='/search/flashcard'>Seacrh Flashcards</Link></button> 
            </section>
          </main>

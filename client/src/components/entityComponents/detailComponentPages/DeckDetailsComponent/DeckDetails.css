@@ -43,20 +43,29 @@
     justify-content: center;
 
 }
+.deck-details-main{
+    display: flex;
+    gap: 3em;
+    flex-wrap: wrap;
+}
+.deck-details-main .flashcards{
+    display: flex;
+    gap: 2em;
+}
 .deck-details-flashcards-buttons .flashcards-button{
-    padding: 0.5em 2em;
+    padding: 0.3em 2em;
     border: none;
     font-size: 1.3em;
-    color: #3a505a;
     border-radius: 0.7em;
     font-weight: 600;
     margin: 0.5em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
     border: none;
-    background: none;
+    background: #3a505ad7;
+    max-height: 2.3em;
 }
    
 .deck-details-flashcards-buttons .flashcards-button a{
-    color: #3a505a;
+    color: #ffffffd8;
     text-decoration: none;
 }
