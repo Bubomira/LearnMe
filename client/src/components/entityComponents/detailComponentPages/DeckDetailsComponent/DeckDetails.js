@@ -1,17 +1,18 @@
 import './DeckDetails.css'
 
-import { useParams,Link } from "react-router-dom";
+import { useParams,Link,useNavigate } from "react-router-dom";
 
 import { useEffect,useContext} from "react";
 
 import { DeckContext } from '../../../../contexts/entityContexts/DeckContext';
-import { getDeck } from "../../../../services/entityService/deckService/deckServices";
+import { getDeck,deleteDeck } from "../../../../services/entityService/deckService/deckServices";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
 import Flashcard from './FlashcardPreviewComponent/Flashcard';
 
 export default function DeckDetails(){
+    const navigate = useNavigate();
     const {deckId} = useParams();
     
     const {deck,setDeckDetailed} = useContext(DeckContext);
@@ -24,7 +25,13 @@ export default function DeckDetails(){
         })
     },[deckId])
 
-    console.log(deck)
+    const deleteDeckHandler = ()=>{
+      deleteDeck(deck.id).then(()=>{
+           navigate('/welcome')
+      }).catch(err=>{
+        alert(err);
+      })
+    }
     
     return(
       <section className='deck-details-wrapper'>
@@ -32,7 +39,7 @@ export default function DeckDetails(){
             <section className='header-divider'>
                   <h3>{deck.name}</h3>
                  {deck.isOwnedByUser?
-                 <OwnerButtons entityId={deck.id}  entityType={'deck'}/>
+                 <OwnerButtons entityId={deck.id}  entityType={'deck'} deleteHandler={deleteDeckHandler}/>
                  :
                  <LikeButtons entityId={deck.id} entityType={'deck'}/>
                 }
