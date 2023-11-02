@@ -22,8 +22,7 @@ export default function DeckDetails(){
             alert(err)
         })
     },[deckId])
-
-    console.log(deck);
+    
     return(
       <section className='deck-details-wrapper'>
          <header className="deck-details-header">

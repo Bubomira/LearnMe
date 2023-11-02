@@ -56,3 +56,7 @@
     background: none;
 }
    
+.deck-details-flashcards-buttons .flashcards-button a{
+    color: #3a505a;
+    text-decoration: none;
+}
