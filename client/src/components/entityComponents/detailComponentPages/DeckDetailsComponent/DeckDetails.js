@@ -2,10 +2,10 @@ import './DeckDetails.css'
 
 import { useParams,Link } from "react-router-dom";
 
-import { useState, useEffect,useContext} from "react";
+import { useEffect,useContext} from "react";
 
 import { DeckContext } from '../../../../contexts/entityContexts/DeckContext';
-import { getDeck } from "../../../../services/entityService/deckServices";
+import { getDeck } from "../../../../services/entityService/deckService/deckServices";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'

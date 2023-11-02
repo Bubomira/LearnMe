@@ -5,7 +5,7 @@ import flashcards from '../../../../../static/img/flashcards.jpg'
 import { useNavigate } from "react-router-dom";
 
 import useChangeInput from '../../../../../hooks/useChangeInput';
-import { createDeck } from '../../../../../services/entityService/deckServices';
+import { createDeck } from '../../../../../services/entityService/deckService/deckServices';
 
 export default function CreateDeck(){
      const navigate = useNavigate();
