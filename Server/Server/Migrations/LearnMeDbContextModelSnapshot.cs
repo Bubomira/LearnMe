@@ -63,12 +63,12 @@ namespace Server.Migrations
                     b.Property<int>("DeckId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("DeckId", "TagId");
+                    b.HasKey("DeckId", "Id");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("Id");
 
                     b.ToTable("DecksTags");
                 });
@@ -186,12 +186,12 @@ namespace Server.Migrations
                     b.Property<int>("MindmapId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("MindmapId", "TagId");
+                    b.HasKey("MindmapId", "Id");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("Id");
 
                     b.ToTable("MindmapsTags");
                 });
@@ -227,12 +227,12 @@ namespace Server.Migrations
                     b.Property<int>("NoteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("NoteId", "TagId");
+                    b.HasKey("NoteId", "Id");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("Id");
 
                     b.ToTable("NotesTags");
                 });
@@ -334,7 +334,7 @@ namespace Server.Migrations
 
                     b.HasOne("Server.Models.Tag", "Tag")
                         .WithMany("DecksTags")
-                        .HasForeignKey("TagId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -421,7 +421,7 @@ namespace Server.Migrations
 
                     b.HasOne("Server.Models.Tag", "Tag")
                         .WithMany("MindmapsTags")
-                        .HasForeignKey("TagId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -451,7 +451,7 @@ namespace Server.Migrations
 
                     b.HasOne("Server.Models.Tag", "Tag")
                         .WithMany("NotesTags")
-                        .HasForeignKey("TagId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
