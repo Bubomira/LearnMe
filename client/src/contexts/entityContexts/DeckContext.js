@@ -12,8 +12,6 @@ export const DeckProvider = ({children})=>{
     const removeFlahcardFromDeckState=(flashcardId)=>{
         let flashcards = deckDetails.flashcards;
       flashcards= flashcards.filter(f=>f.id!=flashcardId)
-    console.log(flashcards)
-    console.log(flashcardId)
         setDeck(oldDeckDetails=>({
             ...oldDeckDetails,
           flashcards : flashcards
@@ -21,8 +19,18 @@ export const DeckProvider = ({children})=>{
         ))
     }
 
+    const detachTagFromDeckState = (tagId)=>{
+        let tags = deckDetails.tags;
+      tags= tags.filter(f=>f.id!=tagId)
+        setDeck(oldDeckDetails=>({
+            ...oldDeckDetails,
+          tags : tags
+        }
+        ))
+    }
+
     return (
-    <DeckContext.Provider  value={{deck:deckDetails, setDeckDetailed,removeFlahcardFromDeckState}}>
+    <DeckContext.Provider  value={{deck:deckDetails, setDeckDetailed,removeFlahcardFromDeckState,detachTagFromDeckState}}>
          {children}
     </DeckContext.Provider>
     )

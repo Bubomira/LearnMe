@@ -36,12 +36,8 @@ export default function DeckDetails(){
                  :
                  <LikeButtons entityId={deck.id} entityType={'deck'}/>
                 }
-            </section>
-                  {deck.tags?.length==0?
-                   <></>
-                   :
-                    <TagSection info={deck}  entityType={'deck'} />
-                }
+            </section>               
+            <TagSection info={deck}  entityType={'deck'} />
          </header>
          <main className="deck-details-main">
            <section className="flashcards">
