@@ -12,7 +12,7 @@ namespace Server.DTOs.DeckDtos.ExportDtos
         public bool isLikedByUser { get; set; }
 
         public ICollection<string> Tags { get; set; }
-        public ICollection<FlashcardBasicDto> Flashcards { get; set; }
+        public ICollection<FlashcardDetailsDto> Flashcards { get; set; }
 
     }
 }
