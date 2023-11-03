@@ -1,14 +1,31 @@
+.flashcard-details-wrapper{
+    display: flex;
+    gap: 2em;
+    align-items: center;
+   margin: auto;
+   width: 50%;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+  
+}
+
+.flashcard-details-wrapper p{
+    color: #3a505a;
+    font-size: 3.5em;
+    cursor: pointer;
+}
+
 .flashcard-details{
-    width: 50%;
+    width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
     text-align: center;
     padding: 1em 3em;
     color: #3a505a;
     background-color: #3a505a44;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    
+  
 }
 
 .flashcard-details h2{
