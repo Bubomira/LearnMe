@@ -6,9 +6,9 @@ import { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRemove} from '@fortawesome/free-solid-svg-icons'
 
-import { DeckContext } from '../../../../../contexts/entityContexts/DeckContext'
+import { DeckContext } from '../../../../../../contexts/entityContexts/DeckContext'
 
-import { removeFlashcardFromDeck } from '../../../../../services/entityService/deckService/deckAditionalService'
+import { removeFlashcardFromDeck } from '../../../../../../services/entityService/deckService/deckAditionalService'
 
 export default function Flashcard({flashcard}){
 
@@ -27,7 +27,7 @@ export default function Flashcard({flashcard}){
     return(
          <article className="flashcard-preview-wrapper">
             <section className='flashcard-content'>
-                <h3><Link to={`/flashcard/${flashcard.id}`}>{flashcard.definition}{' :'}</Link></h3>
+                <h3><Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>{flashcard.definition}{' :'}</Link></h3>
                 <h5>{flashcard.definition}</h5>
             </section>
             <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>

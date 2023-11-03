@@ -9,7 +9,7 @@ import { getDeck,deleteDeck } from "../../../../services/entityService/deckServi
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
-import Flashcard from './FlashcardPreviewComponent/Flashcard';
+import Flashcard from './FlashcardComponents/FlashcardPreviewComponent/Flashcard';
 
 export default function DeckDetails(){
     const navigate = useNavigate();
