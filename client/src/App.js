@@ -11,6 +11,7 @@ import DeckDetails from "./components/entityComponents/detailComponentPages/Deck
 import { AuthProvider } from "./contexts/AuthContext";
 import { DeckProvider } from "./contexts/entityContexts/DeckContext";
 import CreateFlashcard from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createFlashcardComponent/createFlashcard";
+import FlashcardDetails from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/FlashcardDetailsComponent/FlashcardDetails";
 
 function App() {
   return (
@@ -27,9 +28,9 @@ function App() {
 
          <Route path="/create" element={<CreateMenu/>}/>
          <Route path="/create/decks" element={<CreateDeck/>}/>
-         <Route path="/create/flashcard" element={<CreateFlashcard/>}/>
-
+         <Route path="/create/flashcard" element={<CreateFlashcard/>}/>          
          <Route path="/deck/:deckId" element={<DeckDetails/>}/>
+         <Route path="/deck/:deckId/flashcard/:flashcardId" element={<FlashcardDetails/>}/>
        </Routes>
     </DeckProvider>
     </AuthProvider>
