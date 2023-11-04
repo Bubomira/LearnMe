@@ -26,11 +26,13 @@ export default function DeckDetails(){
     },[deckId])
 
     const deleteDeckHandler = ()=>{
-      deleteDeck(deck.id).then(()=>{
-           navigate('/welcome')
-      }).catch(err=>{
-        alert(err);
-      })
+        if(window.confirm('Do you want to delete this deck?')){
+            deleteDeck(deck.id).then(()=>{
+                 navigate('/welcome')
+            }).catch(err=>{
+              alert(err);
+            })
+        }
     }
     
     return(
