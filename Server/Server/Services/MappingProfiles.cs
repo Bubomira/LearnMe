@@ -28,7 +28,7 @@ namespace Server.Services
                     Definition = df.Flashcard.Definition,
                     Id = df.Flashcard.Id,
                     Type = df.Flashcard.Type,
-                    Explanation = df.Flashcard.Explanation
+                    Explanation = df.Flashcard.Explanation,
                 }).ToList()))
                 .ForMember(d => d.Tags,
                 opt => opt.MapFrom(src =>

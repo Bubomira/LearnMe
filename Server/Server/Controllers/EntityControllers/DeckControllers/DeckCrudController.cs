@@ -6,6 +6,7 @@ using Server.DTOs.DeckDtos.ImportDtos;
 using Server.Interfaces.EntityInterface;
 using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Models;
+using Server.Repositories.EntityRepositories;
 
 namespace Server.Controllers.EntityControllers.DeckControllers
 {
@@ -18,14 +19,16 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         private readonly ITagRepository _tagRepository;
         private readonly IDeckTagRepository _decktagRepository;
         private readonly IDeckUserRepository _deckUserRepository;
+        private readonly IFlashcardRepository _flashcardRepository;
         private readonly IMapper _mapper;
-        public DeckCrudController(IDeckRepository deckRepository, IMapper mapper, ITagRepository tagRepository, IDeckTagRepository decktagRepository, IDeckUserRepository deckUserRepository)
+        public DeckCrudController(IDeckRepository deckRepository, IMapper mapper, ITagRepository tagRepository, IDeckTagRepository decktagRepository, IDeckUserRepository deckUserRepository,IFlashcardRepository flashcardRepository)
         {
             _deckRepository = deckRepository;
             _mapper = mapper;
             _tagRepository = tagRepository;
             _decktagRepository = decktagRepository;
             _deckUserRepository = deckUserRepository;
+            _flashcardRepository = flashcardRepository;
         }
 
         [HttpGet("details/{deckId}")]
@@ -44,6 +47,10 @@ namespace Server.Controllers.EntityControllers.DeckControllers
             deckDto.isOwnedByUser = userId == deck.OwnerId;
             deckDto.isLikedByUser = await _deckUserRepository.CheckIfDeckIsLikedByUser(deck.Id, userId);
 
+            foreach (var flashcard in deckDto.Flashcards)
+            {
+                flashcard.isOwnedByUser = await  _flashcardRepository.CheckIfUserOwnsTheFlashcard(userId, flashcard.Id);
+            }
             return Ok(deckDto);
         }
         [HttpPost("create")]
