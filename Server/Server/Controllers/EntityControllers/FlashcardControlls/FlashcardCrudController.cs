@@ -78,7 +78,7 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
         }
         [HttpPut("update/{flashcardId}")]
 
-        public async Task<IActionResult> UpdateFlashcard(int flashcardId, [FromBody] FlashcardInfoDto flashcardInfoDto)
+        public async Task<IActionResult> UpdateFlashcard(int flashcardId, [FromBody] FlashcardEditDto flashcardInfoDto)
         {
             if (!await _flashcardRepository.CheckIfFlashcardExists(flashcardId))
             {

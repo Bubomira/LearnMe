@@ -66,7 +66,7 @@ namespace Server.Repositories.EntityRepositories
             await _learnMeDbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateFlashcard(int id, FlashcardInfoDto flashcardInfoDto)
+        public async Task UpdateFlashcard(int id, FlashcardEditDto flashcardInfoDto)
         {
             var flashcard = await _learnMeDbContext.Flashcards.FirstOrDefaultAsync(f => f.Id == id);
 

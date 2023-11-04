@@ -8,7 +8,7 @@ namespace Server.Interfaces.EntityInterface
     {
         public Task<Flashcard> GetFlashcardById(int id);
         public Task CreateFlashcard(FlashcardInfoDto flashcardInfoDto, FlashcardType type, int ownerId);
-        public Task UpdateFlashcard(int id, FlashcardInfoDto flashcardInfoDto);
+        public Task UpdateFlashcard(int id, FlashcardEditDto flashcardInfoDto);
         public Task DeleteFlashcard(int id);
         public Task<bool> CheckIfFlashcardExists(int id);
 
