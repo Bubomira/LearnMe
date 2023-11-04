@@ -10,7 +10,7 @@ import { useParams,useNavigate } from 'react-router-dom'
 import { DeckContext } from '../../../../../../contexts/entityContexts/DeckContext'
 import { AuthContext } from '../../../../../../contexts/AuthContext'
 
-import { getFlashcardDetails } from '../../../../../../services/entityService/flashcardServices'
+import { deleteFlashcard, getFlashcardDetails } from '../../../../../../services/entityService/flashcardServices'
 
 import OwnerButtons from '../../../../ButtonComponents/OwnerButtonsComponent/OwnerButtons'
 import { getDeck } from '../../../../../../services/entityService/deckService/deckServices'
@@ -65,6 +65,16 @@ export default function FlashcardDetails(){
 
   }
 
+  const deleteFlashcardHandler = ()=>{
+      if(window.confirm('Do you want to delete this flashcard?')){
+        deleteFlashcard(flashcard.id).then(()=>{
+            navigate(`/deck/${deck.id}`)
+        }).catch(err=>{
+            alert(err)
+        })
+      }
+  }
+
    return(
     <section className='flashcard-details-wrapper'>
         {deck.flashcards?.findIndex(f=>f.id==flashcardId)>0?
@@ -76,7 +86,7 @@ export default function FlashcardDetails(){
             <h2>{clicked? flashcard.definition : flashcard.explanation}</h2>
             {
                 flashcard.ownerId==user.Id?
-                <OwnerButtons entityType={'flashcard'} entityId={flashcardId}/>
+                <OwnerButtons entityType={'flashcard'} entityId={flashcardId} deleteHandler={deleteFlashcardHandler}/>
                 :
                 <></>
             }
