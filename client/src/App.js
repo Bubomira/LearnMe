@@ -13,6 +13,7 @@ import { DeckProvider } from "./contexts/entityContexts/DeckContext";
 import CreateFlashcard from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createFlashcardComponent/createFlashcard";
 import FlashcardDetails from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/FlashcardDetailsComponent/FlashcardDetails";
 import EditDeck from "./components/entityComponents/EditFormComponents/EditDeckComponent/EditDeck";
+import EditFlashcard from "./components/entityComponents/EditFormComponents/EditFlashcardComponent/EditFlashcard";
 
 function App() {
   return (
@@ -33,7 +34,9 @@ function App() {
 
          <Route path="/deck/:deckId" element={<DeckDetails/>}/>
          <Route path="/update/deck/:deckId" element={<EditDeck/>}/>    
+
          <Route path="/deck/:deckId/flashcard/:flashcardId" element={<FlashcardDetails/>}/>
+         <Route path="/update/flashcard/:flashcardId" element={<EditFlashcard/>}/>
 
        </Routes>
     </DeckProvider>

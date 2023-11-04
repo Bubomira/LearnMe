@@ -7,3 +7,5 @@ export const addFlashcard = (data)=>post(`${endpointUrl}/create`,data)
 export const getFlashcardDetails = (flashcardId) => get(`${endpointUrl}/details/${flashcardId}`)
 
 export const deleteFlashcard = (flashcardId)=> del(`${endpointUrl}/delete/${flashcardId}`)
+
+export const updateFlashcard = (flashcardId,data)=>put(`${endpointUrl}/update/${flashcardId}`,data)
