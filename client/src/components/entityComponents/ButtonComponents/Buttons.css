@@ -12,9 +12,14 @@
     font-weight: 600;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
     background:none;
+    color: #3a505a;
+    cursor: pointer;
 }
 
 .buttons button a{
     text-decoration: none;
-    color: #3a505a;
+}
+
+#disabled{
+    cursor:default;
 }

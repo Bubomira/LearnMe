@@ -10,6 +10,7 @@ import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButt
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
 import Flashcard from './FlashcardComponents/FlashcardPreviewComponent/Flashcard';
+import { dislikeDeck, likeDeck } from '../../../../services/entityService/deckService/deckUserService';
 
 export default function DeckDetails(){
     const navigate = useNavigate();
@@ -34,7 +35,23 @@ export default function DeckDetails(){
             })
         }
     }
-    
+
+    const likeDeckHandler = ()=>{
+        likeDeck(deck.id).then(()=>{
+            navigate('/welcome')
+        }).catch(err=>{
+            alert(err);
+        })
+    }
+
+    const dislikeDeckHandler = ()=>{
+        dislikeDeck(deck.id).then(()=>{
+            navigate('/welcome')
+        }).catch(err=>{
+            alert(err);
+        })
+    }
+    console.log(deck)
     return(
       <section className='deck-details-wrapper'>
          <header className="deck-details-header">
@@ -43,7 +60,11 @@ export default function DeckDetails(){
                  {deck.isOwnedByUser?
                  <OwnerButtons entityId={deck.id}  entityType={'deck'} deleteHandler={deleteDeckHandler}/>
                  :
-                 <LikeButtons entityId={deck.id} entityType={'deck'}/>
+                 <LikeButtons
+                  likeHandler={likeDeckHandler}
+                  dislikeHandler={dislikeDeckHandler}
+                  isLiked={deck.isLikedByUser}
+                  />
                 }
             </section>               
             <TagSection info={deck}  entityType={'deck'} />

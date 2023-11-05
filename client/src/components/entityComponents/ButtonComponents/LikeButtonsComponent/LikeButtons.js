@@ -2,18 +2,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faThumbsUp,faThumbsDown} from '@fortawesome/free-regular-svg-icons'
 import '../Buttons.css'
 
-import { Link } from "react-router-dom";
 
-export default function OwnerButtons({entityType,entityId}){
+export default function OwnerButtons({likeHandler,dislikeHandler,isLiked}){
 
+    console.log(isLiked)
     return(
-        <secion className="buttons">
-        <button >
-            <Link to={`/like/${entityType}/${entityId}`}><FontAwesomeIcon icon={faThumbsUp} /></Link>
+        <section className="buttons">
+        <button onClick={likeHandler} disabled={isLiked} id={isLiked?'disabled':''} >
+           <FontAwesomeIcon icon={faThumbsUp} />
          </button>
-        <button >
-        <Link to={`/dislike/${entityType}/${entityId}`}><FontAwesomeIcon icon={faThumbsDown} /></Link>
+        <button onClick={dislikeHandler} disabled={!isLiked} id={!isLiked?'disabled':''}>
+          <FontAwesomeIcon icon={faThumbsDown} /> 
         </button>
-        </secion>
+        </section>
     )
 }
