@@ -41,6 +41,7 @@
 .deck-details-flashcards-buttons{
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
 }
 .deck-details-main{

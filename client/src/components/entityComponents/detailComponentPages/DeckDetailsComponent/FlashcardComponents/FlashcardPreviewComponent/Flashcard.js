@@ -23,12 +23,11 @@ export default function Flashcard({flashcard}){
               })
         }
     }
-    console.log(flashcard.definition)
     return(
          <article className="flashcard-preview-wrapper">
             <section className='flashcard-content'>
                 <h3><Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>{flashcard.definition}{' :'}</Link></h3>
-                <h5>{flashcard.definition}</h5>
+                <h5>{flashcard.explanation}</h5>
             </section>
             <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>
          </article>
