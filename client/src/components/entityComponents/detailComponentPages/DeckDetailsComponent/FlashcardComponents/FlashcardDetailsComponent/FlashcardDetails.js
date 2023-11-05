@@ -85,7 +85,7 @@ export default function FlashcardDetails(){
         <article className='flashcard-details' onClick={clickerHandler}>
             <h2>{clicked? flashcard.definition : flashcard.explanation}</h2>
             {
-                flashcard.ownerId==user.Id?
+                flashcard.isOwnedByUser?
                 <OwnerButtons entityType={'flashcard'} entityId={flashcardId} deleteHandler={deleteFlashcardHandler}/>
                 :
                 <></>

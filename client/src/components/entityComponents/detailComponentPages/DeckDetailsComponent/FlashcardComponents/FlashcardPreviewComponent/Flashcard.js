@@ -29,7 +29,11 @@ export default function Flashcard({flashcard}){
                 <h3><Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>{flashcard.definition}{' :'}</Link></h3>
                 <h5>{flashcard.explanation}</h5>
             </section>
-            <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>
+            {flashcard.isOwnedByUser?
+             <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>
+             :
+             <></>
+            }
          </article>
     )
 } 
