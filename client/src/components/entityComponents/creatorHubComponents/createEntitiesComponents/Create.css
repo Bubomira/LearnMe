@@ -2,11 +2,14 @@
     gap: 1.5em;
     display: flex;
     background-color: #ffffffd8;
-    margin: 0 auto;
     width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
     border-radius: 1em;
-
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .create-wrapper img{
@@ -57,8 +60,5 @@ letter-spacing: 0.13em;
 }
 
 .create-tags{
-        height: 5em;
-        padding-top: 0;
-        padding-bottom: 2em;
-
+       width: 30%;
 }
