@@ -15,6 +15,7 @@ import FlashcardDetails from "./components/entityComponents/detailComponentPages
 import EditDeck from "./components/entityComponents/EditFormComponents/EditDeckComponent/EditDeck";
 import EditFlashcard from "./components/entityComponents/EditFormComponents/EditFlashcardComponent/EditFlashcard";
 import AttachTagToDeck from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToDeck.js/AttachTagToDeck";
+import SearchFlashcard from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/SearchFlashcardComponent/SearchFlashcard";
 
 function App() {
   return (
@@ -33,9 +34,9 @@ function App() {
          <Route path="/create/decks" element={<CreateDeck/>}/>
          <Route path="/create/flashcard" element={<CreateFlashcard/>}/>  
          <Route path="/deck/:deckId/add/tag" element={<AttachTagToDeck/>}/>
-
          <Route path="/deck/:deckId" element={<DeckDetails/>}/>
          <Route path="/update/deck/:deckId" element={<EditDeck/>}/>    
+         <Route path='/deck/:deckId/search/flashcard'element={<SearchFlashcard/>}/>
 
          <Route path="/deck/:deckId/flashcard/:flashcardId" element={<FlashcardDetails/>}/>
          <Route path="/update/flashcard/:flashcardId" element={<EditFlashcard/>}/>

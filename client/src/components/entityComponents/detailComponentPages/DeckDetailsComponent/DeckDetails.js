@@ -75,7 +75,7 @@ export default function DeckDetails(){
            </section>         
            <section className='deck-details-flashcards-buttons'>
                 <button className="flashcards-button "><Link to='/create/flashcard'>Add Flashcard</Link></button>
-                <button className="flashcards-button"><Link to='/search/flashcard'>Seacrh Flashcards</Link></button> 
+                <button className="flashcards-button"><Link to={`/deck/${deckId}/search/flashcard`}>Seacrh Flashcards</Link></button> 
            </section>
          </main>
       </section>

@@ -1,0 +1,51 @@
+.search-flashcard-wrapper{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.search-flashcard-input{
+    border: 1px solid #3a405a96;
+    border-radius: 3em;
+    width: 100%;
+   padding: 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.search-flashcard-form{
+    display: flex;
+    gap: 2em;
+    justify-content: flex-end;
+}
+
+.search-flashcard-submit{
+    font-size: 1.3em;
+    border-radius: 9em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    background-color:#3a405a;
+    border: none;
+    color: #ffffffdc;
+    text-align: center;
+    max-height: inherit;
+}
+
+.search-flashcard-message, .no-flashcards-message{
+    letter-spacing: 0.12em;
+    color: #3a405a;
+    font-size: 2.3em;
+    text-align: center;
+}
+
+.flashcards-holder{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin: 3em 0;
+}
+.no-flashcards-message{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

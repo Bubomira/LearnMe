@@ -24,7 +24,7 @@ namespace Server.Controllers.EntityControllers.FlashcardControlls
         {
             var flashcards = await _flashcardRepository.SearchFlashcardsByDefinition(searchString);
 
-            var flashcardDtos = _mapper.Map<List<FlashcardBasicDto>>(flashcards);
+            var flashcardDtos = _mapper.Map<List<FlashcardDetailsDto>>(flashcards);
 
             return Ok(flashcardDtos);
         }
