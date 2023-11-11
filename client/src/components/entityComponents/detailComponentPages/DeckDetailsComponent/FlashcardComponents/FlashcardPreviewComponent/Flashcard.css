@@ -1,6 +1,5 @@
 .flashcard-preview-wrapper{
     background: none;  
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
     background: none;
     border-radius: 0.4em;
     display: flex;
@@ -39,4 +38,14 @@
     margin: 0;
     padding-right: 0.4em;
     padding-top: 0.1em;
+}
+
+.flashcard-wrap-final{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.add-flashcard-to-deck-icon{
+    color: #3a505a;
+    padding: 1em;
+    font-size: 1.2em;
 }

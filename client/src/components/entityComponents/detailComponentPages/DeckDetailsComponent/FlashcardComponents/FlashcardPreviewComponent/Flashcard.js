@@ -1,21 +1,23 @@
 import './Flashcard.css'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRemove} from '@fortawesome/free-solid-svg-icons'
+import { faRemove,faAdd} from '@fortawesome/free-solid-svg-icons'
 
 import { DeckContext } from '../../../../../../contexts/entityContexts/DeckContext'
 
-import { removeFlashcardFromDeck } from '../../../../../../services/entityService/deckService/deckAditionalService'
+import { removeFlashcardFromDeck,attachFlashcardToDeck } from '../../../../../../services/entityService/deckService/deckAditionalService'
 
-export default function Flashcard({flashcard}){
+export default function Flashcard({flashcard,isSearch}){
 
-    const {deck,removeFlahcardFromDeckState} = useContext(DeckContext)
+  const navigate = useNavigate();
+
+    const {deck,removeFlahcardFromDeckState} = useContext(DeckContext);
 
     const removeFlashcardFromDeckHandler = ()=>{
-        if(window.confirm('Are you sure you want to delete this flashcard?')){
+        if(window.confirm(`Are you sure you want to remove this flashcard from deck ${deck.name}`)){
               removeFlashcardFromDeck(deck.id,flashcard.id).then(()=>{
                 removeFlahcardFromDeckState(flashcard.id)
               }).catch(err=>{
@@ -23,16 +25,32 @@ export default function Flashcard({flashcard}){
               })
         }
     }
+
+    const attachFlashcardToDeckHandler = ()=>{
+         attachFlashcardToDeck(deck.id,flashcard.id).then(()=>{
+             navigate(`/deck/${deck.id}`)
+         }).catch(err=>{
+          navigate('/404')
+         })
+    }
+
     return(
-         <article className="flashcard-preview-wrapper">
+         <article className="flashcard-preview-wrapper flashcard-wrap-final">
             <section className='flashcard-content'>
-                <h3><Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>{flashcard.definition}{' :'}</Link></h3>
+                <h3>
+                  <Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>
+                    {flashcard.definition}{' :'}</Link></h3>
                 <h5>{flashcard.explanation}</h5>
             </section>
-            {flashcard.isOwnedByUser?
+            {flashcard.isOwnedByUser && !isSearch?
              <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>
              :
              <></>
+            }
+            {isSearch?
+            <p className='add-flashcard-to-deck-icon' onClick={attachFlashcardToDeckHandler}><FontAwesomeIcon icon={faAdd}/></p>
+            :
+            <></>
             }
          </article>
     )

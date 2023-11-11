@@ -9,9 +9,9 @@ import { useParams,useNavigate } from "react-router-dom";
 import useChangeInput from '../../../../../../hooks/useChangeInput';
 
 import { useState } from "react";
-import Flashcard from '../FlashcardPreviewComponent/Flashcard';
 
 import { searchFlashcards } from '../../../../../../services/entityService/flashcardServices';
+import Flashcard from '../FlashcardPreviewComponent/Flashcard';
 
 export default function SearchFlashcard(){
     const navigate = useNavigate();
@@ -47,7 +47,9 @@ export default function SearchFlashcard(){
               <section className='flashcards-holder'>
                 {flashcards?.length ==0?
                 <h2 className='no-flashcards-message'>No flashcards found...</h2>:
-                flashcards?.map(flashcard=><Flashcard flashcard={flashcard}/>)
+                 flashcards?.map(flashcard=>
+                <Flashcard flashcard={flashcard} isSearch={true} key={flashcard.id}/>
+                )
                 }
               </section>
         </section>
