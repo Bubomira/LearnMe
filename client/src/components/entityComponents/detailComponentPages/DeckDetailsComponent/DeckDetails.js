@@ -22,7 +22,7 @@ export default function DeckDetails(){
         getDeck(deckId).then(deckDetailed=>{
             setDeckDetailed(deckDetailed)
         }).catch(err=>{
-            alert(err)
+            navigate('/404')
         })
     },[deckId])
 
@@ -31,7 +31,7 @@ export default function DeckDetails(){
             deleteDeck(deck.id).then(()=>{
                  navigate('/welcome')
             }).catch(err=>{
-              alert(err);
+                navigate('/404')
             })
         }
     }
@@ -40,7 +40,7 @@ export default function DeckDetails(){
         likeDeck(deck.id).then(()=>{
             navigate('/welcome')
         }).catch(err=>{
-            alert(err);
+            navigate('/404')
         })
     }
 
@@ -48,7 +48,7 @@ export default function DeckDetails(){
         dislikeDeck(deck.id).then(()=>{
             navigate('/welcome')
         }).catch(err=>{
-            alert(err);
+           navigate('/404')
         })
     }
     console.log(deck)
