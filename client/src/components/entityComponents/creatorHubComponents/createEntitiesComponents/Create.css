@@ -34,7 +34,7 @@
 .create-form{
     display: flex;
     flex-direction: column;
-    gap: 3em;
+    gap: 1.5em;
 }
 
 .create-form .create-input{
@@ -61,4 +61,16 @@ letter-spacing: 0.13em;
 
 .create-tags{
        width: 30%;
+}
+
+.radio-section{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    color:#3a405a;
+}
+.radio-holder{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
 }
