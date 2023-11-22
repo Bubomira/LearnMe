@@ -1,5 +1,8 @@
 import './DeckDetails.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd,faSearch } from '@fortawesome/free-solid-svg-icons';
+
 import { useParams,Link,useNavigate } from "react-router-dom";
 
 import { useEffect,useContext} from "react";
@@ -53,33 +56,37 @@ export default function DeckDetails(){
     }
     console.log(deck)
     return(
-      <section className='deck-details-wrapper'>
-         <header className="deck-details-header">
-            <section className='header-divider'>
-                  <h3>{deck.name}</h3>
-                 {deck.isOwnedByUser?
-                 <OwnerButtons entityId={deck.id}  entityType={'deck'} deleteHandler={deleteDeckHandler}/>
-                 :
-                 <LikeButtons
-                  likeHandler={likeDeckHandler}
-                  dislikeHandler={dislikeDeckHandler}
-                  isLiked={deck.isLikedByUser}
-                  />
-                }
-            </section>               
-            <TagSection info={deck}  entityType={'deck'} />
-         </header>
-         <main className="deck-details-main">
-           <section className="flashcards">
-                {deck.flashcards?.map(f=><Flashcard  flashcard={f} key={f.id}/>)}
-           </section>         
-           <section className='deck-details-flashcards-buttons'>
-                <button className="flashcards-button "><Link to='/create/flashcard'>Add Flashcard</Link></button>
-                <button className="flashcards-button"><Link to={`/deck/${deckId}/search/flashcard`}>Seacrh Flashcards</Link></button> 
-           </section>
-         </main>
-      </section>
-  
+    <section>
+        <section className='deck-details-header'>
+              <h2>{deck.name}</h2>
+               {deck.isOwnedByUser?
+               <OwnerButtons entityId={deck.id}  entityType={'deck'} deleteHandler={deleteDeckHandler}/>
+               :
+               <LikeButtons
+                likeHandler={likeDeckHandler}
+                dislikeHandler={dislikeDeckHandler}
+                isLiked={deck.isLikedByUser}
+                />
+               }
+        </section>
+            <TagSection info={deck}  entityType={'deck'} />  
+        <section className="flashcards">
+            {deck.flashcards?.map(x=><Flashcard flashcard={x} key={x.id}/>)}
+        </section>
+        <section className='flashcard-buttons'>
+                <button className="flashcards-button ">
+                      <Link to='/create/flashcard'>
+                           <FontAwesomeIcon icon={faAdd}/>
+                        </Link>
+                </button>
+                <button className="flashcards-button">
+                    <Link to={`/deck/${deckId}/search/flashcard`}>
+                    <FontAwesomeIcon icon={faSearch}/>
+                    </Link>
+                </button> 
+        </section>
+    </section>              
+
     )
 }
         

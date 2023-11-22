@@ -1,76 +1,52 @@
-.deck-details-wrapper{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin: 0 auto;
-    width: 80%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
 .deck-details-header{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    padding: 2em;
-   
-    justify-content: center;
-} 
-
-.deck-details-header h3{
-    font-size: 3em;
-    padding-top: 0.3em;
-    margin: 0.3em;
-    color: #3a505a;
-    text-align: center;
-   letter-spacing: 0.2em;
-}
-
-.deck-details-heading-wrapper h3{
-    padding: 0;
-    margin: 1em
-}
-
-.header-divider{
-    justify-content: center;
-    display: flex;
-    gap: 1em;
+    background-color: rgba(255, 255, 255, 0.801);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 4em;
     align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 2em;
-}
-
-.deck-details-flashcards-buttons{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-}
-.deck-details-main{
-    display: flex;
     gap: 3em;
-    flex-wrap: wrap;
-}
-.deck-details-main .flashcards{
+    margin: 4em 0;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deck-details-header h2{
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #2D3142;
+    padding: 0;
+}
+
+.flashcards{
+    flex-wrap: wrap;
+    display: flex;
+    margin: 3em;
     gap: 2em;
+
 }
-.deck-details-flashcards-buttons .flashcards-button{
-    padding: 0.3em 2em;
-    border: none;
-    font-size: 1.3em;
-    border-radius: 0.7em;
-    font-weight: 600;
-    margin: 0.5em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
-    border: none;
-    background: #3a505ad7;
-    max-height: 2.3em;
+
+.flashcard-buttons{
+    padding: 1em;
+     position:sticky;
+     bottom: 0;
+     display: flex;
+     justify-content: center;
+     gap: 1em;
+     background-color: rgba(255, 255, 255, 0.801);
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-   
-.deck-details-flashcards-buttons .flashcards-button a{
-    color: #ffffffd8;
+
+.flashcard-buttons button{
+ font-size: 1.5em;
+    border: none;
+    font-weight: 700;
+
+}
+
+.flashcard-buttons button a{
+   color: #2d3142bb;
     text-decoration: none;
 }
+
+

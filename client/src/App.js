@@ -17,7 +17,7 @@ import EditFlashcard from "./components/entityComponents/EditFormComponents/Edit
 import AttachTagToDeck from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToDeck.js/AttachTagToDeck";
 import SearchFlashcard from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/SearchFlashcardComponent/SearchFlashcard";
 
-import NotFound from "./components/NotFoundComponent/NotFound";
+import NotFound from "./components/404Component/NotFound";
 function App() {
   return (
     <>

@@ -37,14 +37,6 @@ export default function CreateFlashcard(){
         <section className="create-form-holder">
             <h2>Create Flashcard</h2>
             <form className="create-form" onSubmit={onSubmitHandler} >
-              <input
-                 type="text"
-                 name="Explanation"
-                 id="Explanation"
-                 placeholder="Explanation"
-                 onChange={setValues}
-                 className='create-input'
-                />
                 <input
                 className='create-input'
                  type="text"
@@ -52,6 +44,14 @@ export default function CreateFlashcard(){
                  id="Definition"
                  placeholder="Definition"
                  onChange={setValues}
+                />
+              <input
+                 type="text"
+                 name="Explanation"
+                 id="Explanation"
+                 placeholder="Explanation"
+                 onChange={setValues}
+                 className='create-input'
                 />
                 <button className='creates-btn' type="submit">Submit</button>
             </form>

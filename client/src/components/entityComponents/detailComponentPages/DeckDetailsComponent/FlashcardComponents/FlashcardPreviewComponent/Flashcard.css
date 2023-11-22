@@ -1,8 +1,10 @@
 .flashcard-preview-wrapper{
     background: none;  
-    background: none;
+    background-color: #2d3142bb;
     border-radius: 0.4em;
     display: flex;
+    text-align: justify;
+    max-width: 35%;
    
 }
 
@@ -14,7 +16,7 @@
 }
 
 .flashcard-preview-wrapper h3 a{
-    color: #3a505a;
+    color: #EEEBD0;
     font-size: 1em;  
     text-decoration: none;
 }
@@ -25,13 +27,13 @@
 }
 
 .flashcard-preview-wrapper h5{
-    color: #3a505a9c;
+    color: #EEEBD0;
     font-size: 1em;  
     margin: 0;
 }
 
 .remove-flashcard{
-    color: #3a505a;
+    color: #EEEBD0;
     text-decoration: none;
     font-size: 1.7em;
     align-self: flex-start;
@@ -41,11 +43,11 @@
 }
 
 .flashcard-wrap-final{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.253), 0 6px 20px 0 rgba(0, 0, 0, 0.253);
 }
 
 .add-flashcard-to-deck-icon{
-    color: #3a505a;
+    color: #eeebd09f;
     padding: 1em;
     font-size: 1.2em;
 }

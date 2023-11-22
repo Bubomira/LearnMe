@@ -12,12 +12,13 @@
     background:none;
     font-size: 1.2em;
     margin: 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.7em;
+    background-color: #8783D1;
 }
 
 .add-tag a{
-    color: #3a505a;
+    color: antiquewhite;
     text-decoration: none;
     font-weight: 900;
 

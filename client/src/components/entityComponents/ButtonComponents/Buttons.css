@@ -1,24 +1,24 @@
 .buttons{
     display: flex;
     gap:0.5em;
-    margin-top: 1em;
 }
 
 .buttons button{
+    height: 2.5em;
     padding: 0.7em 1em;
     border: none;
     font-size: 1em;
     border-radius: 0.7em;
     font-weight: 600;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px 0 #2D3142, 0 6px 20px 0 #2D3142;
     background:none;
-    color: #3a505a;
+    color: #2D3142;
     cursor: pointer;
 }
 
 .buttons button a{
     text-decoration: none;
-    color: #3a505a;
+    color: #2D3142;
 }
 
 #disabled{

@@ -1,5 +1,5 @@
 .tag{
-    background-color: #3a505aad;
+    background-color: #8783D1;
     padding: 0.1em 1em;
     border-radius: 0.7em;
     font-size: 1em;
@@ -9,6 +9,7 @@
     align-items: center;
     height: 3em;
     gap: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.253), 0 6px 20px 0 rgba(0, 0, 0, 0.253);
 }
 .tag-name{
     color: #ffffffe5;
