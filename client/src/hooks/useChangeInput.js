@@ -4,10 +4,17 @@ export default function useChangeInput(defaultValues){
     const [values, setValues] =useState(defaultValues)
     
      const ChangeInput=(e)=>{
-        setValues((oldState)=>({
-            ...oldState,
-            [e.target.name] :e.target.value
-        }))
+        if(e.target.id=='image'|| e.target.id=='text'){
+            setValues(()=>({
+                'ImageChecked' : e.target.id=='text'
+            }))
+            console.log(values)
+        }else{
+            setValues((oldState)=>({
+                ...oldState,
+                [e.target.name] :e.target.value
+            }))
+        }
     }
     return[
         values,
