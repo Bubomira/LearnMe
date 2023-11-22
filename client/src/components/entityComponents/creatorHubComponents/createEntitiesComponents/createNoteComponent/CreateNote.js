@@ -9,7 +9,8 @@ export default function CreateNote(){
     const [values,setValues] =useChangeInput({
         Title:'',
         Tags:'',
-        ImageChecked:false
+        ImageChecked:false,
+        ImageUrl:''
     });
     return(
         <div className="create-wrapper">
@@ -37,9 +38,8 @@ export default function CreateNote(){
                     <article className='radio-holder'>
                          <label htmlFor="image">Extract content from image</label>
                          <input
-                          className=' '
                           type="radio"
-                          name="imageOrTextbox"
+                          name="ImageChecked"
                           id="image"
                           onChange={setValues}
                           />
@@ -47,9 +47,8 @@ export default function CreateNote(){
                     <article className='radio-holder'>
                           <label htmlFor="image">Type content directly</label>
                           <input
-                          className=''
                           type="radio"
-                          name="imageOrTextbox"
+                          name="ImageChecked"
                           id="text"
                          onChange={setValues}
                 />
@@ -68,8 +67,8 @@ export default function CreateNote(){
                      <textarea
                       className='create-tags create-input'
                       type="text"
-                      name="Tags"
-                      id="tags"
+                      name="content"
+                      id="note-content"
                       placeholder="The content of your note"
                       onChange={setValues}
                       />

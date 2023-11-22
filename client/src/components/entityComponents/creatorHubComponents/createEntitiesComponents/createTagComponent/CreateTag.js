@@ -8,6 +8,8 @@ export default function CreateTag({attachTagHandler}){
         tagName:''
     })
 
+    console.log(values)
+
     return(
         <section className='create-wrapper create-tags'>
         <section className="create-form-holder">
