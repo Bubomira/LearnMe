@@ -1,23 +1,53 @@
-
+import '../Create.css'
 import notes from '../../../../../static/img/notes.jpg'
 
+import { useNavigate } from 'react-router-dom';
+
+import { createWorker } from 'tesseract.js';
 
 import useChangeInput from "../../../../../hooks/useChangeInput"
+import { createNote } from '../../../../../services/entityService/noteService/noteService';
 
 export default function CreateNote(){
+    const navigate= useNavigate();
 
     const [values,setValues] =useChangeInput({
         Title:'',
         Tags:'',
-        ImageChecked:false,
-        ImageUrl:''
+        ImageChecked:true,
+        ImageUrl:'',
+        Content:''
     });
+
+    const recognise = async()=>{
+        const worker =await createWorker('eng');
+        const ret = await worker.recognize(values.ImageUrl)
+        await worker.terminate();
+        return ret.data.text;
+    }
+
+    const onSubmit = async(e)=>{
+         e.preventDefault();
+         if(!values.Title || !values.Tags || (!values.ImageChecked && !values.Content)){
+            alert('Please fill in all fields!')
+         }else{
+            const content = values.ImageChecked? 
+            await recognise().catch(err=>{alert('Unable to convert')}) 
+            : values.Content;
+            const tags=values.Tags.split(/\s+/);
+            createNote({Tags:tags,Title:values.Title,Content:content}).then(()=>{
+                navigate('/welcome')
+            }).catch(err=>{        
+                navigate('/404')
+            })
+         }
+    }
     return(
         <div className="create-wrapper">
         <img width='50%' src={notes} alt="decks" />
         <section className="create-form-holder">
             <h2>Create Note</h2>
-            <form className="create-form" >
+            <form className="create-form" onSubmit={onSubmit}>
               <input
               className='create-input'
                  type="text"
@@ -41,6 +71,7 @@ export default function CreateNote(){
                           type="radio"
                           name="ImageChecked"
                           id="image"
+                          defaultChecked={true}
                           onChange={setValues}
                           />
                     </article>
@@ -54,7 +85,7 @@ export default function CreateNote(){
                 />
                     </article>             
                 </section>
-                {!values.ImageChecked?
+                {values.ImageChecked?
                       <input
                       className='create-tags create-input'
                       type="file"
@@ -67,7 +98,7 @@ export default function CreateNote(){
                      <textarea
                       className='create-tags create-input'
                       type="text"
-                      name="content"
+                      name="Content"
                       id="note-content"
                       placeholder="The content of your note"
                       onChange={setValues}
