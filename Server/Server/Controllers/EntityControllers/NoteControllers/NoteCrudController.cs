@@ -68,7 +68,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
 
             await _noteTagRepository.AttachTagToNote(tagIds, note.Id);
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpPut("update/{noteId}")]
