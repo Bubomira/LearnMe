@@ -14,12 +14,13 @@ import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons'
 import Flashcard from './FlashcardComponents/FlashcardPreviewComponent/Flashcard';
 import { dislikeDeck, likeDeck } from '../../../../services/entityService/deckService/deckUserService';
+import { detachTagFromDeck } from '../../../../services/entityService/deckService/deckAditionalService';
 
 export default function DeckDetails(){
     const navigate = useNavigate();
     const {deckId} = useParams();
     
-    const {deck,setDeckDetailed} = useContext(DeckContext);
+    const {deck,setDeckDetailed,detachTagFromDeckState} = useContext(DeckContext);
 
     useEffect(()=>{
         getDeck(deckId).then(deckDetailed=>{
@@ -54,7 +55,13 @@ export default function DeckDetails(){
            navigate('/404')
         })
     }
-    console.log(deck)
+    const detachTagFromDeckHandler = (tagId)=>{
+        detachTagFromDeck(deck.id,tagId).then(()=>{
+           detachTagFromDeckState(tagId);
+        }).catch(err=>{
+           alert(err);
+        })
+     }
     return(
     <section>
         <section className='deck-details-header'>
@@ -69,7 +76,7 @@ export default function DeckDetails(){
                 />
                }
         </section>
-            <TagSection info={deck}  entityType={'deck'} />  
+            <TagSection info={deck}  entityType={'deck'} detachTag={detachTagFromDeckHandler} />  
         <section className="flashcards">
             {deck.flashcards?.map(x=><Flashcard flashcard={x} key={x.id}/>)}
         </section>
