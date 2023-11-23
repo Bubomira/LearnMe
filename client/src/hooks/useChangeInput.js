@@ -14,6 +14,7 @@ export default function useChangeInput(defaultValues){
             setValues((oldState)=>({
                 ...oldState,
                 'ImageChecked':e.target.id!='text',
+                'ImageUrl': e.target.id=='text'? '': oldState.ImageUrl
             }))
         }else{
             setValues((oldState)=>({
