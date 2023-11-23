@@ -17,8 +17,8 @@ export default function CreateDeck(){
 
      const onSubmitHandler =(e)=>{
         e.preventDefault()
-       values.Tags= values.Tags===String? values.Tags.split(/\s+/):values.Tags
-        createDeck(values).then(deck=>{
+       const tags= values.Tags.split(/\s+/)
+        createDeck({Tags:tags,Name:values.name}).then(deck=>{
               navigate(`/deck/details/${deck.id}`)
         }).catch(err=>{
             alert(err);

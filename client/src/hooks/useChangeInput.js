@@ -13,9 +13,8 @@ export default function useChangeInput(defaultValues){
         if(e.target.id=='image'|| e.target.id=='text'){
             setValues((oldState)=>({
                 ...oldState,
-                'ImageChecked':e.target.id=='text',
+                'ImageChecked':e.target.id!='text',
             }))
-            console.log(values)
         }else{
             setValues((oldState)=>({
                 ...oldState,
