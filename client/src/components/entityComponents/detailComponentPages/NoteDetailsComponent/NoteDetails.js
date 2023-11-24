@@ -12,6 +12,7 @@ import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 
 import { deleteNote } from '../../../../services/entityService/noteService/noteService';
+import { likeNote,dislikeNote } from '../../../../services/entityService/noteService/noteUserService';
 
 export default function NoteDetails(){
     const navigate = useNavigate();
@@ -37,6 +38,22 @@ export default function NoteDetails(){
             })
         }
     }
+
+    const likeNoteHandler = ()=>{
+        likeNote(note.id).then(()=>{
+            navigate('/welcome')
+        }).catch(err=>{
+            navigate('/404')
+        })
+    }
+
+    const dislikeNoteHandler=()=>{
+        dislikeNote(note.id).then(()=>{
+            navigate('/welcome')
+        }).catch(err=>{
+            navigate('/404')
+        })
+    }
  
     return(
         <section className="note-details">
@@ -45,7 +62,7 @@ export default function NoteDetails(){
                {note.isOwnedByUser?
                  <OwnerButtons entityId={note.id} entityType={'note'} deleteHandler={onDeleteHandler} />
                  :
-                 <LikeButtons/>
+                 <LikeButtons likeHandler={likeNoteHandler} dislikeHandler={dislikeNoteHandler} isLiked={note.isLikedByUser}/>
                }             
             </header>
           <TagSection info={note} entityType={'note'}/>
