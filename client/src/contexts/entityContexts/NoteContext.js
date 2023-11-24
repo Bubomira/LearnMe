@@ -11,8 +11,16 @@ export const NoteProvider = ({children})=>{
         setNote(newNote);
       }
 
+      const detachTagFromNoteState =(tagId)=>{
+           const tags = note.tags.filter(t=>t.id!=tagId);
+           setNote(oldState=>({
+            ...oldState,
+             tags:tags
+           }))
+      }
+
       return (
-      <NoteContext.Provider value={{note, setNoteDetailed}} >
+      <NoteContext.Provider value={{note, setNoteDetailed,detachTagFromNoteState}} >
        {children}
       </NoteContext.Provider>
       )

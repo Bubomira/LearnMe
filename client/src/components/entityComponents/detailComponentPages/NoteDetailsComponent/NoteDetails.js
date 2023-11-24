@@ -13,12 +13,13 @@ import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
 
 import { deleteNote } from '../../../../services/entityService/noteService/noteService';
 import { likeNote,dislikeNote } from '../../../../services/entityService/noteService/noteUserService';
+import { detachTagFromNote } from '../../../../services/entityService/noteService/noteAdditionalService';
 
 export default function NoteDetails(){
     const navigate = useNavigate();
     const {noteId} = useParams();
 
-    const {note,setNoteDetailed} = useContext(NoteContext);
+    const {note,setNoteDetailed,detachTagFromNoteState} = useContext(NoteContext);
 
 
     useEffect(()=>{
@@ -54,6 +55,15 @@ export default function NoteDetails(){
             navigate('/404')
         })
     }
+
+    const detachTagFromNoteHandler = (tagId)=>{
+         detachTagFromNote(note.id,tagId).then(()=>{
+            detachTagFromNoteState(tagId);
+         }).catch(err=>{
+            navigate('/404')
+         })      
+
+    }
  
     return(
         <section className="note-details">
@@ -65,7 +75,7 @@ export default function NoteDetails(){
                  <LikeButtons likeHandler={likeNoteHandler} dislikeHandler={dislikeNoteHandler} isLiked={note.isLikedByUser}/>
                }             
             </header>
-          <TagSection info={note} entityType={'note'}/>
+          <TagSection detachTag={detachTagFromNoteHandler} info={note} entityType={'note'}/>
             <main className="note-content">
                 <p className='note-content-text'>{note?.content}</p>
             </main>
