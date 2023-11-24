@@ -16,12 +16,13 @@ import CreateFlashcard from "./components/entityComponents/creatorHubComponents/
 import FlashcardDetails from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/FlashcardDetailsComponent/FlashcardDetails";
 import EditDeck from "./components/entityComponents/EditFormComponents/EditDeckComponent/EditDeck";
 import EditFlashcard from "./components/entityComponents/EditFormComponents/EditFlashcardComponent/EditFlashcard";
-import AttachTagToDeck from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToDeck.js/AttachTagToDeck";
+import AttachTagToDeck from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToDeck/AttachTagToDeck";
 import SearchFlashcard from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/SearchFlashcardComponent/SearchFlashcard";
 
 import NotFound from "./components/404Component/NotFound";
 import CreateNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createNoteComponent/CreateNote";
 import NoteDetails from "./components/entityComponents/detailComponentPages/NoteDetailsComponent/NoteDetails";
+import AttachTagToNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToNote/AttachTagToNote";
 function App() {
   return (
     <>
@@ -49,6 +50,7 @@ function App() {
 
          <Route path="/create/notes" element={<CreateNote/>}/>
          <Route path="/note/:noteId" element={<NoteDetails/>}/>
+         <Route path="/note/:noteId/add/tag" element={<AttachTagToNote/>}/>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
