@@ -16,6 +16,10 @@
     cursor: pointer;
 }
 
+.buttons button p{
+    margin: 0;
+}
+
 .buttons button a{
     text-decoration: none;
     color: #2D3142;

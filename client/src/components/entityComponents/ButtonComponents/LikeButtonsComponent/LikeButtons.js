@@ -3,9 +3,8 @@ import {faThumbsUp,faThumbsDown} from '@fortawesome/free-regular-svg-icons'
 import '../Buttons.css'
 
 
-export default function OwnerButtons({likeHandler,dislikeHandler,isLiked}){
+export default function LikeButtons({likeHandler,dislikeHandler,isLiked}){
 
-    console.log(isLiked)
     return(
         <section className="buttons">
         <button onClick={likeHandler} disabled={isLiked} id={isLiked?'disabled':''} >
