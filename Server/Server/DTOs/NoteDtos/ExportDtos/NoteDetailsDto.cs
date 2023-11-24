@@ -1,4 +1,5 @@
-﻿using Server.Models;
+﻿using Server.DTOs.TagDtos.ExportDtos;
+using Server.Models;
 
 namespace Server.DTOs.NoteDtos.ExportDtos
 {
@@ -9,7 +10,7 @@ namespace Server.DTOs.NoteDtos.ExportDtos
         public string Title { get; set; }
         public string Content { get; set; }
         public int OwnerId { get; set; }
-        public string[] Tags { get; set; }
+        public TagDetailsDto[] Tags { get; set; }
 
         public bool isOwnedByUser { get; set; }
 

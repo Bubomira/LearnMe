@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Server.DTOs.TagDtos.ExportDtos;
 
 namespace Server.DTOs.NoteDtos.ExportDtos
 {
@@ -6,7 +7,7 @@ namespace Server.DTOs.NoteDtos.ExportDtos
     {
         public int Id { get; set; }
 
-        public string[] Tags { get; set; }
+        public TagDetailsDto[] Tags { get; set; }
 
         public string Title { get; set; }
 
