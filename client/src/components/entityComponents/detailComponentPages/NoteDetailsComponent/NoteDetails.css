@@ -1,0 +1,36 @@
+
+
+.note-header-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    background-color: rgba(255, 255, 255, 0.801);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 2.5em;
+}
+
+.note-header-info h2{
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #2D3142;
+    padding: 0;
+}
+
+.note-content{
+    border: 1em solid #8783D1;
+    margin: 3em auto;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.844);
+    padding: 3em;
+    line-height: 2;
+    border-radius:  3em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.note-content .note-content-text{
+    font-size: 1.2em;
+    text-align: justify;
+    color: #2D3142;
+}

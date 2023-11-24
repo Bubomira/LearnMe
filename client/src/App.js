@@ -10,6 +10,8 @@ import DeckDetails from "./components/entityComponents/detailComponentPages/Deck
 
 import { AuthProvider } from "./contexts/AuthContext";
 import { DeckProvider } from "./contexts/entityContexts/DeckContext";
+import { NoteProvider } from "./contexts/entityContexts/NoteContext";
+
 import CreateFlashcard from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createFlashcardComponent/createFlashcard";
 import FlashcardDetails from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/FlashcardDetailsComponent/FlashcardDetails";
 import EditDeck from "./components/entityComponents/EditFormComponents/EditDeckComponent/EditDeck";
@@ -19,12 +21,14 @@ import SearchFlashcard from "./components/entityComponents/detailComponentPages/
 
 import NotFound from "./components/404Component/NotFound";
 import CreateNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createNoteComponent/CreateNote";
+import NoteDetails from "./components/entityComponents/detailComponentPages/NoteDetailsComponent/NoteDetails";
 function App() {
   return (
     <>
   <AuthProvider>
     <Navigation/>
     <DeckProvider>
+      <NoteProvider>
        <Routes>
          <Route path="/" element={<LandingPage/>}/>
 
@@ -44,9 +48,11 @@ function App() {
          <Route path="/update/flashcard/:flashcardId" element={<EditFlashcard/>}/>
 
          <Route path="/create/notes" element={<CreateNote/>}/>
+         <Route path="/note/:noteId" element={<NoteDetails/>}/>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
+       </NoteProvider>
     </DeckProvider>
     </AuthProvider>
     </>
