@@ -1,4 +1,5 @@
 import '../Create.css'
+import './CreateNote.css'
 import notes from '../../../../../static/img/notes.jpg'
 
 import { useNavigate } from 'react-router-dom';
@@ -43,13 +44,13 @@ export default function CreateNote(){
          }
     }
     return(
-        <div className="create-wrapper">
+        <div className="create-wrapper create-note">
         <img width='50%' src={notes} alt="decks" />
-        <section className="create-form-holder">
+        <section className="create-form-holder  create-note-form-holder">
             <h2>Create Note</h2>
-            <form className="create-form" onSubmit={onSubmit}>
+            <form className="create-form create-note-form" onSubmit={onSubmit}>
               <input
-              className='create-input'
+              className='create-input create-note-input'
                  type="text"
                  name="Title"
                  id="title"
@@ -57,7 +58,7 @@ export default function CreateNote(){
                  onChange={setValues}
                 />
                 <input
-                className='create-tags create-input'
+                className=' create-input create-note-input'
                  type="text"
                  name="Tags"
                  id="tags"
@@ -87,7 +88,7 @@ export default function CreateNote(){
                 </section>
                 {values.ImageChecked?
                       <input
-                      className='create-tags create-input'
+                      className=' create-input'
                       type="file"
                       name="file"
                       id="file"
@@ -96,7 +97,7 @@ export default function CreateNote(){
                      />
                      :
                      <textarea
-                      className='create-tags create-input'
+                      className=' create-input'
                       type="text"
                       name="Content"
                       id="note-content"

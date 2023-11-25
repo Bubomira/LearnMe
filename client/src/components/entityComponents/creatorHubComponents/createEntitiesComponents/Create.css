@@ -2,7 +2,7 @@
     gap: 1.5em;
     display: flex;
     background-color: #ffffffd8;
-    width: 60%;
+    min-width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
     border-radius: 1em;
     justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .create-wrapper img{
-    margin: 1em;
+    margin: 1em ;
     border-radius: 0.7em;
 }
 
@@ -41,7 +41,7 @@
     border: 1px solid #3a405a96;
     border-radius: 0.5em;
     padding: 0.9em;
-    width: 15em;
+    min-width: 15em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -61,16 +61,4 @@ letter-spacing: 0.13em;
 
 .create-tags{
        width: 30%;
-}
-
-.radio-section{
-    display: flex;
-    flex-direction: column;
-    gap: 0.8em;
-    color:#3a405a;
-}
-.radio-holder{
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
 }

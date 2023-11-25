@@ -1,0 +1,37 @@
+.create-note{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 3em;
+    gap: 0;
+}
+
+
+.create-note-form{
+    padding: 1em ;
+    flex: 1 1 100%;
+   justify-content: center;
+}
+
+.create-note-input{
+   flex: 1 1 100%;
+   max-height: 1.3em;
+
+  padding: 0;
+}
+
+.radio-section{
+    display: flex;
+ 
+    gap: 0.8em;
+    color:#3a405a;
+}
+.radio-holder{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+textarea.create-input{
+    height: 8em
+}
