@@ -23,6 +23,7 @@ import NotFound from "./components/404Component/NotFound";
 import CreateNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createNoteComponent/CreateNote";
 import NoteDetails from "./components/entityComponents/detailComponentPages/NoteDetailsComponent/NoteDetails";
 import AttachTagToNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToNote/AttachTagToNote";
+import EditNote from "./components/entityComponents/EditFormComponents/EditNoteComponent/EditNote";
 function App() {
   return (
     <>
@@ -51,6 +52,7 @@ function App() {
          <Route path="/create/notes" element={<CreateNote/>}/>
          <Route path="/note/:noteId" element={<NoteDetails/>}/>
          <Route path="/note/:noteId/add/tag" element={<AttachTagToNote/>}/>
+         <Route path="/update/note/:noteId" element={<EditNote/>}/>    
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
