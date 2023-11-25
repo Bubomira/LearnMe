@@ -4,7 +4,7 @@ import notes from '../../../../../static/img/notes.jpg'
 
 import { useNavigate } from 'react-router-dom';
 
-import { createWorker } from 'tesseract.js';
+import { recognise } from '../../../../../utils/recognise';
 
 import useChangeInput from "../../../../../hooks/useChangeInput"
 import { createNote } from '../../../../../services/entityService/noteService/noteService';
@@ -20,20 +20,13 @@ export default function CreateNote(){
         Content:''
     });
 
-    const recognise = async()=>{
-        const worker =await createWorker('eng');
-        const ret = await worker.recognize(values.ImageUrl)
-        await worker.terminate();
-        return ret.data.text;
-    }
-
     const onSubmit = async(e)=>{
          e.preventDefault();
          if(!values.Title || !values.Tags || (!values.ImageChecked && !values.Content)){
             alert('Please fill in all fields!')
          }else{
             const content = values.ImageChecked? 
-            await recognise().catch(err=>{alert('Unable to convert')}) 
+            await recognise(values.ImageUrl).catch(err=>{alert('Unable to convert')}) 
             : values.Content;
             const tags=values.Tags.split(/\s+/);
             createNote({Tags:tags,Title:values.Title,Content:content}).then(()=>{
