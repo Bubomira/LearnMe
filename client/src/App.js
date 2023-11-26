@@ -24,6 +24,7 @@ import CreateNote from "./components/entityComponents/creatorHubComponents/creat
 import NoteDetails from "./components/entityComponents/detailComponentPages/NoteDetailsComponent/NoteDetails";
 import AttachTagToNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToNote/AttachTagToNote";
 import EditNote from "./components/entityComponents/EditFormComponents/EditNoteComponent/EditNote";
+import CreateMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createMindmapComponent/CreateMindmap";
 function App() {
   return (
     <>
@@ -52,7 +53,9 @@ function App() {
          <Route path="/create/notes" element={<CreateNote/>}/>
          <Route path="/note/:noteId" element={<NoteDetails/>}/>
          <Route path="/note/:noteId/add/tag" element={<AttachTagToNote/>}/>
-         <Route path="/update/note/:noteId" element={<EditNote/>}/>    
+         <Route path="/update/note/:noteId" element={<EditNote/>}/> 
+
+         <Route path="/create/mindmaps"  element={<CreateMindmap/>}/>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
