@@ -18,8 +18,8 @@ export default function CreateMindmap(){
     const onSubmitHandler = (e)=>{
        e.preventDefault();
        const tags= values.Tags.split(/\s+/)
-       createMindmap({Name:values.Name,Tags:tags}).then(()=>{
-           navigate('/welcome')
+       createMindmap({Name:values.Name,Tags:tags}).then(mindmap=>{
+           navigate(`/mindmap/${mindmap.id}`)
        }).catch(err=>{
         navigate('/404')
        })
