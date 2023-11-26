@@ -12,11 +12,11 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
         {
             _learnMeDbContext = learnMeDbContext;
         }
-        public async Task AttachTagsToMindmap(List<int> mindmapIds, int tagId)
+        public async Task AttachTagsToMindmap(List<int> tagIds, int mindmapId)
         {
-            for (int i = 0; i < mindmapIds.Count; i++)
+            for (int i = 0; i < tagIds.Count; i++)
             {
-            var mindmapTag = new MindmapTag() { TagId = tagId, MindmapId = mindmapIds[i] };
+            var mindmapTag = new MindmapTag() { TagId = tagIds[i], MindmapId =mindmapId };
 
             await _learnMeDbContext.MindmapsTags.AddAsync(mindmapTag);
 
