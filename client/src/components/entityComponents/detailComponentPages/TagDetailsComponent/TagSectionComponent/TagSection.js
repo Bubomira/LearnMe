@@ -10,7 +10,7 @@ import Tag from '../TagComponent/Tag'
 export default function TagSection({entityType,info,detachTag}){
     return(
         <section className="tags">
-         {info && info?.tags.length>0?
+         {info && info?.tags?.length>0?
          info?.tags?.map(tag=><Tag tag={tag} isOwner={info?.isOwnedByUser} key={tag?.id} detachTag={detachTag}/>)
          :
          <></>

@@ -67,15 +67,17 @@ export default function NoteDetails(){
  
     return(
         <section className="note-details">
-            <header className="note-header-info">
+         <header className="note-header-info">
+            <section className="note-name-info">
                <h2>{note?.title}</h2>
                {note.isOwnedByUser?
                  <OwnerButtons entityId={note.id} entityType={'note'} deleteHandler={onDeleteHandler} />
                  :
                  <LikeButtons likeHandler={likeNoteHandler} dislikeHandler={dislikeNoteHandler} isLiked={note.isLikedByUser}/>
                }             
-            </header>
-          <TagSection detachTag={detachTagFromNoteHandler} info={note} entityType={'note'}/>
+            </section>
+             <TagSection detachTag={detachTagFromNoteHandler} info={note} entityType={'note'}/>
+        </header>
             <main className="note-content">
                 <p className='note-content-text'>{note?.content}</p>
             </main>

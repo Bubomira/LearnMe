@@ -65,6 +65,7 @@ export default function DeckDetails(){
     return(
     <section>
         <section className='deck-details-header'>
+            <section className='deck-name-info'>
               <h2>{deck.name}</h2>
                {deck.isOwnedByUser?
                <OwnerButtons entityId={deck.id}  entityType={'deck'} deleteHandler={deleteDeckHandler}/>
@@ -75,8 +76,9 @@ export default function DeckDetails(){
                 isLiked={deck.isLikedByUser}
                 />
                }
-        </section>
+            </section>
             <TagSection info={deck}  entityType={'deck'} detachTag={detachTagFromDeckHandler} />  
+        </section>
         <section className="flashcards">
             {deck.flashcards?.map(x=><Flashcard flashcard={x} key={x.id}/>)}
         </section>
