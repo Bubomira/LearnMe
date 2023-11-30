@@ -1,0 +1,39 @@
+.mindmap-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.801);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 3em;
+}
+
+.mindmap-header h1{
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #2D3142;
+    padding: 0;
+}
+
+.mindmap-name-info{
+      display: flex;
+      align-items: center;
+      gap: 2em;
+}
+
+
+.diagram-container{
+    height: 100em;
+    display: flex;
+    margin-top: 5em;
+}
+.node-list-container{
+    flex: 0 0 20%;
+    position: relative;
+}
+.diagram{
+    overflow: hidden;
+    height: 50em;
+    width: 100%;
+}

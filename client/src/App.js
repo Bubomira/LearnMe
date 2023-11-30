@@ -11,6 +11,8 @@ import DeckDetails from "./components/entityComponents/detailComponentPages/Deck
 import { AuthProvider } from "./contexts/AuthContext";
 import { DeckProvider } from "./contexts/entityContexts/DeckContext";
 import { NoteProvider } from "./contexts/entityContexts/NoteContext";
+import { MindmapProvier } from "./contexts/entityContexts/MindmapContext";
+import { DiagramProvider } from "./contexts/DiagramContext";
 
 import CreateFlashcard from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createFlashcardComponent/createFlashcard";
 import FlashcardDetails from "./components/entityComponents/detailComponentPages/DeckDetailsComponent/FlashcardComponents/FlashcardDetailsComponent/FlashcardDetails";
@@ -25,6 +27,7 @@ import NoteDetails from "./components/entityComponents/detailComponentPages/Note
 import AttachTagToNote from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToNote/AttachTagToNote";
 import EditNote from "./components/entityComponents/EditFormComponents/EditNoteComponent/EditNote";
 import CreateMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createMindmapComponent/CreateMindmap";
+import MindmapDetails from "./components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapDetails";
 function App() {
   return (
     <>
@@ -32,6 +35,8 @@ function App() {
     <Navigation/>
     <DeckProvider>
       <NoteProvider>
+        <MindmapProvier>
+         <DiagramProvider>
        <Routes>
          <Route path="/" element={<LandingPage/>}/>
 
@@ -56,9 +61,12 @@ function App() {
          <Route path="/update/note/:noteId" element={<EditNote/>}/> 
 
          <Route path="/create/mindmaps"  element={<CreateMindmap/>}/>
+           <Route path="/mindmap/:mindmapId" element={<MindmapDetails/>}/>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
+         </DiagramProvider>
+       </MindmapProvier>
        </NoteProvider>
     </DeckProvider>
     </AuthProvider>
