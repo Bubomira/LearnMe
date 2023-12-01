@@ -29,6 +29,7 @@ import EditNote from "./components/entityComponents/EditFormComponents/EditNoteC
 import CreateMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createMindmapComponent/CreateMindmap";
 import MindmapDetails from "./components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapDetails";
 import AttachTagToMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToMindmap/AttachTagToMindmap";
+import EditMindmap from "./components/entityComponents/EditFormComponents/EditMindmapComponent/EditMindmap";
 function App() {
   return (
     <>
@@ -63,7 +64,8 @@ function App() {
 
          <Route path="/create/mindmaps"  element={<CreateMindmap/>}/>
          <Route path="/mindmap/:mindmapId" element={<MindmapDetails/>}/>
-         <Route path="/mindmap/:mindmapId/add/tag" element={<AttachTagToMindmap/>}/>
+         <Route path="/mindmap/:mindmapId/add/tag" element={<AttachTagToMindmap/>}/>        
+         <Route path="/update/mindmap/:mindmapId" element={<EditMindmap/>}/>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
