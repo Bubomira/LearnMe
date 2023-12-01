@@ -1,19 +1,19 @@
 import './MindmapDetails.css'
 
-import { DiagramView,NodeListView} from '@mindfusion/diagramming-react';
 
 import { useEffect,useContext } from "react"
 
-import { useNavigate,useParams } from "react-router-dom";
+import { redirect, useNavigate,useParams } from "react-router-dom";
 
 import { DiagramContext } from '../../../../contexts/DiagramContext';
 
 import { MindmapContext } from "../../../../contexts/entityContexts/MindmapContext"
 
-import { getMindmapDetails } from "../../../../services/entityService/mindmapService/mindmapServices";
+import { getMindmapDetails,deleteMindmap } from "../../../../services/entityService/mindmapService/mindmapServices";
 import TagSection from "../TagDetailsComponent/TagSectionComponent/TagSection";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons';
+import { dislikeMindmap, likeMindmap } from '../../../../services/entityService/mindmapService/mindmapUserService';
 
 export default function MindmapDetails(){
 
@@ -21,22 +21,42 @@ export default function MindmapDetails(){
 
     let {mindmapId} =useParams();
 
-    let {mindmap,setMindmapDetailed} = useContext(MindmapContext);
-
-    let {nodes,diagram,setNodesDiagram,shapeNames} = useContext(DiagramContext)
-    
+    let {mindmap,setMindmapDetailed} = useContext(MindmapContext); 
     
     useEffect(()=>{
-            setNodesDiagram();         
         getMindmapDetails(mindmapId).then(mindmapDetailed=>{
-             setMindmapDetailed(mindmapDetailed)
+            setMindmapDetailed(mindmapDetailed)    
         }).catch(err=>{
             navigate('/404')
         })
          
     },[mindmapId])
 
-    console.log(nodes)
+    const deleteMindmapHandler=()=>{
+        if(window.confirm('Would you like to delete this mindmap?')){
+           deleteMindmap(mindmapId).then(()=>{
+            navigate('/welcome')
+           }).catch(err=>{
+            navigate('/404')
+           })
+        }
+    }
+
+    const likeMindmapHandler = ()=>{
+        likeMindmap(mindmapId).then(()=>{
+            navigate('/welcome')
+        }).catch(err=>{
+            navigate('/404')
+        })
+    }
+
+    const dislikeMindmapHandler = ()=>{
+        dislikeMindmap(mindmapId).then(()=>{
+            navigate('/welcome')
+        }).catch(err=>{
+            navigate('/404')
+        })
+    }
 
     return(
       <section className="mindmap-details">
@@ -44,24 +64,13 @@ export default function MindmapDetails(){
         <section className="mindmap-name-info">
             <h1>{mindmap?.name}</h1>
             {mindmap?.isOwnedByUser?
-              <OwnerButtons entityId={mindmap?.id} entityType={'mindmap'}/>:
-              <LikeButtons />
+              <OwnerButtons entityId={mindmap?.id} entityType={'mindmap'} deleteHandler={deleteMindmapHandler} />:
+              <LikeButtons likeHandler={likeMindmapHandler} dislikeHandler={dislikeMindmapHandler} isLiked={mindmap.isLikedByUser}/>
             }
         </section>
          <TagSection info={mindmap} entityType={'mindmap'}/> 
      </header>
      <main className='diagram-container'>
-          <section className='node-list-container'>
-          {nodes.isDummy?
-           <NodeListView nodes={nodes} captions={shapeNames} ></NodeListView>
-           :
-           <></>
-          }
-          </section>
-          <section className='diagram'>
-            <DiagramView defaultShape={'circle'}  diagram={diagram} id={`diagram/${mindmap?.id}`}/>
-          </section>
-
 
      </main>
       </section>
