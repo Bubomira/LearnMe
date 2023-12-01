@@ -80,7 +80,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
                 return BadRequest(new string[] { "Tag is already attached to mindmap!" });
             }
 
-            await _mindmapTagRepository.AttachTagsToMindmap(new List<int>() { tagId }, mindmapId);
+            await _mindmapTagRepository.DetachTagFromMindmap( mindmapId,tagId);
 
             return NoContent();
         }
