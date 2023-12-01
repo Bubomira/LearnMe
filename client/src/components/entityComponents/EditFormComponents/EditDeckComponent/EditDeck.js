@@ -47,6 +47,7 @@ export default function EditDeck(){
             onChange={setValues}
               />
               <input className='edit-button' type="submit" value="Edit" />
+              
         </form>
     )
 }

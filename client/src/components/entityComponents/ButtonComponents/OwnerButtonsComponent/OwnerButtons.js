@@ -12,7 +12,7 @@ export default function OwnerButtons({entityType,entityId,deleteHandler}){
             <Link to={`/update/${entityType}/${entityId}`}><FontAwesomeIcon icon={faEdit} /></Link>
          </button>
         <button  onClick={deleteHandler}>
-        <p><FontAwesomeIcon icon={faRemove} /></p>
+        <p ><FontAwesomeIcon icon={faRemove} /></p>
         </button>
         </section>
     )

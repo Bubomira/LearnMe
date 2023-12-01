@@ -18,8 +18,6 @@ export const DiagramProvider = ({children})=>{
            const shapeName = shapeNames[index]
            var node =new ShapeNode(diagram);
            node.shape=shapeName
-           node.id=shapeName
-           node.text=shapeName
            shapes.push(node)
         }
          setNodes(shapes)  

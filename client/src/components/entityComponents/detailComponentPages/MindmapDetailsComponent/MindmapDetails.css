@@ -27,11 +27,15 @@
     height: 100em;
     display: flex;
     margin-top: 5em;
+    gap: 1em;
 }
 .node-list-container{
     flex: 0 0 20%;
     position: relative;
+    overflow-y: scroll;
+    height: 50em;
 }
+
 .diagram{
     overflow: hidden;
     height: 50em;
