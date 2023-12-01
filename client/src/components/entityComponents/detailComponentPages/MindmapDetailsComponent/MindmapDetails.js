@@ -13,6 +13,7 @@ import { getMindmapDetails,deleteMindmap } from '../../../../services/entityServ
 import TagSection from "../TagDetailsComponent/TagSectionComponent/TagSection";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons';
+import { detachTagFromMindmap } from '../../../../services/entityService/mindmapService/mindmapAdditionalService';
 
 export default function MindmapDetails(){
 
@@ -20,7 +21,7 @@ export default function MindmapDetails(){
     
     let {mindmapId} =useParams();
 
-    let {mindmap,setMindmapDetailed} = useContext(MindmapContext); 
+    let {mindmap,setMindmapDetailed,detachTagFromMindmapState} = useContext(MindmapContext); 
    
    useEffect(()=>{
        getMindmapDetails(mindmapId).then(mindmapDetailed=>{
@@ -56,6 +57,14 @@ const dislikeMindmapHandler = ()=>{
     })
 }
 
+const detachTagFromMindmapHandler = (tagId)=>{
+    detachTagFromMindmap(mindmapId,tagId).then(()=>{
+        detachTagFromMindmapState(tagId);
+    }).catch(err=>{
+        navigate('/404')
+    })
+}
+
     return(
       <section className="mindmap-details">
          <header className="mindmap-header">
@@ -66,7 +75,7 @@ const dislikeMindmapHandler = ()=>{
               <LikeButtons likeHandler={likeMindmapHandler} dislikeHandler={dislikeMindmapHandler} isLiked={mindmap?.isLikedByUser}/>
             }
         </section>
-         <TagSection info={mindmap} entityType={'mindmap'}/> 
+         <TagSection info={mindmap} entityType={'mindmap'} detachTag={detachTagFromMindmapHandler}/> 
      </header>
      <main className='diagram-container'>
     
