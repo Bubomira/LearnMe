@@ -46,7 +46,7 @@
     border-radius: 1em;
     padding: 1em 2em;
     display: flex;
-    text-align: justify;
+    text-align: center;
     width: 20em;
     font-size: 1.2em;
 }
@@ -68,7 +68,3 @@
     background:#2D3142;
     pointer-events: all;
   }
-
-.color-input{
-    
-}

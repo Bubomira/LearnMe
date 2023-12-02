@@ -12,8 +12,8 @@ const useStore = create((set, get) => ({
     {
       id: 'root',
       type: 'mindmap',
-      data: { label: 'React Flow Mind Map' },
-      position: { x: 0, y: 0 },
+      data: { label: 'Map your mind!' },
+      position: { x: 500, y: 300 },
     },
   ],
   edges: [],
