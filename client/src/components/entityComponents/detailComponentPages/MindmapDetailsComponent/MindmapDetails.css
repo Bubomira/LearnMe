@@ -41,12 +41,14 @@
 
 
 .node-input{
-    background-color: orange;
+    background-color: rgb(172, 185, 245);
+    color: #2D3142;
     border-radius: 1em;
-    padding: 0.8em 2em;
+    padding: 1em 2em;
     display: flex;
     text-align: justify;
     width: 20em;
+    font-size: 1.2em;
 }
 
 .react-flow .react-flow__connectionline {
@@ -57,12 +59,16 @@
     display: flex;
     height: inherit;
     z-index: 1;
+    
   }
    
   .input:focus {
     border: none;
     outline: none;
-    background: rgba(255, 255, 255, 0.25);
+    background:#2D3142;
     pointer-events: all;
   }
 
+.color-input{
+    
+}

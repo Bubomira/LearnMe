@@ -1,7 +1,7 @@
 import './MindmapDetails.css'
 import 'reactflow/dist/style.css';
 
-import {ReactFlow,MiniMap,Background} from 'reactflow';
+import {ReactFlow,MiniMap,Background, Controls} from 'reactflow';
 
 import { useEffect,useContext } from "react"
 
@@ -31,7 +31,10 @@ export default function MindmapDetails(){
     let {mindmap,setMindmapDetailed,detachTagFromMindmapState} = useContext(MindmapContext); 
 
     let {nodes,edges,onEdgesChange,onNodesChange,onConnectStart,onConnectEnd} = useContext(DiagramContext)
-   
+
+     const connectionLineStyle = { stroke: '#2D3142', strokeWidth: 3 };
+     const defaultEdgeOptions = { style: connectionLineStyle, type: 'mindmap' };
+
    useEffect(()=>{
        getMindmapDetails(mindmapId).then(mindmapDetailed=>{
            setMindmapDetailed(mindmapDetailed)    
@@ -96,8 +99,11 @@ const detachTagFromMindmapHandler = (tagId)=>{
             onEdgesChange={onEdgesChange}
             onConnectStart={onConnectStart}
             onConnectEnd={onConnectEnd}
+            connectionLineStyle={connectionLineStyle}
+            defaultEdgeOptions={defaultEdgeOptions}
            >
         <MiniMap />
+        <Controls/>
         <Background variant="dots" gap={12} size={1} />
            </ReactFlow>
      </main>
