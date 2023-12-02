@@ -1,3 +1,9 @@
+.mindmap-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .mindmap-header{
     display: flex;
     flex-direction: column;
@@ -24,20 +30,12 @@
 
 
 .diagram-container{
-    height: 100em;
+    height: 60em;
     display: flex;
-    margin-top: 5em;
+    width: 90%;
+    margin: 5em;
     gap: 1em;
-}
-.node-list-container{
-    flex: 0 0 20%;
-    position: relative;
-    overflow-y: scroll;
-    height: 50em;
+    background-color: white;
+    align-self: center;
 }
 
-.diagram{
-    overflow: hidden;
-    height: 50em;
-    width: 100%;
-}

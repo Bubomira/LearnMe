@@ -1,0 +1,7 @@
+.react-flow__node-mindmap {
+    background: orange;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    padding: 2px 5px;
+    font-weight: 700;
+  }
