@@ -46,7 +46,17 @@ const useStore = create((set, get) => ({
       nodes: [...get().nodes, newNode],
       edges: [...get().edges, newEdge],
     });
-  } 
+  },
+  updateNodeLabel:(nodeId,label)=>{
+       set({
+           nodes:  get().nodes.map((node=>{
+              if(node.id==nodeId){
+                node.data = {...node.data,label}
+              }
+              return node;
+           }))
+       })
+  }
 }));
  
 export default useStore;
