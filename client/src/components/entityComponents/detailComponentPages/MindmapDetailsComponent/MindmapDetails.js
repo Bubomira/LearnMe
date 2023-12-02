@@ -1,10 +1,17 @@
 import './MindmapDetails.css'
+import 'reactflow/dist/style.css';
+
+import {ReactFlow,MiniMap,Background} from 'reactflow';
 
 import { useEffect,useContext } from "react"
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { nodeTypes,edgeTypes } from '../../../../utils/mindmapTypes';
+
 import { MindmapContext } from '../../../../contexts/entityContexts/MindmapContext';
+
+import { DiagramContext } from '../../../../contexts/DiagramContext';
 
 import { likeMindmap,dislikeMindmap } from '../../../../services/entityService/mindmapService/mindmapUserService';
 
@@ -22,6 +29,8 @@ export default function MindmapDetails(){
     let {mindmapId} =useParams();
 
     let {mindmap,setMindmapDetailed,detachTagFromMindmapState} = useContext(MindmapContext); 
+
+    let {nodes,edges,onEdgesChange,onNodesChange,onConnectStart,onConnectEnd} = useContext(DiagramContext)
    
    useEffect(()=>{
        getMindmapDetails(mindmapId).then(mindmapDetailed=>{
@@ -78,7 +87,19 @@ const detachTagFromMindmapHandler = (tagId)=>{
          <TagSection info={mindmap} entityType={'mindmap'} detachTag={detachTagFromMindmapHandler}/> 
      </header>
      <main className='diagram-container'>
-    
+           <ReactFlow
+            nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnectStart={onConnectStart}
+            onConnectEnd={onConnectEnd}
+           >
+        <MiniMap />
+        <Background variant="dots" gap={12} size={1} />
+           </ReactFlow>
      </main>
       </section>
     )
