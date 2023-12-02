@@ -1,31 +1,91 @@
-import { createContext,useState } from "react";
+import { useStoreApi,useReactFlow } from 'reactflow';
 
-import {Diagram,ShapeNode} from '@mindfusion/diagramming'
+import { shallow } from 'zustand/shallow';
 
+import useDiagram from '../hooks/useDiagram';
+
+import { createContext,useRef,useCallback } from "react";
 
 export const DiagramContext = createContext();
 
-export const DiagramProvider = ({children})=>{
 
-    var shapeNames  = ['Actor','Alternative','Arrow3','Arrow5','Arrow8','Arrow9','Cloud','ConeUp','Cube','Cyllinder','']
-    let [diagram,setDiagram] = useState(new Diagram());
+export const DiagramProvider=({children})=>{
 
-    let [nodes,setNodes] = useState([])
+    const {project} = useReactFlow();
 
-    const setNodesDiagram =()=>{
-        const shapes = [];
-        for (let index = 0; index < shapeNames.length; index++) {
-           const shapeName = shapeNames[index]
-           var node =new ShapeNode(diagram);
-           node.shape=shapeName
-           shapes.push(node)
-        }
-         setNodes(shapes)  
+    
+const selector = (state) => ({
+    nodes: state.nodes,
+    edges: state.edges,
+    onNodesChange: state.onNodesChange,
+    onEdgesChange: state.onEdgesChange,
+    addChildNode:state.addChildNode
+  });
+
+
+  const { nodes, edges, onNodesChange, onEdgesChange,addChildNode } = useDiagram(
+    selector,
+    shallow,
+  );
+
+  const getChildNodePosition = (event, parentNode) => {
+    const { domNode } = store.getState();
+   
+    if (
+      !domNode ||
+      !parentNode?.positionAbsolute ||
+      !parentNode?.width ||
+      !parentNode?.height
+    ) {
+      return;
     }
+   
+    const { top, left } = domNode.getBoundingClientRect();
 
-    return (
-    <DiagramContext.Provider  value={{diagram:diagram,nodes:nodes,setNodesDiagram,shapeNames}}>
-         {children}
-    </DiagramContext.Provider>
+    const panePosition = project({
+      x: event.clientX - left,
+      y: event.clientY - top,
+    });
+
+    return {
+      x: panePosition.x - parentNode.positionAbsolute.x + parentNode.width / 2,
+      y: panePosition.y - parentNode.positionAbsolute.y + parentNode.height / 2,
+    };
+  };
+
+  const connectingNodeId = useRef(null);
+
+  const onConnectStart= useCallback((_, { nodeId }) => {
+    connectingNodeId.current = nodeId;
+  }, []);
+
+   
+  const store = useStoreApi();
+ 
+const onConnectEnd = useCallback(
+  (event) => {
+    const { nodeInternals } = store.getState();
+    const targetIsPane = (event.target).classList.contains(
+      'react-flow__pane',
+    );
+ 
+    if (targetIsPane && connectingNodeId.current) {
+      const parentNode = nodeInternals.get(connectingNodeId.current);
+      const childNodePosition = getChildNodePosition(event, parentNode);
+ 
+      if (parentNode && childNodePosition) {
+        addChildNode(parentNode, childNodePosition);
+      }
+    }
+  },
+  [getChildNodePosition],
+);
+
+
+    return(
+        <DiagramContext.Provider value={{nodes:nodes,edges:edges, onNodesChange, onEdgesChange,onConnectStart,onConnectEnd}}>
+            {children}
+        </DiagramContext.Provider>
     )
+
 }

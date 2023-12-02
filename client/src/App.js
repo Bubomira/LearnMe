@@ -30,6 +30,7 @@ import CreateMindmap from "./components/entityComponents/creatorHubComponents/cr
 import MindmapDetails from "./components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapDetails";
 import AttachTagToMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToMindmap/AttachTagToMindmap";
 import EditMindmap from "./components/entityComponents/EditFormComponents/EditMindmapComponent/EditMindmap";
+import { ReactFlowProvider } from "reactflow";
 function App() {
   return (
     <>
@@ -38,7 +39,8 @@ function App() {
     <DeckProvider>
       <NoteProvider>
         <MindmapProvier>
-         <DiagramProvider>
+          <ReactFlowProvider>
+            <DiagramProvider>
        <Routes>
          <Route path="/" element={<LandingPage/>}/>
 
@@ -69,7 +71,8 @@ function App() {
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
-         </DiagramProvider>
+       </DiagramProvider>
+        </ReactFlowProvider>
        </MindmapProvier>
        </NoteProvider>
     </DeckProvider>
