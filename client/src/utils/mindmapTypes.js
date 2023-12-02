@@ -1,5 +1,5 @@
-import {MindmapNode} from '../components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapNode/MindmapNode';
-import MindmapEdge from '../components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapEdge/MindmapEdge';
+import {MindmapNode} from '../components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapElements/MindmapNode/MindmapNode';
+import MindmapEdge from '../components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapElements/MindmapEdge/MindmapEdge';
  
  
 export const nodeTypes = {

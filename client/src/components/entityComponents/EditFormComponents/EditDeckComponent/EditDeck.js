@@ -37,7 +37,7 @@ export default function EditDeck(){
         })
     }
     return(
-        <form className='edit-form edit-deck-mindmap ' onSubmit={editDeckHandler}>
+        <form className='edit-form edit-deck-mindmap' onSubmit={editDeckHandler}>
             <h2 className='edit-heading'>Edit deck</h2>
             <input className='edit-input'
             type='text'

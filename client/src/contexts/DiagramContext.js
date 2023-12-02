@@ -69,7 +69,11 @@ const onConnectEnd = useCallback(
       'react-flow__pane',
     );
  
-    if (targetIsPane && connectingNodeId.current) {
+    const node = (event.target ).closest('.react-flow__node');
+ 
+    if (node) {
+      node.querySelector('input')?.focus({ preventScroll: true });
+    } else if (targetIsPane && connectingNodeId.current) {
       const parentNode = nodeInternals.get(connectingNodeId.current);
       const childNodePosition = getChildNodePosition(event, parentNode);
  

@@ -1,3 +1,5 @@
+import '../../MindmapDetails.css'
+
 import { BaseEdge, getStraightPath } from 'reactflow';
  
 export default function MindmapEdge(props) {
@@ -5,7 +7,7 @@ export default function MindmapEdge(props) {
  
   const [edgePath] = getStraightPath({
     sourceX,
-    sourceY,
+    sourceY:sourceY,
     targetX,
     targetY,
   });
