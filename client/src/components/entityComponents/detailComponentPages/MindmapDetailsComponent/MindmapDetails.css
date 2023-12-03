@@ -37,11 +37,13 @@
     gap: 1em;
     background-color: white;
     align-self: center;
+    flex-direction: column;
+    gap: 5em;
 }
 
 
 .node-input{
-    background-color: rgb(172, 185, 245);
+    background-color: rgb(169, 176, 209);
     color: #1b1d27;
     font-weight: 500;
     border-radius: 1em;
@@ -67,4 +69,17 @@
     border: none;
     outline: none;
     pointer-events: all;
+  }
+
+  .mindmap-save-btn{
+    color: #2D3142;
+    border: none;
+    border-top: 3px solid #2D3142;
+    font-size: 1.6em;
+    padding: 0.7em;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    background-color: rgba(255, 255, 255, 0.801);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }

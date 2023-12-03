@@ -27,6 +27,7 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
             {
                 OwnerId = ownerId,
                 Name = mindmapInfoDto.Name,
+                JSONDiagram=""
             };
 
             await _learnMeDbContext.Mindmaps.AddAsync(mindmap);

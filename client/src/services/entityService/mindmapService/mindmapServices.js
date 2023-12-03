@@ -8,4 +8,6 @@ export const createMindmap = (data)=> post(`${endpointUrl}/create`,data);
 
 export const updateMindmap =(mindmapId,data)=>put(`${endpointUrl}/update/${mindmapId}`,data)
 
+export const saveMindmap =(mindmapId,data)=>put(`${endpointUrl}/save/${mindmapId}`,data)
+
 export const deleteMindmap = (mindmapId)=> del(`${endpointUrl}/delete/${mindmapId}`);
