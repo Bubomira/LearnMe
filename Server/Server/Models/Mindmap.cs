@@ -11,6 +11,8 @@ namespace Server.Models
         [Required]
         public string Name { get; set; }
 
+        public string JSONDiagram { get; set; }
+
         public int OwnerId { get; set; }
 
         public User Owner { get; set; }
