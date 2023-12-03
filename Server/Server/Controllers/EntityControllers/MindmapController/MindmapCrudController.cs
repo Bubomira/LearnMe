@@ -95,6 +95,30 @@ namespace Server.Controllers.EntityControllers.MindmapController
             return NoContent();
 
         }
+        [HttpPut("save/{mindmapId}")]
+        public async Task<IActionResult> SaveMindmapDiagram([FromBody] string jsonDiagram,int mindmapId)
+        {
+            if (string.IsNullOrEmpty(jsonDiagram))
+            {
+                return BadRequest(new string[] { "Please fill in all fields!" });
+            }
+
+            if (!await _mindmapRepository.CheckIfMindmapExists(mindmapId))
+            {
+                return NotFound(new string[] { $"Mindmap with id {mindmapId} does not exist!" });
+            }
+
+            int userId = int.Parse(((Dictionary<string, object>)HttpContext.Items["userData"]).FirstOrDefault().Value.ToString());
+
+            if (!await _mindmapRepository.CheckIfMindmapIsOwnedByUser(mindmapId, userId))
+            {
+                return Forbid(new string[] { "You cannot midify this mindmap!" });
+            }
+
+            await _mindmapRepository.SaveMindmapJSONDiagram(mindmapId, jsonDiagram);
+
+            return NoContent();
+        }
 
         [HttpDelete("delete/{mindmapId}")]
 

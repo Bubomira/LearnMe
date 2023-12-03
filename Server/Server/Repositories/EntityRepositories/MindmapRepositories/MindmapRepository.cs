@@ -51,6 +51,15 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
             .ThenInclude(mt => mt.Tag)
             .FirstOrDefaultAsync();
 
+        public async Task SaveMindmapJSONDiagram(int mindmapId, string diagramJson)
+        {
+            var mindmap = await _learnMeDbContext.Mindmaps.FirstOrDefaultAsync(m => m.Id == mindmapId);
+
+            mindmap.JSONDiagram = diagramJson;
+
+            await _learnMeDbContext.SaveChangesAsync();
+        }
+
         public Task<List<Mindmap>> SearchMindmapsByName(string mindmapName)=>
              _learnMeDbContext.Mindmaps
             .Where(m => m.Name.ToLower().StartsWith(mindmapName.ToLower()) ||
