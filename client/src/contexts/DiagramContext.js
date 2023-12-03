@@ -13,20 +13,29 @@ export const DiagramProvider=({children})=>{
 
     const {project} = useReactFlow();
 
+    const store = useStoreApi();
     
 const selector = (state) => ({
     nodes: state.nodes,
     edges: state.edges,
     onNodesChange: state.onNodesChange,
     onEdgesChange: state.onEdgesChange,
-    addChildNode:state.addChildNode
+    addChildNode:state.addChildNode,
+    onNodesLoad:state.onNodesLoad,
+    onEdgesLoad:state.onEdgesLoad,
   });
 
 
-  const { nodes, edges, onNodesChange, onEdgesChange,addChildNode } = useDiagram(
+  let { nodes, edges, onNodesChange, onEdgesChange,addChildNode,onEdgesLoad,onNodesLoad} = useDiagram(
     selector,
     shallow,
   );
+
+  const onLoadFromDatabase =(nodes,edges)=>{
+    onNodesLoad(nodes);
+           onEdgesLoad(edges)
+  }
+
 
   const getChildNodePosition = (event, parentNode) => {
     const { domNode } = store.getState();
@@ -59,8 +68,7 @@ const selector = (state) => ({
     connectingNodeId.current = nodeId;
   }, []);
 
-   
-  const store = useStoreApi();
+  
  
 const onConnectEnd = useCallback(
   (event) => {
@@ -87,7 +95,7 @@ const onConnectEnd = useCallback(
 
 
     return(
-        <DiagramContext.Provider value={{nodes:nodes,edges:edges, onNodesChange, onEdgesChange,onConnectStart,onConnectEnd}}>
+        <DiagramContext.Provider value={{nodes:nodes,edges:edges, onNodesChange, onEdgesChange,onConnectStart,onConnectEnd,onLoadFromDatabase}}>
             {children}
         </DiagramContext.Provider>
     )

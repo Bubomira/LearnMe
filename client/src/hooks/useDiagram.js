@@ -5,7 +5,6 @@ import {
 
 import { create } from 'zustand';
 
-
  
 const useStore = create((set, get) => ({
   nodes: [
@@ -17,6 +16,16 @@ const useStore = create((set, get) => ({
     },
   ],
   edges: [],
+  onNodesLoad:(nodesToBeSet)=>{
+     set({
+      nodes:nodesToBeSet
+     })
+  },
+  onEdgesLoad:(edgesToBeSet)=>{
+    set({
+     edges:edgesToBeSet
+    })
+ },
   onNodesChange: (changes) => {
     set({
       nodes: applyNodeChanges(changes, get().nodes),

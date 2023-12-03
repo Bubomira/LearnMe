@@ -1,6 +1,10 @@
 import './MindmapDetails.css'
 import 'reactflow/dist/style.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+
 import {ReactFlow,MiniMap,Background, Controls} from 'reactflow';
 
 import { useEffect,useContext } from "react"
@@ -15,7 +19,7 @@ import { DiagramContext } from '../../../../contexts/DiagramContext';
 
 import { likeMindmap,dislikeMindmap } from '../../../../services/entityService/mindmapService/mindmapUserService';
 
-import { getMindmapDetails,deleteMindmap } from '../../../../services/entityService/mindmapService/mindmapServices';
+import { getMindmapDetails,deleteMindmap,saveMindmap } from '../../../../services/entityService/mindmapService/mindmapServices';
 
 import TagSection from "../TagDetailsComponent/TagSectionComponent/TagSection";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
@@ -30,16 +34,21 @@ export default function MindmapDetails(){
 
     let {mindmap,setMindmapDetailed,detachTagFromMindmapState} = useContext(MindmapContext); 
 
-    let {nodes,edges,onEdgesChange,onNodesChange,onConnectStart,onConnectEnd} = useContext(DiagramContext)
+    let {nodes,edges,onEdgesChange,onNodesChange,onConnectStart,onConnectEnd,onLoadFromDatabase} = useContext(DiagramContext)
+
 
      const connectionLineStyle = { stroke: '#2D3142', strokeWidth: 3 };
      const defaultEdgeOptions = { style: connectionLineStyle, type: 'mindmap' };
 
    useEffect(()=>{
        getMindmapDetails(mindmapId).then(mindmapDetailed=>{
-           setMindmapDetailed(mindmapDetailed)    
+           setMindmapDetailed(mindmapDetailed)   
+           if(mindmapDetailed.jsonDiagram){
+               const diagram = JSON.parse(mindmapDetailed.jsonDiagram);
+               onLoadFromDatabase(diagram.nodes,diagram.edges)
+           }
        }).catch(err=>{
-           navigate('/404')
+        navigate('/404')
        })
         
    },[mindmapId])
@@ -77,6 +86,21 @@ const detachTagFromMindmapHandler = (tagId)=>{
     })
 }
 
+  const onSaveHandler=(e)=>{
+    console.log('here')
+    const obj = {
+        nodes:nodes,
+        edges:edges
+    }
+    saveMindmap(mindmap?.id,JSON.stringify(obj)).then(()=>{
+        alert('Saved in database!')
+    }).catch(err=>{
+        console.log(err)
+       alert('Could not save mindmap')
+    })
+
+  }
+
     return(
       <section className="mindmap-details">
          <header className="mindmap-header">
@@ -105,7 +129,8 @@ const detachTagFromMindmapHandler = (tagId)=>{
         <MiniMap />
         <Controls/>
         <Background variant="dots" gap={12} size={1} />
-           </ReactFlow>
+        </ReactFlow>
+        <button className='mindmap-save-btn' onClick={onSaveHandler}>Save mindmap <FontAwesomeIcon color='#2D3142' icon={faSave}/></button>
      </main>
       </section>
     )
