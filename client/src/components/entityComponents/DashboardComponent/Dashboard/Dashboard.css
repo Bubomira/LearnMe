@@ -1,0 +1,66 @@
+.dashboard-wrapper{
+   display: flex; 
+   gap: 10em;
+}
+
+.dashboard-aside{
+    flex: 0 1 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    background-color: #ffffff;
+    margin-top: -6em;
+    height: 110vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top-right-radius: 6em;
+}
+
+.dashboard-aside h2{
+    margin: 0;
+    font-size: 2em;
+    color: #3a505a;
+    text-align: center;
+    font-weight: 700;
+}
+
+.dashboard-aside h4{
+   font-size: 1.2em;
+   text-align: center
+}
+
+.dashboard-aside ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em 2.4em;
+    border-radius: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.owned-items h4{
+    color: #877fa3;
+}
+.dashboard-owned-link-list{
+    background-color: #877fa3;
+}
+
+.dashboard-aside ul li a{
+    color: #ffffff;
+}
+
+.dashboard-aside ul li a{
+    text-decoration: none;
+    display: flex;
+    gap: 1em;
+}
+
+.liked-items h4{
+    color:#63A375 ;
+}
+
+.dashboard-liked-link-list{
+    background-color: #63A375;
+}
+

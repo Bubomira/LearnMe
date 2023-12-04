@@ -31,6 +31,7 @@ import MindmapDetails from "./components/entityComponents/detailComponentPages/M
 import AttachTagToMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToMindmap/AttachTagToMindmap";
 import EditMindmap from "./components/entityComponents/EditFormComponents/EditMindmapComponent/EditMindmap";
 import { ReactFlowProvider } from "reactflow";
+import Dashboard from "./components/entityComponents/DashboardComponent/Dashboard/Dashboard";
 function App() {
   return (
     <>
@@ -68,6 +69,8 @@ function App() {
          <Route path="/mindmap/:mindmapId" element={<MindmapDetails/>}/>
          <Route path="/mindmap/:mindmapId/add/tag" element={<AttachTagToMindmap/>}/>        
          <Route path="/update/mindmap/:mindmapId" element={<EditMindmap/>}/>
+          
+         <Route path="/welcome" element={<Dashboard/>}/>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
