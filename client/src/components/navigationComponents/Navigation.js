@@ -18,8 +18,6 @@ export default function  Navigation(){
                     {user.token?
                     <>
                        <li className="navigation-element"><Link to="/welcome">Welcome back!</Link></li>
-                       <li className="navigation-element"><Link to="/agenda">Agenda</Link></li>
-
                        <li className="navigation-element"><Link to="/create">Create Hub</Link></li>
                        <li className="navigation-element"><Link to="/logout">Logout</Link></li>
                     </>
