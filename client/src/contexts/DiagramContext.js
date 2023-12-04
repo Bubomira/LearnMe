@@ -32,7 +32,7 @@ const selector = (state) => ({
   );
 
   const onLoadFromDatabase =(nodes,edges)=>{
-    onNodesLoad(nodes);
+          onNodesLoad(nodes);
            onEdgesLoad(edges)
   }
 
