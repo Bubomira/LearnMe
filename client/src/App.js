@@ -33,6 +33,8 @@ import MindmapDetails from "./components/entityComponents/detailComponentPages/M
 import AttachTagToMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToMindmap/AttachTagToMindmap";
 import EditMindmap from "./components/entityComponents/EditFormComponents/EditMindmapComponent/EditMindmap";
 import Dashboard from './components/DashboardComponent/Dashboard'
+import OwnedDeckCollection from "./components/entityComponents/EntityCollectionComponents/DeckCollections/OwnedDeckComponent/OwnedDeckCollection";
+import LikedDecksCollection from "./components/entityComponents/EntityCollectionComponents/DeckCollections/LikedDeckComponent/LikedDeckCollection";
 function App() {
   return (
     <>
@@ -70,6 +72,9 @@ function App() {
          <Route path="/mindmap/:mindmapId" element={<MindmapDetails/>}/>
          <Route path="/mindmap/:mindmapId/add/tag" element={<AttachTagToMindmap/>}/>        
          <Route path="/update/mindmap/:mindmapId" element={<EditMindmap/>}/>
+
+         <Route path="/owned/decks" element={<OwnedDeckCollection/>}/>
+         <Route path="/liked/decks" element={<LikedDecksCollection/>}/>
           
          <Route path="/welcome" element={<Dashboard/>}/>
 
