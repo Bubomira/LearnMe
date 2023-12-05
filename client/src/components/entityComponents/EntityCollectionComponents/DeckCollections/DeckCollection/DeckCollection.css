@@ -10,3 +10,16 @@
     align-items: center;
     gap: 3em;
 }
+
+.no-decks-message{
+    font-size: 3em;
+    display: flex;
+    gap: 1em;
+    color: #3a505a;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    padding: 2em;
+    align-items: center;
+    background-color: white;
+   width: 100%;
+   justify-content: center;
+}

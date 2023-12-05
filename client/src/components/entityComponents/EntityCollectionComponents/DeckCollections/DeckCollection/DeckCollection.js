@@ -1,5 +1,9 @@
 import './DeckCollection.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faSadTear } from '@fortawesome/free-solid-svg-icons'
+
 import DeckPreviewCard from '../DeckPreviewCard/DeckPreviewCard'
 
 export default function DeckCollection({decks,areOwned}){
@@ -15,7 +19,14 @@ export default function DeckCollection({decks,areOwned}){
                   </h1>
             </header>
             <main className="deck-collection">
-                {decks.map(deck=><DeckPreviewCard deck={deck} key={deck.id}></DeckPreviewCard>)}
+                {decks.length>0?
+                 decks.map(deck=><DeckPreviewCard deck={deck} key={deck.id}></DeckPreviewCard>)
+                 :
+                 <p className="no-decks-message">
+                    This collection is empty
+                    <FontAwesomeIcon icon={faSadTear} />
+                 </p>
+                }
             </main>
 
         </div>

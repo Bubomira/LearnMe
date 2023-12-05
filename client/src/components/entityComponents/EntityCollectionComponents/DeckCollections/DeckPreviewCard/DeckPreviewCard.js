@@ -15,7 +15,7 @@ export default function DeckPreviewCard({deck}){
                <h3>{deck.name}</h3>
             </div>
              <div className="deck-preview-tags">
-                {deck.tags.map(tag=><p id={tag.id}>{tag.name}</p>)}
+                {deck.tags.map(tag=><p key={tag.id}>{tag.name}</p>)}
              </div>
              <button><Link to={`/deck/${deck.id}`}>Details</Link></button>
          </article>
