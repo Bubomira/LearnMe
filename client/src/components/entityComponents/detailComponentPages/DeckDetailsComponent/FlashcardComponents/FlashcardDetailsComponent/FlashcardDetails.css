@@ -11,8 +11,8 @@
   
 }
 
-.flashcard-details-wrapper p{
-    color: #3a505a;
+.flashcard-details-wrapper>p{
+    color: #877fa3;
     font-size: 3.5em;
     cursor: pointer;
 }
@@ -22,12 +22,14 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
     text-align: center;
     padding: 1em 3em;
-    color: #3a505a;
-    background-color: #3a505a44;
-    
-  
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #877fa3;
 }
 
 .flashcard-details h2{
     font-size: 2.5em;
+}
+
+.flashcard-details button, .flashcard-details button a {
+       color: rgba(255, 255, 255, 0.9);
 }
