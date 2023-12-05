@@ -29,7 +29,7 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
 
         public Task<List<LikedUserMindmap>> GetLikedMindmaps(int userId) =>
             _learnMeDbContext.LikedUsersMindmaps.Where(lum => lum.LikerUserId == userId)
-            .Include(lum => lum.Mindmap.MindmapsTags)
+            .Include(lum => lum.Mindmap.MindmapsTags.Take(3))
             .ThenInclude(mt => mt.Tag)
             .ToListAsync();
             
@@ -37,6 +37,8 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
 
         public Task<List<Mindmap>> GetOwnedMindmaps(int userId) =>
             _learnMeDbContext.Mindmaps.Where(m => m.OwnerId == userId)
+             .Include(lum => lum.MindmapsTags.Take(3))
+            .ThenInclude(mt => mt.Tag)
             .ToListAsync();
        
 

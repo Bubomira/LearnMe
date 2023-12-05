@@ -29,14 +29,14 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
 
         public Task<List<NoteUser>> GetLikedNotes(int userId) =>
             _learnMeDbContext.LikedNotesUsers.Where(lnu => lnu.LikerUserId == userId)
-            .Include(lnu=>lnu.Note.NotesTags)
+            .Include(lnu=>lnu.Note.NotesTags.Take(3))
             .ThenInclude(nt=>nt.Tag)
             .ToListAsync();
 
 
         public Task<List<Note>> GetOwnedNotes(int userId) =>
             _learnMeDbContext.Notes.Where(n => n.OwnerId == userId)
-            .Include(n => n.NotesTags)
+            .Include(n => n.NotesTags.Take(3))
             .ThenInclude(nt => nt.Tag)
             .ToListAsync();
 

@@ -28,13 +28,13 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
         //!!
         public Task<List<LikedUserDeck>> GetLikedDecks(int userId) =>
             _learnMeDbContext.LikedUserDecks.Where(lud => lud.LikerUserId == userId)
-            .Include(lud => lud.Deck.DecksTags)
+            .Include(lud => lud.Deck.DecksTags.Take(3))
             .ThenInclude(dt => dt.Tag)
             .ToListAsync();
 
         public Task<List<Deck>> GetOwnedDecks(int userId) =>
          _learnMeDbContext.Decks.Where(d => d.OwnerId == userId)
-            .Include(d => d.DecksTags)
+            .Include(d => d.DecksTags.Take(3))
             .ThenInclude(dt => dt.Tag)
             .ToListAsync();
 
