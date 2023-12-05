@@ -1,0 +1,12 @@
+.deck-collection-header .message{
+    font-size: 2.5em;
+    color: #3a505a;
+    text-align: center;
+}
+
+.deck-collection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+}
