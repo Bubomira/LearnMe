@@ -1,4 +1,6 @@
 import { Route,Routes } from "react-router-dom";
+import { ReactFlowProvider } from "reactflow";
+
 import Navigation from "./components/navigationComponents/Navigation";
 import Login from "./components/authComponents/UserDeclarationComponents/LoginComponent/Login";
 import Register from "./components/authComponents/UserDeclarationComponents/RegisterComponent/Register"
@@ -30,8 +32,7 @@ import CreateMindmap from "./components/entityComponents/creatorHubComponents/cr
 import MindmapDetails from "./components/entityComponents/detailComponentPages/MindmapDetailsComponent/MindmapDetails";
 import AttachTagToMindmap from "./components/entityComponents/creatorHubComponents/createEntitiesComponents/createTagComponent/attachTagToMindmap/AttachTagToMindmap";
 import EditMindmap from "./components/entityComponents/EditFormComponents/EditMindmapComponent/EditMindmap";
-import { ReactFlowProvider } from "reactflow";
-import Dashboard from "./components/entityComponents/DashboardComponent/Dashboard/Dashboard";
+import Dashboard from './components/DashboardComponent/Dashboard'
 function App() {
   return (
     <>

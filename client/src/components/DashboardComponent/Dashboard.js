@@ -1,6 +1,6 @@
 import './Dashboard.css'
 
-import welcome from '../../../../static/img/welcome.jpg'
+import welcome from './../../static/img/welcome.jpg'
 
 import { Link } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faNoteSticky,faChartArea,faRectangleList,faCalendar,faMusic, faSearch } from '@fortawesome/free-solid-svg-icons'
 
-import { AuthContext } from '../../../../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext'
 
 export default function Dashboard(){
     const {user} = useContext(AuthContext)
