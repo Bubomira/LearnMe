@@ -48,12 +48,12 @@ export default function Dashboard(){
                            </Link>
                        </li>
                        <li>
-                           <Link to={'/liked/notes'}>
+                           <Link to={'/liked/mindmaps'}>
                                 <FontAwesomeIcon icon={faChartArea}/>Mindmaps
                            </Link>
                        </li>
                        <li>
-                           <Link to={'/liked/notes'}>
+                           <Link to={'/liked/decks'}>
                            <FontAwesomeIcon icon={faRectangleList}/>Decks
                             </Link>
                        </li>
