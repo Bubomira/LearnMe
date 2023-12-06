@@ -1,0 +1,70 @@
+.note-preview-wrapper{
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex: 1 1 25%;
+  max-width: 35%;
+border-top-left-radius: 2em;
+border-bottom-right-radius: 2em;
+align-items: center;
+}
+
+.note-preview-aside{
+    background-color: #877fa3;
+    flex-basis: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.4em 0.4em 0.4em 1em;
+    transform: translate(1em);
+    border-top-right-radius: 0.4em;
+    border-bottom-right-radius: 0.6em;
+    font-size: 2em;
+}
+
+.note-preview-tags{
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+.note-preview-tags p{
+    color: #3a505a;
+    font-size: 1.2em;
+    margin: 0 ;
+}
+
+
+.note-preview-wrapper main{
+    padding: 2em ;
+    flex-basis: 80%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4em;
+}
+
+.note-preview-wrapper main h2{
+    font-size: 2em;
+    margin: 1em 0 0 0;
+    color: #27353b;
+}
+
+.note-preview-wrapper button{
+    background-color: #877fa3;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 0.4em;
+    padding: 0.3em 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.note-preview-wrapper button a{
+    color: white;
+    text-decoration: none;
+}
+
+
