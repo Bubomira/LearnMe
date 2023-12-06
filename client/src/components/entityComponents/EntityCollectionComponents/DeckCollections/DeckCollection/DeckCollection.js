@@ -1,4 +1,4 @@
-import './DeckCollection.css'
+import '../../EntityCollection.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -9,8 +9,8 @@ import DeckPreviewCard from '../DeckPreviewCard/DeckPreviewCard'
 export default function DeckCollection({decks,areOwned}){
 
     return(
-        <div className="deck-collection-wrapper">
-            <header className="deck-collection-header">
+        <div className="collection-wrapper">
+            <header className="collection-header">
                   <h1 className='message'>
                     {areOwned?
                     'Here are your owned decks!':
@@ -18,11 +18,11 @@ export default function DeckCollection({decks,areOwned}){
                     }
                   </h1>
             </header>
-            <main className="deck-collection">
-                {decks.length>0?
+            <main className="collection">
+                {decks?.length>0?
                  decks.map(deck=><DeckPreviewCard deck={deck} key={deck.id}></DeckPreviewCard>)
                  :
-                 <p className="no-decks-message">
+                 <p className="no-entities-message">
                     This collection is empty
                     <FontAwesomeIcon icon={faSadTear} />
                  </p>

@@ -31,6 +31,7 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             _learnMeDbContext.LikedNotesUsers.Where(lnu => lnu.LikerUserId == userId)
             .Include(lnu=>lnu.Note.NotesTags.Take(3))
             .ThenInclude(nt=>nt.Tag)
+            .OrderBy(n => n.Note.Title.Length)
             .ToListAsync();
 
 
@@ -38,6 +39,7 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             _learnMeDbContext.Notes.Where(n => n.OwnerId == userId)
             .Include(n => n.NotesTags.Take(3))
             .ThenInclude(nt => nt.Tag)
+            .OrderBy(n=>n.Title.Length)
             .ToListAsync();
 
 
