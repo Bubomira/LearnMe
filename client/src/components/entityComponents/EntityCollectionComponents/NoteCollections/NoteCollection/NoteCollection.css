@@ -1,0 +1,10 @@
+.note-collection{
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+    flex-wrap: wrap;
+    margin: 0 4em;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 5em;
+}
