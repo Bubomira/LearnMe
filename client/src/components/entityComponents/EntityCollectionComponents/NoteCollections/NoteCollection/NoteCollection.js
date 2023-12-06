@@ -2,6 +2,10 @@ import '../../EntityCollection.css'
 
 import './NoteCollection.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faSadTear } from '@fortawesome/free-solid-svg-icons'
+
 import NotePreviewCard from '../NotePreviewCard/NotePreviewCard'
 
 export default function NoteCollection({notes,areOwned}){
@@ -19,7 +23,10 @@ export default function NoteCollection({notes,areOwned}){
             <section className="collection note-collection">
                 {notes?.length>0 ?
                    notes.map(note=><NotePreviewCard key={note?.id} note={note}/>):
-                   <p className='no-entities-message'></p>
+                   <p className='no-entities-message'>
+                     This collection is empty
+                     <FontAwesomeIcon icon={faSadTear}/>
+                   </p>
                 }
             </section>
         </section>

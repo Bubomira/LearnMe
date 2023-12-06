@@ -35,6 +35,8 @@ import EditMindmap from "./components/entityComponents/EditFormComponents/EditMi
 import Dashboard from './components/DashboardComponent/Dashboard'
 import OwnedDeckCollection from "./components/entityComponents/EntityCollectionComponents/DeckCollections/OwnedDeckComponent/OwnedDeckCollection";
 import LikedDecksCollection from "./components/entityComponents/EntityCollectionComponents/DeckCollections/LikedDeckComponent/LikedDeckCollection";
+import OwnedNotesCollection from "./components/entityComponents/EntityCollectionComponents/NoteCollections/OwnedNoteComponent/OwnedNoteCollection";
+import LikedNotesColection from "./components/entityComponents/EntityCollectionComponents/NoteCollections/LikedNoteComponent/LikedNotesCollection";
 function App() {
   return (
     <>
@@ -75,6 +77,9 @@ function App() {
 
          <Route path="/owned/decks" element={<OwnedDeckCollection/>}/>
          <Route path="/liked/decks" element={<LikedDecksCollection/>}/>
+
+         <Route path="/owned/notes" element={<OwnedNotesCollection/>}/>
+         <Route path="/liked/notes" element={<LikedNotesColection/>}/>
           
          <Route path="/welcome" element={<Dashboard/>}/>
 
