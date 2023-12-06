@@ -28,13 +28,13 @@ export default function Dashboard(){
                         </Link>
                     </li>
                     <li>
-                        <Link to={'/owned/mindmaps'}>
-                            <FontAwesomeIcon icon={faChartArea}/>Mindmaps
+                        <Link to={'/owned/decks'}>
+                            <FontAwesomeIcon icon={faRectangleList}/>Decks
                         </Link>
                     </li>
                     <li>
-                        <Link to={'/owned/decks'}>
-                            <FontAwesomeIcon icon={faRectangleList}/>Decks
+                        <Link to={'/owned/mindmaps'}>
+                            <FontAwesomeIcon icon={faChartArea}/>Mindmaps
                         </Link>
                     </li>
                   </ul>
@@ -48,14 +48,14 @@ export default function Dashboard(){
                            </Link>
                        </li>
                        <li>
-                           <Link to={'/liked/mindmaps'}>
-                                <FontAwesomeIcon icon={faChartArea}/>Mindmaps
-                           </Link>
-                       </li>
-                       <li>
                            <Link to={'/liked/decks'}>
                            <FontAwesomeIcon icon={faRectangleList}/>Decks
                             </Link>
+                       </li>
+                       <li>
+                           <Link to={'/liked/mindmaps'}>
+                                <FontAwesomeIcon icon={faChartArea}/>Mindmaps
+                           </Link>
                        </li>
                     </ul>
                </section>
