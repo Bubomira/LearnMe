@@ -70,7 +70,7 @@ export default function CreateNote(){
                           />
                     </article>
                     <article className='radio-holder'>
-                          <label htmlFor="image">Type content directly</label>
+                          <label htmlFor="text">Type content directly</label>
                           <input
                           type="radio"
                           name="ImageChecked"
