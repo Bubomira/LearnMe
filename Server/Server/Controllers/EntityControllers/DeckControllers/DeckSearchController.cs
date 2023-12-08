@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Server.DTOs.DeckDtos.ExportDtos;
+using Server.Interfaces.EntityInterface;
 using Server.Models;
-using Server.Repositories.EntityRepositories;
-using Server.Repositories.EntityRepositories.DeckRepositories;
+
 
 namespace Server.Controllers.EntityControllers.DeckControllers
 {
@@ -11,12 +11,12 @@ namespace Server.Controllers.EntityControllers.DeckControllers
     [Route("api/search/deck")]
     public class DeckSearchController:Controller
     {
-        private readonly DeckRepository _deckRepository;
-        private readonly DeckTagRepository _deckTagRepository;
-        private readonly TagRepository _tagRepository;
+        private readonly IDeckRepository _deckRepository;
+        private readonly IDeckTagRepository _deckTagRepository;
+        private readonly ITagRepository _tagRepository;
         private readonly IMapper _mapper;
 
-        public DeckSearchController(DeckRepository deckRepository, TagRepository tagRepository, DeckTagRepository deckTagRepository,IMapper mapper)
+        public DeckSearchController(IDeckRepository deckRepository, ITagRepository tagRepository, IDeckTagRepository deckTagRepository,IMapper mapper)
         {
             _deckRepository = deckRepository;
             _tagRepository = tagRepository;
