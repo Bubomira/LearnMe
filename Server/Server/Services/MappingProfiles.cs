@@ -120,7 +120,7 @@ namespace Server.Services
                        Name = mt.Tag.Name
                    }).ToList()));
 
-            CreateMap<MindmapTag, MindmapDetailsDto>()
+            CreateMap<MindmapTag, MindmapPreviewDto>()
                 .ForMember(mdd => mdd.Id, opt =>
                 opt.MapFrom(src =>
                 src.Mindmap.Id))

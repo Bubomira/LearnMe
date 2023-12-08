@@ -62,9 +62,7 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
 
         public Task<List<Deck>> SearchDeckByName(string deckName) =>
             _learnMeDbContext.Decks
-            .Where(d => d.Name.ToLower().StartsWith(deckName.ToLower()) ||
-            d.Name.ToLower().EndsWith(deckName.ToLower()) ||
-           d.Name.ToLower().Contains(deckName.ToLower()))
+            .Where(d => d.Name.ToLower().Contains(deckName.ToLower()))
             .Include(d=>d.DecksTags)
             .ThenInclude(dt=>dt.Tag)
             .ToListAsync();

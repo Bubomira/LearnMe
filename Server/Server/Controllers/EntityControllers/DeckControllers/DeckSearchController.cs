@@ -37,14 +37,8 @@ namespace Server.Controllers.EntityControllers.DeckControllers
         [HttpPost("by/tag")]
         public async Task<IActionResult> SearchDeckByTag([FromBody] string tagName)
         {
-            if(!await _tagRepository.CheckIfTagExistsByName(tagName))
-            {
-                return NotFound(new string[] { "Nothing using this tag has been found!" });
-            }
-
-            Tag tag = await _tagRepository.GetTagByName(tagName);
-
-            var decks = await _deckTagRepository.SearchDecksByTag(tag.Id);
+          
+            var decks = await _deckTagRepository.SearchDecksByTag(tagName);
            
             var deckDtos = _mapper.Map<List<DeckPreviewDto>>(decks);
 

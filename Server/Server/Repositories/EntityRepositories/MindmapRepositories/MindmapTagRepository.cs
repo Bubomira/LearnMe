@@ -36,8 +36,9 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
             await _learnMeDbContext.SaveChangesAsync();
         }
 
-        public Task<List<MindmapTag>> SearchMindmapsByTag(int tagId) =>
-            _learnMeDbContext.MindmapsTags.Where(mt => mt.TagId == tagId)
+        public Task<List<MindmapTag>> SearchMindmapsByTag(string tagName) =>
+          _learnMeDbContext.Mindmaps.SelectMany(m => m.MindmapsTags.Where(nt => nt.Tag.Name.ToLower().Contains(tagName.ToLower())).Take(1))
+            .Include(mt=>mt.Tag)
             .Include(mt => mt.Mindmap)
             .ToListAsync();
        

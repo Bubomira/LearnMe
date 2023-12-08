@@ -8,6 +8,6 @@ namespace Server.Interfaces.EntityInterface.IMindmapRepository
         public Task AttachTagsToMindmap(List<int> tagIds, int mindmapId);
         public Task DetachTagFromMindmap(int mindmapId, int tagId);
 
-        public Task<List<MindmapTag>> SearchMindmapsByTag(int tagId);
+        public Task<List<MindmapTag>> SearchMindmapsByTag(string tagName);
     }
 }

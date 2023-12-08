@@ -54,9 +54,7 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
 
         public Task<List<Note>> SearchNotesByTitle(string noteName)=>
              _learnMeDbContext.Notes
-            .Where(n => n.Title.ToLower().StartsWith(noteName.ToLower()) ||
-            n.Title.ToLower().EndsWith(noteName.ToLower()) ||
-           n.Title.ToLower().Contains(noteName.ToLower()))
+            .Where(n => n.Title.ToLower().Contains(noteName.ToLower()))
             .Include(n=>n.NotesTags)
             .ThenInclude(nt=>nt.Tag)
             .ToListAsync();

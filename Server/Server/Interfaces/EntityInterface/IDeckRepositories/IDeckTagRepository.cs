@@ -10,6 +10,6 @@ namespace Server.Interfaces.EntityInterface
 
         public Task<bool> CheckIfTagIsAttachedToDeck(int tagId, int deckId);
 
-        public Task<List<DeckTag>> SearchDecksByTag(int tagId);
+        public Task<List<DeckTag>> SearchDecksByTag(string tagName);
     }
 }

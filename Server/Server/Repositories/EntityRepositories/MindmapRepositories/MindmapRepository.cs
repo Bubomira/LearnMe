@@ -63,9 +63,7 @@ namespace Server.Repositories.EntityRepositories.MindmapRepositories
 
         public Task<List<Mindmap>> SearchMindmapsByName(string mindmapName)=>
              _learnMeDbContext.Mindmaps
-            .Where(m => m.Name.ToLower().StartsWith(mindmapName.ToLower()) ||
-            m.Name.ToLower().EndsWith(mindmapName.ToLower()) ||
-           m.Name.ToLower().Contains(mindmapName.ToLower()))
+            .Where(m => m.Name.ToLower().Contains(mindmapName.ToLower()))
             .Include(m => m.MindmapsTags)
             .ThenInclude(mt => mt.Tag)
             .ToListAsync();

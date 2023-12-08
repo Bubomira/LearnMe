@@ -7,6 +7,6 @@ namespace Server.Interfaces.EntityInterface.INotesRepositories
         public Task<bool> CheckIfTagIsAttachedToNote(int tagId, int noteId);
         public Task AttachTagToNote(List<int> tagIds, int noteId);
         public Task DetachTagFromNote(int tagId, int noteId);
-        public Task<List<NoteTag>> SearchNotesByTag(int tagId);
+        public Task<List<NoteTag>> SearchNotesByTag(string tagName);
     }
 }

@@ -31,24 +31,18 @@ namespace Server.Controllers.EntityControllers.MindmapController
         {
            var mindmaps =  await _mindmapRepository.SearchMindmapsByName(searchString);
 
-           var mindmapDtos =  _mapper.Map<List<MindmapDetailsDto>>(mindmaps);
+           var mindmapDtos =  _mapper.Map<List<MindmapPreviewDto>>(mindmaps);
 
            return Ok(mindmapDtos);
         }
 
         [HttpPost("by/tag")]
-        public async Task<IActionResult> SearchNoteByTitle([FromBody] string tagName)
+        public async Task<IActionResult> SearchMindmapByTag([FromBody] string tagName)
         {
 
-            if (!await _tagRepository.CheckIfTagExistsByName(tagName))
-            {
-                return BadRequest(new string[] { "Cannot find anything with that tag!" });
-            }
-            Tag tag = await _tagRepository.GetTagByName(tagName);
+            var mindmaps = await _mindmapTagRepository.SearchMindmapsByTag(tagName);
 
-            var mindmaps = await _mindmapTagRepository.SearchMindmapsByTag(tag.Id);
-
-            var mindmapsDtos = _mapper.Map<List<NotePreviewDto>>(mindmaps);
+            var mindmapsDtos = _mapper.Map<List<MindmapPreviewDto>>(mindmaps);
 
             return Ok(mindmapsDtos);
         }

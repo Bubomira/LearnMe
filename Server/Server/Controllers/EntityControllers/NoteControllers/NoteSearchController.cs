@@ -37,13 +37,7 @@ namespace Server.Controllers.EntityControllers.NoteControllers
         public async Task<IActionResult> SearchNoteByTag([FromBody] string tagName)
         {
             
-            if(! await _tagRepository.CheckIfTagExistsByName(tagName))
-            {
-                return BadRequest(new string[] { "Cannot find anything with that tag!" });
-            }
-            Tag tag = await _tagRepository.GetTagByName(tagName);
-
-            var notes = await _noteTagRepository.SearchNotesByTag(tag.Id);
+            var notes = await _noteTagRepository.SearchNotesByTag(tagName);
 
             var notesDtos = _mapper.Map<List<NotePreviewDto>>(notes);
 

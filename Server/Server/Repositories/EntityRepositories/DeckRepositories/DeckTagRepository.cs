@@ -43,8 +43,8 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
         public Task<bool> CheckIfTagIsAttachedToDeck(int tagId, int deckId) =>
             _learnMeDbContext.DecksTags.AnyAsync(dt => dt.DeckId == deckId && dt.TagId == tagId);
 
-        public Task<List<DeckTag>> SearchDecksByTag(int tagId) =>
-           _learnMeDbContext.DecksTags.Where(dt => dt.TagId == tagId)
+        public Task<List<DeckTag>> SearchDecksByTag(string tagName) =>
+           _learnMeDbContext.Decks.SelectMany(d =>d.DecksTags.Where(dt => dt.Tag.Name.ToLower().Contains(tagName.ToLower())).Take(1))
             .Include(dt => dt.Deck)
             .Include(dt=>dt.Tag)
             .ToListAsync();
