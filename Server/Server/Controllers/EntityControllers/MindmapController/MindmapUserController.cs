@@ -30,7 +30,7 @@ namespace Server.Controllers.EntityControllers.MindmapController
 
             var likedMindmaps = await _mindmapUserRepository.GetLikedMindmaps(userId);
 
-            var likedMindmapsDtos = _mapper.Map<List<MindmapDetailsDto>>(likedMindmaps);
+            var likedMindmapsDtos = _mapper.Map<List<MindmapPreviewDto>>(likedMindmaps);
            
             return Ok(likedMindmapsDtos);
         }
