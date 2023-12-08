@@ -1,0 +1,42 @@
+.mindmap-preview-card{
+    display: flex;
+    padding: 1em 2em;
+    background-color: #63A375;
+    width: 85%;
+    border-radius: 2em;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+.mindmap-preview-header{
+    display: flex;
+    gap: 1em;
+    color: #ffffff;
+    align-items: center;
+}
+.mindmap-heading{
+    font-size: 2em;
+}
+
+.mindmap-preview-tags{
+    display: flex;
+    color: white;
+    justify-self: center;
+    font-size: 1.2em;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.mindmap-preview-details-btn{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+   border: none;
+   padding: 1em 3em;
+   justify-self: flex-end;
+   border-radius: 1em;
+}
+
+.mindmap-preview-details-btn a{
+    text-decoration: none;
+    color: #63A375;
+    font-size: 1.6em;
+}
