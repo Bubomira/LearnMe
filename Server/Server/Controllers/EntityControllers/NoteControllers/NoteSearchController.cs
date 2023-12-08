@@ -8,7 +8,7 @@ using Server.Models;
 namespace Server.Controllers.EntityControllers.NoteControllers
 {
     [ApiController]
-    [Route("api/note/search")]
+    [Route("api/search/note")]
     public class NoteSearchController:Controller
     {
         private readonly INoteRepository _noteRepository;

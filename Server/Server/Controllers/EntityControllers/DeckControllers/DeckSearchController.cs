@@ -8,7 +8,7 @@ using Server.Repositories.EntityRepositories.DeckRepositories;
 namespace Server.Controllers.EntityControllers.DeckControllers
 {
     [ApiController]
-    [Route("api/deck/search")]
+    [Route("api/search/deck")]
     public class DeckSearchController:Controller
     {
         private readonly DeckRepository _deckRepository;

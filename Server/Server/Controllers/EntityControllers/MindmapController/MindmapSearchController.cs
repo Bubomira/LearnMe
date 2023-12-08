@@ -10,7 +10,7 @@ using Server.Models;
 namespace Server.Controllers.EntityControllers.MindmapController
 {
     [ApiController]
-    [Route("api/mindmap/search")]
+    [Route("api/search/mindmap")]
     public class MindmapSearchController : Controller
     {
         private readonly IMindmapRepository _mindmapRepository;
