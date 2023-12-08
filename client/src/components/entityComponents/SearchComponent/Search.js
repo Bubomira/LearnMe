@@ -32,10 +32,11 @@ export default function Search(){
     useEffect(()=>{
         setCollection([]);
         setIsSearched(false)
-    },[values.entityType,values.searchType])
+    },[values.entityType,values.searchType,isSearched])
 
     const onSearchHandler=(e)=>{
         setIsSearched(true)
+        setCollection([]);
          e.preventDefault();
          try {
             switch (values.entityType) {

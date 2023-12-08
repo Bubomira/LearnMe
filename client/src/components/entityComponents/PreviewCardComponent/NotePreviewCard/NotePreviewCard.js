@@ -16,7 +16,7 @@ export default function NotePreviewCard({note}){
                  </h2>
                  <section className="note-preview-tags">
                     {note?.tags?
-                      note.tags.map(tag=><p key={tag.id}>{tag.name},</p>):
+                      note.tags.map(tag=><p key={tag.id}>{tag.name}</p>):
                       <></>
                     }
                  </section>
