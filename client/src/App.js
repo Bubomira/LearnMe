@@ -39,6 +39,7 @@ import OwnedNotesCollection from "./components/entityComponents/EntityCollection
 import LikedNotesColection from "./components/entityComponents/EntityCollectionComponents/NoteCollections/LikedNoteComponent/LikedNotesCollection";
 import OwnedMindmapCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/OwnedMindmapCollection/OwnedMindmapCollection";
 import LikedMindmapsCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/LikedMindmapCollection/LikedMindmapCollection";
+import Search from "./components/entityComponents/SearchComponent/Search";
 function App() {
   return (
     <>
@@ -85,6 +86,8 @@ function App() {
 
          <Route path="/owned/mindmaps" element={<OwnedMindmapCollection/>}/>
          <Route path="/liked/mindmaps" element={<LikedMindmapsCollection/>}/>
+
+         <Route path="/search" element={<Search/>}/>
           
          <Route path="/welcome" element={<Dashboard/>}/>
 

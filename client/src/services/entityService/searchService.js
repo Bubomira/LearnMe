@@ -8,14 +8,14 @@ const noteUrl=`${endpointUrl}/note/by`
 
 const deckUrl=`${endpointUrl}/deck/by`
 
-export const searchMindmapByName = (searchString)=>post(`${mindmapUrl}/name`,searchString)
+export const searchMindmapsByName = (searchString)=>post(`${mindmapUrl}/name`,searchString)
 
-export const searchMindmapByTag = (searchString)=>post(`${mindmapUrl}/tag`,searchString)
+export const searchMindmapsByTag = (searchString)=>post(`${mindmapUrl}/tag`,searchString)
 
-export const searchNoteByName = (searchString)=>post(`${noteUrl}/name`,searchString)
+export const searchNotesByName = (searchString)=>post(`${noteUrl}/name`,searchString)
 
-export const searchNoteByTag = (searchString)=>post(`${noteUrl}/tag`,searchString)
+export const searchNotesByTag = (searchString)=>post(`${noteUrl}/tag`,searchString)
 
-export const searchDeckByName = (searchString)=>post(`${deckUrl}/name`,searchString)
+export const searchDecksByName = (searchString)=>post(`${deckUrl}/name`,searchString)
 
-export const searchDeckBytAG = (searchString)=>post(`${deckUrl}/tag`,searchString)
+export const searchDecksByTag = (searchString)=>post(`${deckUrl}/tag`,searchString)
