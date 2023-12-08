@@ -15,7 +15,6 @@ export default function OwnedNotesCollection(){
     useEffect(()=>{
           getOwnedNotes().then(notes=>{
             setOwnedNotes(notes);
-            console.log(notes)
           }).catch(err=>{
             navigate('/404')
           })

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 
-import DeckPreviewCard from '../DeckPreviewCard/DeckPreviewCard'
+import DeckPreviewCard from '../../../PreviewCardComponent/DeckPreviewCard/DeckPreviewCard'
 
 export default function DeckCollection({decks,areOwned}){
 
