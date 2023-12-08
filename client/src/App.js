@@ -37,6 +37,8 @@ import OwnedDeckCollection from "./components/entityComponents/EntityCollectionC
 import LikedDecksCollection from "./components/entityComponents/EntityCollectionComponents/DeckCollections/LikedDeckComponent/LikedDeckCollection";
 import OwnedNotesCollection from "./components/entityComponents/EntityCollectionComponents/NoteCollections/OwnedNoteComponent/OwnedNoteCollection";
 import LikedNotesColection from "./components/entityComponents/EntityCollectionComponents/NoteCollections/LikedNoteComponent/LikedNotesCollection";
+import OwnedMindmapCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/OwnedMindmapCollection/OwnedMindmapCollection";
+import LikedMindmapsCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/LikedMindmapCollection/LikedMindmapCollection";
 function App() {
   return (
     <>
@@ -80,6 +82,9 @@ function App() {
 
          <Route path="/owned/notes" element={<OwnedNotesCollection/>}/>
          <Route path="/liked/notes" element={<LikedNotesColection/>}/>
+
+         <Route path="/owned/mindmaps" element={<OwnedMindmapCollection/>}/>
+         <Route path="/liked/mindmaps" element={<LikedMindmapsCollection/>}/>
           
          <Route path="/welcome" element={<Dashboard/>}/>
 
@@ -91,6 +96,8 @@ function App() {
        </NoteProvider>
     </DeckProvider>
     </AuthProvider>
+    <Routes/>
+
     </>
   );
 }
