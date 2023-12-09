@@ -1,6 +1,6 @@
 import {post} from "../../../utils/requester";
 
-const endpointUrl = 'https://localhost:7065/api/mindmap/tag';
+const endpointUrl = 'https://learnmeserver.azurewebsites.net/api/mindmap/tag';
 
 export const attachTagToMindmap = (mindmapId,tagName) => post(`${endpointUrl}/attach/tag/${mindmapId}`,tagName);
 

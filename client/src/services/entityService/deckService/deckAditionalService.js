@@ -1,6 +1,6 @@
 import { post } from "../../../utils/requester";
 
-const endpointUrl = 'https://localhost:7065/api/deck/additional';
+const endpointUrl = 'https://learnmeserver.azurewebsites.net/api/deck/additional';
 
 export const attachFlashcardToDeck = (deckId,flashcardId)=>post(`${endpointUrl}/attach/flashcard/deck/${deckId}`,flashcardId)
 

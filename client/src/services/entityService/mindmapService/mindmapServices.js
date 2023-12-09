@@ -1,6 +1,6 @@
 import {get,post,put,del} from "../../../utils/requester";
 
-const endpointUrl = 'https://localhost:7065/api/mindmap';
+const endpointUrl = 'https://learnmeserver.azurewebsites.net/api/mindmap';
 
 export const getMindmapDetails =(mindmapId)=>get(`${endpointUrl}/details/${mindmapId}`)
 

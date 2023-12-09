@@ -1,6 +1,6 @@
 import {get, post,put,del } from "../../../utils/requester";
 
-const endpointUrl = 'https://localhost:7065/api/note';
+const endpointUrl = 'https://learnmeserver.azurewebsites.net/api/note';
 
 export const getNoteDetails =(noteId)=>get(`${endpointUrl}/details/${noteId}`)
 

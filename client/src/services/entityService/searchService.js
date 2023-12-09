@@ -1,6 +1,6 @@
 import {post} from '../../utils/requester'
 
-const endpointUrl = 'https://localhost:7065/api/search';
+const endpointUrl = 'https://learnmeserver.azurewebsites.net/api/search';
 
 const mindmapUrl=`${endpointUrl}/mindmap/by`
 
