@@ -8,6 +8,7 @@ using Server.Interfaces.EntityInterface.IDeckRepositories;
 using Server.Interfaces.EntityInterface.IMindmapRepository;
 using Server.Interfaces.EntityInterface.INotesRepositories;
 using Server.Interfaces.ServiceInterfaces;
+using Server.Middlewares;
 using Server.Repositories;
 using Server.Repositories.EntityRepositories;
 using Server.Repositories.EntityRepositories.DeckRepositories;
@@ -71,6 +72,8 @@ app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
 .WithHeaders("accept", "content-type", "origin", "authorization"));
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseMiddleware<AuthenticationMiddleware>();
 
