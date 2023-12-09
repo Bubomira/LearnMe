@@ -47,8 +47,7 @@ namespace Server.Repositories.EntityRepositories.NotesRepositories
             _learnMeDbContext.Notes.SelectMany(n => n.NotesTags.Where(nt => nt.Tag.Name.ToLower().Contains(tagName.ToLower())).Take(1))
             .Include(nt => nt.Note)
             .Include(nt => nt.Tag)
-            .Join()
             .ToListAsync();
-
     }
+
 }

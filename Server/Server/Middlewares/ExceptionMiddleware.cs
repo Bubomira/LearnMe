@@ -20,7 +20,7 @@
             {
                 _logger.LogError(err, err.Message);
                 context.Response.StatusCode = 500;
-                context.Response.WriteAsync(ex.Message);
+                context.Response.WriteAsync(err.Message);
                 return;
             }
         }
