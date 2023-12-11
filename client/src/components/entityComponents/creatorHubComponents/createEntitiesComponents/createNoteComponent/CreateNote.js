@@ -30,7 +30,7 @@ export default function CreateNote(){
             : values.Content;
             const tags=values.Tags.split(/\s+/);
             createNote({Tags:tags,Title:values.Title,Content:content}).then(()=>{
-                navigate('/welcome')
+                navigate('/owned/notes')
             }).catch(err=>{        
                 navigate('/404')
             })
