@@ -40,6 +40,8 @@ import LikedNotesColection from "./components/entityComponents/EntityCollectionC
 import OwnedMindmapCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/OwnedMindmapCollection/OwnedMindmapCollection";
 import LikedMindmapsCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/LikedMindmapCollection/LikedMindmapCollection";
 import Search from "./components/entityComponents/SearchComponent/Search";
+import GuestGuard from "./components/Guards/GuestGuard";
+import AuthGuard from "./components/Guards/AuthGuard";
 function App() {
   return (
     <>
@@ -51,45 +53,51 @@ function App() {
           <ReactFlowProvider>
             <DiagramProvider>
        <Routes>
-         <Route path="/" element={<LandingPage/>}/>
 
-         <Route path="/login" element={<Login/>}/>
-         <Route path="/register" element={<Register/>}/>
-         <Route path="/logout" element={<Logout/>}/>
+         <Route element={<GuestGuard/>}>
+               <Route path="/" element={<LandingPage/>}/>
+               <Route path="/login" element={<Login/>}/>
+               <Route path="/register" element={<Register/>}/>
+         </Route>
 
-         <Route path="/create" element={<CreateMenu/>}/>
-         <Route path="/create/decks" element={<CreateDeck/>}/>
-         <Route path="/create/flashcard" element={<CreateFlashcard/>}/>  
-         <Route path="/deck/:deckId/add/tag" element={<AttachTagToDeck/>}/>
-         <Route path="/deck/:deckId" element={<DeckDetails/>}/>
-         <Route path="/update/deck/:deckId" element={<EditDeck/>}/>    
-         <Route path='/deck/:deckId/search/flashcard'element={<SearchFlashcard/>}/>
-
-         <Route path="/deck/:deckId/flashcard/:flashcardId" element={<FlashcardDetails/>}/>
-         <Route path="/update/flashcard/:flashcardId" element={<EditFlashcard/>}/>
-
-         <Route path="/create/notes" element={<CreateNote/>}/>
-         <Route path="/note/:noteId" element={<NoteDetails/>}/>
-         <Route path="/note/:noteId/add/tag" element={<AttachTagToNote/>}/>
-         <Route path="/update/note/:noteId" element={<EditNote/>}/> 
-
-         <Route path="/create/mindmaps"  element={<CreateMindmap/>}/>
-         <Route path="/mindmap/:mindmapId" element={<MindmapDetails/>}/>
-         <Route path="/mindmap/:mindmapId/add/tag" element={<AttachTagToMindmap/>}/>        
-         <Route path="/update/mindmap/:mindmapId" element={<EditMindmap/>}/>
-
-         <Route path="/owned/decks" element={<OwnedDeckCollection/>}/>
-         <Route path="/liked/decks" element={<LikedDecksCollection/>}/>
-
-         <Route path="/owned/notes" element={<OwnedNotesCollection/>}/>
-         <Route path="/liked/notes" element={<LikedNotesColection/>}/>
-
-         <Route path="/owned/mindmaps" element={<OwnedMindmapCollection/>}/>
-         <Route path="/liked/mindmaps" element={<LikedMindmapsCollection/>}/>
-
-         <Route path="/search" element={<Search/>}/>
-          
-         <Route path="/welcome" element={<Dashboard/>}/>
+         <Route element={<AuthGuard/>}>
+                <Route path="/logout" element={<Logout/>}/>
+             
+                <Route path="/create" element={<CreateMenu/>}/>
+                <Route path="/create/decks" element={<CreateDeck/>}/>
+                <Route path="/create/flashcard" element={<CreateFlashcard/>}/>  
+                <Route path="/deck/:deckId/add/tag" element={<AttachTagToDeck/>}/>
+                <Route path="/deck/:deckId" element={<DeckDetails/>}/>
+                <Route path="/update/deck/:deckId" element={<EditDeck/>}/>    
+                <Route path='/deck/:deckId/search/flashcard'element={<SearchFlashcard/>}/>
+             
+                <Route path="/deck/:deckId/flashcard/:flashcardId" element={<FlashcardDetails/>}/>
+                <Route path="/update/flashcard/:flashcardId" element={<EditFlashcard/>}/>
+             
+                <Route path="/create/notes" element={<CreateNote/>}/>
+                <Route path="/note/:noteId" element={<NoteDetails/>}/>
+                <Route path="/note/:noteId/add/tag" element={<AttachTagToNote/>}/>
+                <Route path="/update/note/:noteId" element={<EditNote/>}/> 
+             
+                <Route path="/create/mindmaps"  element={<CreateMindmap/>}/>
+                <Route path="/mindmap/:mindmapId" element={<MindmapDetails/>}/>
+                <Route path="/mindmap/:mindmapId/add/tag" element={<AttachTagToMindmap/>}/>        
+                <Route path="/update/mindmap/:mindmapId" element={<EditMindmap/>}/>
+             
+                <Route path="/owned/decks" element={<OwnedDeckCollection/>}/>
+                <Route path="/liked/decks" element={<LikedDecksCollection/>}/>
+             
+                <Route path="/owned/notes" element={<OwnedNotesCollection/>}/>
+                <Route path="/liked/notes" element={<LikedNotesColection/>}/>
+             
+                <Route path="/owned/mindmaps" element={<OwnedMindmapCollection/>}/>
+                <Route path="/liked/mindmaps" element={<LikedMindmapsCollection/>}/>
+             
+                <Route path="/search" element={<Search/>}/>
+                 
+                <Route path="/welcome" element={<Dashboard/>}/>
+             
+         </Route>
 
          <Route path="*" element={<NotFound/>}/>
        </Routes>
