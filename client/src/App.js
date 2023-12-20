@@ -1,6 +1,12 @@
 import { Route,Routes } from "react-router-dom";
 import { ReactFlowProvider } from "reactflow";
 
+import { useState } from "react";
+
+import { useInterval } from "usehooks-ts";
+
+import useMusicAuth from "./hooks/useMusicAuth";
+
 import Navigation from "./components/navigationComponents/Navigation";
 import Login from "./components/authComponents/UserDeclarationComponents/LoginComponent/Login";
 import Register from "./components/authComponents/UserDeclarationComponents/RegisterComponent/Register"
@@ -40,9 +46,20 @@ import LikedNotesColection from "./components/entityComponents/EntityCollectionC
 import OwnedMindmapCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/OwnedMindmapCollection/OwnedMindmapCollection";
 import LikedMindmapsCollection from "./components/entityComponents/EntityCollectionComponents/MindmapCollections/LikedMindmapCollection/LikedMindmapCollection";
 import Search from "./components/entityComponents/SearchComponent/Search";
-import GuestGuard from "./components/Guards/GuestGuard";
-import AuthGuard from "./components/Guards/AuthGuard";
+import GuestGuard from "./components/guards/GuestGuard";
+import AuthGuard from "./components/guards/AuthGuard";
 function App() {
+
+  const [musicToken,getToken] = useMusicAuth({});
+
+  if(!musicToken.access_token){
+      getToken();
+  }
+  
+  useInterval(()=>{
+    getToken();
+   },3600000)
+
   return (
     <>
   <AuthProvider>
