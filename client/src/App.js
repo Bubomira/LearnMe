@@ -48,6 +48,7 @@ import LikedMindmapsCollection from "./components/entityComponents/EntityCollect
 import Search from "./components/entityComponents/SearchComponent/Search";
 import GuestGuard from "./components/guards/GuestGuard";
 import AuthGuard from "./components/guards/AuthGuard";
+import MusicDashboard from "./components/musicComponents/musicDashboarComponent/MusicDashboard";
 function App() {
 
   const [musicToken,getToken] = useMusicAuth({});
@@ -113,6 +114,8 @@ function App() {
                 <Route path="/search" element={<Search/>}/>
                  
                 <Route path="/welcome" element={<Dashboard/>}/>
+
+                <Route path="/playlists" element={<MusicDashboard/>}/>
              
          </Route>
 
