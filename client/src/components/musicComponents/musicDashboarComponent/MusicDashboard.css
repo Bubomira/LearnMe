@@ -1,0 +1,27 @@
+.playlist-section{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: center;
+}
+
+.playlist-section-header{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #EB5E55;
+    padding: 2em;
+    text-align: center;
+}
+
+.playlist-section-header h1{
+    font-size: 2.4em;
+    color: white;
+}
+
+.playlists-section-collection{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3em;
+   justify-content: center;
+   align-items: center;
+   margin: 0 0 3em 0;
+}

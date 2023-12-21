@@ -1,0 +1,45 @@
+.playlist-preview-card{
+    flex: 0 1 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.playlist-preview-card .playlist-preview-header img{
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.playlist-preview-card .playlist-preview-data{
+   background-color: white;
+   width: 80%;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   padding: 1em 0;
+}
+
+.playlist-preview-card .playlist-preview-data h3{
+    color: #EB5E55;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.playlist-details-btn{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #EB5E55;
+    border: none;
+    padding: 0.5em 3em;
+    border-radius: 1em;
+}
+
+.playlist-details-btn:hover{
+    transform: scale(1.2);
+}
+
+.playlist-details-btn a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3em;
+}
