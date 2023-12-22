@@ -86,8 +86,8 @@ section.playlist-tracks{
 }
 
 .current-track-info img{
-    width: 8%;
-    height: auto;
+    width: auto;
+    height: 4em;
     border-radius: 0.3em;
 }
 
