@@ -15,9 +15,15 @@ export default function useMusicAuth(defaultValue){
         })
     }
 
+    const cleanToken = ()=>{
+        localStorage.removeItem('musicToken')
+        setMusicToken({})
+    }
+
 
     return[
         musicToken,
-        getToken
+        getToken,
+        cleanToken
     ]
 }
