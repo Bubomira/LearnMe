@@ -41,6 +41,26 @@ export default function PlaylistDetailsCard(){
         });
     }
 
+    const playInQueue = ()=>{
+       let counter = 1;
+       let firstTrack =  detailedPlaylist.tracks?.items[0].track;
+       setCurrentTrack({
+        trackImg:firstTrack?.album?.images[0].url,
+        trackName:firstTrack?.name,
+        trackUrl:firstTrack?.preview_url
+    })
+        setInterval(()=>{
+            let track = detailedPlaylist.tracks?.items[counter].track;
+            console.log(counter)
+           setCurrentTrack({
+               trackImg:track?.album?.images[0].url,
+               trackName:track?.name,
+               trackUrl:track?.preview_url
+           })
+           counter++;
+        },30000)
+    }
+
     return (
         <article className="playlist-details-card">
             <header className="playlist-details-metadata">
@@ -48,7 +68,7 @@ export default function PlaylistDetailsCard(){
                 <section className="playlist-detailed-text">
                     <h2 className="playlist-detailed-name">{detailedPlaylist?.name}</h2>
                     <p className="playlist-detailed-description">{detailedPlaylist?.description}</p>
-                    <button className='play-btn'><FontAwesomeIcon icon={faPlay}/><span>Play</span></button>
+                    <button onClick={playInQueue} className='play-btn'><FontAwesomeIcon icon={faPlay}/><span>Play</span></button>
                 </section>
                 
             </header>
