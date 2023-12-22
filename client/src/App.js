@@ -49,9 +49,10 @@ import Search from "./components/entityComponents/SearchComponent/Search";
 import GuestGuard from "./components/guards/GuestGuard";
 import AuthGuard from "./components/guards/AuthGuard";
 import MusicDashboard from "./components/musicComponents/musicDashboarComponent/MusicDashboard";
+import PlaylistDetailsCard from "./components/musicComponents/PlaylistDetailsCardComponent/PlaylistDetailsCard";
 function App() {
 
-  const [musicToken,getToken] = useMusicAuth({});
+  const [musicToken,getToken,cleanToken] = useMusicAuth({});
 
   if(!musicToken.access_token){
       getToken();
@@ -59,7 +60,7 @@ function App() {
   
   useInterval(()=>{
     getToken();
-   },3600000)
+   },36000)
 
   return (
     <>
@@ -116,6 +117,8 @@ function App() {
                 <Route path="/welcome" element={<Dashboard/>}/>
 
                 <Route path="/playlists" element={<MusicDashboard/>}/>
+
+                <Route path="/playlist/:playlistId" element={<PlaylistDetailsCard/>}/>
              
          </Route>
 
