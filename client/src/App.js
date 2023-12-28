@@ -50,17 +50,11 @@ import GuestGuard from "./components/guards/GuestGuard";
 import AuthGuard from "./components/guards/AuthGuard";
 import MusicDashboard from "./components/musicComponents/musicDashboarComponent/MusicDashboard";
 import PlaylistDetailsCard from "./components/musicComponents/PlaylistDetailsCardComponent/PlaylistDetailsCard";
+
+import Agenda from "./components/agendaComponents/Agenda";
+
 function App() {
 
-  const [musicToken,getToken,cleanToken] = useMusicAuth({});
-
-  if(!musicToken.access_token){
-      getToken();
-  }
-  
-  useInterval(()=>{
-    getToken();
-   },36000)
 
   return (
     <>
@@ -73,8 +67,8 @@ function App() {
             <DiagramProvider>
        <Routes>
 
+         <Route path="/" element={<LandingPage/>}/>
          <Route element={<GuestGuard/>}>
-               <Route path="/" element={<LandingPage/>}/>
                <Route path="/login" element={<Login/>}/>
                <Route path="/register" element={<Register/>}/>
          </Route>
@@ -119,6 +113,8 @@ function App() {
                 <Route path="/playlists" element={<MusicDashboard/>}/>
 
                 <Route path="/playlist/:playlistId" element={<PlaylistDetailsCard/>}/>
+
+                <Route path="/agenda" element={<Agenda/>}/>
              
          </Route>
 

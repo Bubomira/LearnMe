@@ -8,16 +8,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { useParams,useNavigate } from 'react-router-dom'
 
-import { getPlaylistDetails, getTrackFullInfo } from '../../../services/musicServices'
+import { getPlaylistDetails } from '../../../services/musicServices'
 import PlaylistTrackComponent from './PlaylistTrackComponent/PlaylistTrack';
 
+import useMusicAuth from '../../../hooks/useMusicAuth'
+import { useInterval } from 'usehooks-ts'
+
 export default function PlaylistDetailsCard(){
+
+    let [timer,setTimer] = useState(0);
 
     let [currentTrack,setCurrentTrack] = useState({
         trackUrl:'',
         trackName:'',
         trackImg:''
     });
+
+    const [getToken] = useMusicAuth({});
 
     let [detailedPlaylist,setDetailedPlaylist] = useState();
 
@@ -26,12 +33,23 @@ export default function PlaylistDetailsCard(){
     const {playlistId} = useParams();
 
     useEffect(()=>{
-        getPlaylistDetails(playlistId).then(playlist=>{
-            setDetailedPlaylist(playlist)
-        }).catch(err=>{
-            navigate('/404')
+        getToken().then(()=>{
+            getPlaylistDetails(playlistId).then(playlist=>{
+                setDetailedPlaylist(playlist)
+            }).catch(err=>{
+                navigate('/404')
+            })
         })
-    },[])
+        },[])
+
+    useInterval(()=>{
+        setTimer(oldValue=>oldValue+=1)
+    },3000000)
+
+    useEffect(()=>{
+         getToken();
+    },[timer])
+
 
     const playFromChild = (e,trackUrl,trackName,trackImg)=>{    
         setCurrentTrack({
@@ -51,7 +69,6 @@ export default function PlaylistDetailsCard(){
     })
         setInterval(()=>{
             let track = detailedPlaylist.tracks?.items[counter].track;
-            console.log(counter)
            setCurrentTrack({
                trackImg:track?.album?.images[0].url,
                trackName:track?.name,
@@ -84,7 +101,7 @@ export default function PlaylistDetailsCard(){
                :
                <p className='no-track-chosen'>Preview a track by clicking on its icon!</p>
                 }
-               <audio autoPlay src={currentTrack?.trackUrl}></audio>
+               <audio autoPlay  src={currentTrack?.trackUrl}></audio>
            
             </section>
         </article>

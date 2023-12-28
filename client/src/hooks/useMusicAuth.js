@@ -8,22 +8,16 @@ export default function useMusicAuth(defaultValue){
         return localStorageData? JSON.parse(localStorageData) : defaultValue
     });
 
-    const getToken=()=>{
+    const getToken=async()=>{
         getAccessToken().then(token=>{
             setMusicToken(token);
             localStorage.setItem('musicToken',JSON.stringify(token));
         })
     }
 
-    const cleanToken = ()=>{
-        localStorage.removeItem('musicToken')
-        setMusicToken({})
-    }
 
 
-    return[
-        musicToken,
-        getToken,
-        cleanToken
+    return[       
+        getToken
     ]
 }
