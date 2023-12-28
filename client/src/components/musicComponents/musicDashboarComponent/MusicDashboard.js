@@ -4,16 +4,20 @@ import { useEffect,useState } from "react";
 import { getPlaylists } from "../../../services/musicServices";
 import PlaylistPreviewCard from './PlaylistPreviewCardComponent/PlaylistPreviewCard';
 
+import useMusicAuth from '../../../hooks/useMusicAuth';
+
 export default function MusicDashboard(){
 
     let [studyPlaylists,setStudyPlaylists] = useState([]);
 
-    useEffect(()=>{
-        getPlaylists().then(playlists=>{
-            setStudyPlaylists(playlists.items)
-            console.log(playlists)
-        })
+    const [getToken] = useMusicAuth({});
 
+    useEffect(()=>{
+        getToken().then(()=>{
+            getPlaylists().then(playlists=>{
+                setStudyPlaylists(playlists?.items)
+            })
+        })
     },[])
 
   return(
