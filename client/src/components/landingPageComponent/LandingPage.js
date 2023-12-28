@@ -10,14 +10,25 @@ import girl from '../../static/img/bannerGirl.jpg'
 import { Link } from 'react-router-dom'
 import './LandingPage.css'
 
+import { useContext } from 'react'
+
+import { AuthContext } from '../../contexts/AuthContext'
+
 export default function LandingPage(){
+
+   const {user} = useContext(AuthContext)
     return(<>
        <div className="banner">
         <img src={girl} ></img>
         <section className='content'>
           <h1>LEARN ME</h1>
           <h3>The best way to learn effectively!</h3>
-          <button className='banner-button'><Link to='/register'>Explore</Link></button>
+          <button className='banner-button'>
+            <Link 
+            to={user?
+            '/welcome' :'/register'}>Explore
+            </Link>
+            </button>
         </section>
        </div>
 
