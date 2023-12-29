@@ -1,12 +1,6 @@
 import { Route,Routes } from "react-router-dom";
 import { ReactFlowProvider } from "reactflow";
 
-import { useState } from "react";
-
-import { useInterval } from "usehooks-ts";
-
-import useMusicAuth from "./hooks/useMusicAuth";
-
 import Navigation from "./components/navigationComponents/Navigation";
 import Login from "./components/authComponents/UserDeclarationComponents/LoginComponent/Login";
 import Register from "./components/authComponents/UserDeclarationComponents/RegisterComponent/Register"
