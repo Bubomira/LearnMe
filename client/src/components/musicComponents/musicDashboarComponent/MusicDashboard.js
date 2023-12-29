@@ -26,7 +26,12 @@ export default function MusicDashboard(){
             <h1>Study playlists to help you concertrate!</h1>
         </header>
         <main className="playlists-section-collection">
-            {studyPlaylists.map(playlist=><PlaylistPreviewCard playlist={playlist} key={playlist.id}/>)}
+            {
+            studyPlaylists.length>0?
+            studyPlaylists.map(playlist=><PlaylistPreviewCard playlist={playlist} key={playlist.id}/>)
+            :
+            <></>
+            }
         </main>
     </section>
   )
