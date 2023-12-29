@@ -50,6 +50,8 @@ builder.Services.AddScoped<IMindmapRepository, MindmapRepository>();
 builder.Services.AddScoped<IMindmapTagRepository, MindmapTagRepository>();
 builder.Services.AddScoped<IMindmapUserRepository, MindmapUserRepository>();
 
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+
 
 
 builder.Services.AddDbContext<LearnMeDbContext>(options =>

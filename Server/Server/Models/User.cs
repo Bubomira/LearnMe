@@ -18,6 +18,8 @@ namespace Server.Models
         [Required]
         public string PasswordHash { get; set; }
 
+        public string? EventsJSON { get; set; }
+
         public ICollection<Deck> OwnedDecks { get; set; } = new List<Deck>();
 
         public ICollection<Note> OwnedNotes { get; set; } = new List<Note>();
