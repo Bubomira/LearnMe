@@ -1,15 +1,16 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:DefaultCoonection"
-    },
     "apis1": {
       "type": "apis"
     },
     "mssql2": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:DefaultCoonection"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultCoonection",
+      "dynamicId": null
     }
   }
 }
