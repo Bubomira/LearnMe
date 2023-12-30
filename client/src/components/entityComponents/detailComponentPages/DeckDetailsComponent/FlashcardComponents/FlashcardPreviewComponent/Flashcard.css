@@ -1,10 +1,8 @@
 .flashcard-preview-wrapper{
     background: none;  
-    background-color: #877fa3;
+    background-color: #EB5E55;
     border-radius: 0.4em;
-    display: flex;
-    text-align: justify;
-    max-width: 35%; 
+    padding: 0.4em 1em;
 }
 
 .flashcard-content{
@@ -32,12 +30,13 @@
 }
 
 .remove-flashcard{
+    text-align: right;
     color: #EEEBD0;
     text-decoration: none;
     font-size: 1.7em;
     align-self: flex-start;
     margin: 0;
-    padding-right: 0.4em;
+    width: 100%;
     padding-top: 0.1em;
 }
 
@@ -46,7 +45,8 @@
 }
 
 .add-flashcard-to-deck-icon{
-    color: #eeebd09f;
-    padding: 1em;
+    color: #eeebd0;
     font-size: 1.2em;
+    text-align: right;
+    margin: 0;
 }

@@ -3,7 +3,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 4em;
     align-items: center;
-    gap: 1em;
+    gap: 2em;
     margin: 4em 0;
     display: flex;
     align-items: center;
@@ -14,6 +14,8 @@
 .deck-details-header h2{
     font-size: 3em;
     font-weight: 700;
+    text-align: center;
+    margin: 0;
     letter-spacing: 0.1em;
     color: #2D3142;
     padding: 0;
@@ -22,6 +24,8 @@
 .deck-name-info{
    display: flex;
    align-items: center;
+   flex-wrap: wrap;
+   justify-content: center;
    gap: 1em;
 }
 .flashcards{
