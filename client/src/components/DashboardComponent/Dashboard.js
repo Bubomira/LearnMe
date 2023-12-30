@@ -1,7 +1,5 @@
 import './Dashboard.css'
 
-import welcome from './../../static/img/welcome.jpg'
-
 import { Link } from 'react-router-dom'
 
 import { useContext } from 'react'

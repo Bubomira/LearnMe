@@ -84,7 +84,7 @@
     max-width: 6em;    
 }
 .play-btn:hover{
-    transform: scale(1.2);
+    background-color: #3a505a;
 }
 
 section.playlist-tracks{
