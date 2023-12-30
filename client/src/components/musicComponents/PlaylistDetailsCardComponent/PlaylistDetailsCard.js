@@ -13,6 +13,9 @@ import PlaylistTrackComponent from './PlaylistTrackComponent/PlaylistTrack';
 
 import useMusicAuth from '../../../hooks/useMusicAuth'
 import { useInterval } from 'usehooks-ts'
+import useLoader from '../../../hooks/useLoader'
+
+import Loader from '../../loader/Loader'
 
 export default function PlaylistDetailsCard(){
 
@@ -23,6 +26,8 @@ export default function PlaylistDetailsCard(){
         trackName:'',
         trackImg:''
     });
+
+    let [loader,setLoader] = useLoader();
 
     const [getToken] = useMusicAuth({});
 
@@ -36,6 +41,7 @@ export default function PlaylistDetailsCard(){
         getToken().then(()=>{
             getPlaylistDetails(playlistId).then(playlist=>{
                 setDetailedPlaylist(playlist)
+                setLoader(true)
             }).catch(err=>{
                 navigate('/404')
             })
@@ -79,6 +85,9 @@ export default function PlaylistDetailsCard(){
     }
 
     return (
+        !loader?
+        <Loader/>
+        :
         <article className="playlist-details-card">
             <header className="playlist-details-metadata">
                 <img src={detailedPlaylist?.images[0].url} alt="" />

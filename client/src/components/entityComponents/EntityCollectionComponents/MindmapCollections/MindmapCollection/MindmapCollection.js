@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 
 import MindmapPreviewCard from "../../../PreviewCardComponent/MindmapPreviewCard/MindmapPreviewCard"
+import Loader from '../../../../loader/Loader'
 
-export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSearched}){
+export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSearched,loader}){
 
     return(
         <div className="collection-wrapper">
@@ -20,6 +21,9 @@ export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSea
                     }
                   </h1>
             </header>
+            {!loader?
+            <Loader/>
+            :
             <main className="collection">
                 {mindmaps?.length>0?
                  mindmaps.map(mindmap=><MindmapPreviewCard mindmap={mindmap} key={mindmap.id}></MindmapPreviewCard>)
@@ -33,7 +37,7 @@ export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSea
                  <></>
                 }
             </main>
-
+            }
         </div>
     )
 

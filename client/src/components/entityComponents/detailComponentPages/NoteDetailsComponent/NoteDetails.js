@@ -10,10 +10,12 @@ import { getNoteDetails } from '../../../../services/entityService/noteService/n
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons';
 import TagSection from '../TagDetailsComponent/TagSectionComponent/TagSection';
+import Loader from '../../../loader/Loader';
 
 import { deleteNote } from '../../../../services/entityService/noteService/noteService';
 import { likeNote,dislikeNote } from '../../../../services/entityService/noteService/noteUserService';
 import { detachTagFromNote } from '../../../../services/entityService/noteService/noteAdditionalService';
+import useLoader from '../../../../hooks/useLoader';
 
 export default function NoteDetails(){
     const navigate = useNavigate();
@@ -21,10 +23,12 @@ export default function NoteDetails(){
 
     const {note,setNoteDetailed,detachTagFromNoteState} = useContext(NoteContext);
 
+    let [loader,setLoader] = useLoader();
 
     useEffect(()=>{
         getNoteDetails(noteId).then(noteDetailed=>{
             setNoteDetailed(noteDetailed);
+            setLoader(true)
         }).catch(err=>{
               navigate('/404')
         })
@@ -66,6 +70,9 @@ export default function NoteDetails(){
     }
  
     return(
+        !loader?
+        <Loader/>
+        :
         <section className="note-details">
          <header className="note-header-info">
             <section className="note-name-info">

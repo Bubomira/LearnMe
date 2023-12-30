@@ -36,12 +36,6 @@ export default function Flashcard({flashcard,isSearch}){
 
     return(
          <article className="flashcard-preview-wrapper flashcard-wrap-final">
-            <section className='flashcard-content'>
-                <h3>
-                  <Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>
-                    {flashcard.definition}{' :'}</Link></h3>
-                <h5>{flashcard.explanation}</h5>
-            </section>
             {flashcard.isOwnedByUser && !isSearch?
              <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>
              :
@@ -52,6 +46,12 @@ export default function Flashcard({flashcard,isSearch}){
             :
             <></>
             }
+            <section className='flashcard-content'>
+                <h3>
+                  <Link to={`/deck/${deck.id}/flashcard/${flashcard.id}`}>
+                    {flashcard.definition}{' :'}</Link></h3>
+                <h5>{flashcard.explanation}</h5>
+            </section>
          </article>
     )
 } 

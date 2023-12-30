@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MindmapCollection from "../MindmapCollection/MindmapCollection";
 
 import { getLikedMindmaps } from "../../../../../services/entityService/mindmapService/mindmapUserService";
+import useLoader from "../../../../../hooks/useLoader";
 
 export default function LikedMindmapsCollection(){
 
@@ -12,9 +13,12 @@ export default function LikedMindmapsCollection(){
 
     let [likedMindmaps,setLikedMindmaps] = useState([]);
 
+    let [loader,setLoader] = useLoader();
+
     useEffect(()=>{
         getLikedMindmaps().then(mindmaps=>{
             setLikedMindmaps(mindmaps)
+            setLoader(true);
         }).catch(err=>{
             navigate('/404')
         })
@@ -22,5 +26,5 @@ export default function LikedMindmapsCollection(){
 
   
     
-    return <MindmapCollection mindmaps={likedMindmaps} areOwned={false}/>
+    return <MindmapCollection mindmaps={likedMindmaps} areOwned={false} loader={loader}/>
 }

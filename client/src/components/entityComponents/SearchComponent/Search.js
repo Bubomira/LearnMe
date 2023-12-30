@@ -14,6 +14,7 @@ import * as searchEngine from '../../../services/entityService/searchService'
 import MindmapCollection from '../EntityCollectionComponents/MindmapCollections/MindmapCollection/MindmapCollection';
 import NoteCollection from '../EntityCollectionComponents/NoteCollections/NoteCollection/NoteCollection';
 import DeckCollection from '../EntityCollectionComponents/DeckCollections/DeckCollection/DeckCollection';
+import useLoader from '../../../hooks/useLoader';
 
 export default function Search(){
 
@@ -22,6 +23,8 @@ export default function Search(){
     let [collection,setCollection] = useState([]);
 
     let [isSearched,setIsSearched] = useState(false);
+
+    let [loader,setLoader] = useLoader();
 
     let [values,setValues] = useChangeInput({
         searchString:'',
@@ -35,36 +38,48 @@ export default function Search(){
     },[values.entityType,values.searchType,isSearched])
 
     const onSearchHandler=(e)=>{
+        e.preventDefault();
         setIsSearched(true)
         setCollection([]);
-         e.preventDefault();
+        if(loader){
+          setLoader(false);
+        }
+        console.log('before search'+loader)
          try {
             switch (values.entityType) {
                 case 'mindmaps':
                      values.searchType=='name'?
                      searchEngine.searchMindmapsByName(values.searchString).then(mindmaps=>{
                         setCollection(mindmaps)
+                        setLoader(true);
                      }):
                      searchEngine.searchMindmapsByTag(values.searchString).then(mindmaps=>{
                         setCollection(mindmaps)
+                        setLoader(true);
                     })      
                     break;
                 case 'notes':
                     values.searchType=='name'?
                     searchEngine.searchNotesByName(values.searchString).then(notes=>{
                        setCollection(notes)
+                       setLoader(true);
                     }) :
                     searchEngine.searchNotesByTag(values.searchString).then(notes=>{
                        setCollection(notes)
+                       setLoader(true);
                    }) 
+                break;
                    case 'decks':
                     values.searchType=='name'?
                     searchEngine.searchDecksByName(values.searchString).then(decks=>{
                        setCollection(decks)
+                       setLoader(true);
                     }) :
                     searchEngine.searchDecksByTag(values.searchString).then(decks=>{
                        setCollection(decks)
-                   })              
+                       setLoader(true);
+                   })   
+                   break;           
             }                 
          } catch (error) {
             navigate('/404')
@@ -103,11 +118,12 @@ export default function Search(){
             <section className='content-display'>
                 {
                 values.entityType=='mindmaps'?
-                <MindmapCollection neededMessage={true} isSearched={isSearched} mindmaps={collection}/>
+                <MindmapCollection neededMessage={true} isSearched={isSearched} mindmaps={collection} loader={loader}/>
                 :
                  values.entityType=='notes'?
-                 <NoteCollection neededMessage={true} isSearched={isSearched}  notes={collection}/>:
-                 <DeckCollection neededMessage={true} isSearched={isSearched}  decks={collection}/>            
+                 <NoteCollection neededMessage={true} isSearched={isSearched}  notes={collection} loader={loader}/>:
+                 <DeckCollection neededMessage={true} isSearched={isSearched}  decks={collection} loader={loader}/>     
+                    
                 }
             </section>
         </section>

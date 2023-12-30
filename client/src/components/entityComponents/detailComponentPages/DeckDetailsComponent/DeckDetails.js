@@ -15,16 +15,21 @@ import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons
 import Flashcard from './FlashcardComponents/FlashcardPreviewComponent/Flashcard';
 import { dislikeDeck, likeDeck } from '../../../../services/entityService/deckService/deckUserService';
 import { detachTagFromDeck } from '../../../../services/entityService/deckService/deckAditionalService';
+import useLoader from '../../../../hooks/useLoader';
+import Loader from '../../../loader/Loader';
 
 export default function DeckDetails(){
     const navigate = useNavigate();
     const {deckId} = useParams();
+
+    let [loader,setLoader]=useLoader();
     
     const {deck,setDeckDetailed,detachTagFromDeckState} = useContext(DeckContext);
 
     useEffect(()=>{
         getDeck(deckId).then(deckDetailed=>{
             setDeckDetailed(deckDetailed)
+            setLoader(true)
         }).catch(err=>{
             navigate('/404')
         })
@@ -64,7 +69,11 @@ export default function DeckDetails(){
      }
     return(
     <section>
-        <section className='deck-details-header'>
+        {!loader?
+        <Loader/>
+        :
+        <>
+         <section className='deck-details-header'>
             <section className='deck-name-info'>
               <h2>{deck.name}</h2>
                {deck.isOwnedByUser?
@@ -82,6 +91,7 @@ export default function DeckDetails(){
         <section className="flashcards">
             {deck.flashcards?.map(x=><Flashcard flashcard={x} key={x.id}/>)}
         </section>
+        {deck.isOwnedByUser?
         <section className='flashcard-buttons'>
                 <button className="flashcards-button ">
                       <Link to='/create/flashcard'>
@@ -94,6 +104,11 @@ export default function DeckDetails(){
                     </Link>
                 </button> 
         </section>
+        :
+        <></>
+        }
+        </>
+        }
     </section>              
 
     )

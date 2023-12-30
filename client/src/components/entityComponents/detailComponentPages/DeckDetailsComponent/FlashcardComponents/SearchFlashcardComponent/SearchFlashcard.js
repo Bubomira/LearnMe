@@ -12,10 +12,16 @@ import { useState } from "react";
 
 import { searchFlashcards } from '../../../../../../services/entityService/flashcardServices';
 import Flashcard from '../FlashcardPreviewComponent/Flashcard';
+import useLoader from '../../../../../../hooks/useLoader';
+import Loader from '../../../../../loader/Loader';
 
 export default function SearchFlashcard(){
     const navigate = useNavigate();
     const {deckId} =useParams();
+
+    let [loader,setLoader] = useLoader();
+
+    let [isSearched,setIsSearched] = useState(false)
 
     const [flashcards,setFlashcards] = useState([]);
 
@@ -24,8 +30,11 @@ export default function SearchFlashcard(){
     });
      const onSearchFlashcard = (e)=>{
          e.preventDefault();
+         setIsSearched(true)
+         setLoader(false)
         searchFlashcards(values.flashcardName).then(flashcards=>{
             setFlashcards(flashcards);
+            setLoader(true)
         }).catch(err=>{
             navigate('/404')
         })
@@ -44,6 +53,11 @@ export default function SearchFlashcard(){
                     <FontAwesomeIcon icon={faSearch}/>
                 </button>
                </form>
+               {!isSearched?
+               <></>
+               :!loader?
+               <Loader/>
+               :
               <section className='flashcards-holder'>
                 {flashcards?.length ==0?
                 <h2 className='no-flashcards-message'>No flashcards found...</h2>:
@@ -52,6 +66,7 @@ export default function SearchFlashcard(){
                 )
                 }
               </section>
+               }
         </section>
     )
    

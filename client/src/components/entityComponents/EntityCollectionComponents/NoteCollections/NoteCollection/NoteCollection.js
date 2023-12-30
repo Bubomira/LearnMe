@@ -7,8 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 
 import NotePreviewCard from '../../../PreviewCardComponent/NotePreviewCard/NotePreviewCard'
+import Loader from '../../../../loader/Loader'
 
-export default function NoteCollection({notes,areOwned,neededMessage,isSearched}){
+export default function NoteCollection({notes,areOwned,neededMessage,isSearched,loader}){
 
     return(
         <section className="note-collection-wrapper">
@@ -21,7 +22,10 @@ export default function NoteCollection({notes,areOwned,neededMessage,isSearched}
                    'These are the notes you have liked:'
                }
             </h1>
-            </header>            
+            </header>        
+            {!loader?
+            <Loader/>
+            :
             <section className="collection note-collection">
                 {notes?.length>0 ?
                    notes.map(note=><NotePreviewCard key={note?.id} note={note}/>):
@@ -34,6 +38,7 @@ export default function NoteCollection({notes,areOwned,neededMessage,isSearched}
                  <></>
                 }
             </section>
+            }    
         </section>
     )
 }

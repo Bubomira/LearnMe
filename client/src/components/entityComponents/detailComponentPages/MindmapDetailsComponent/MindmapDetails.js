@@ -11,6 +11,8 @@ import { useEffect,useContext } from "react"
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import useLoader from '../../../../hooks/useLoader';
+
 import { nodeTypes,edgeTypes } from '../../../../utils/mindmapTypes';
 
 import { MindmapContext } from '../../../../contexts/entityContexts/MindmapContext';
@@ -24,6 +26,7 @@ import { getMindmapDetails,deleteMindmap,saveMindmap } from '../../../../service
 import TagSection from "../TagDetailsComponent/TagSectionComponent/TagSection";
 import OwnerButtons from '../../ButtonComponents/OwnerButtonsComponent/OwnerButtons';
 import LikeButtons from '../../ButtonComponents/LikeButtonsComponent/LikeButtons';
+import Loader from '../../../loader/Loader';
 import { detachTagFromMindmap } from '../../../../services/entityService/mindmapService/mindmapAdditionalService';
 
 export default function MindmapDetails(){
@@ -31,6 +34,8 @@ export default function MindmapDetails(){
     let navigate = useNavigate();
     
     let {mindmapId} =useParams();
+
+    let [loader,setLoader] = useLoader()
 
     let {mindmap,setMindmapDetailed,detachTagFromMindmapState} = useContext(MindmapContext); 
 
@@ -47,6 +52,7 @@ export default function MindmapDetails(){
                const diagram = JSON.parse(mindmapDetailed.jsonDiagram);
                onLoadFromDatabase(diagram.nodes,diagram.edges)
            }
+           setLoader(true)
        }).catch(err=>{
         navigate('/404')
        })
@@ -102,6 +108,9 @@ const detachTagFromMindmapHandler = (tagId)=>{
   }
 
     return(
+        !loader?
+        <Loader/>
+        :
       <section className="mindmap-details">
          <header className="mindmap-header">
         <section className="mindmap-name-info">

@@ -14,10 +14,14 @@ import { deleteFlashcard, getFlashcardDetails } from '../../../../../../services
 
 import OwnerButtons from '../../../../ButtonComponents/OwnerButtonsComponent/OwnerButtons'
 import { getDeck } from '../../../../../../services/entityService/deckService/deckServices'
+import useLoader from '../../../../../../hooks/useLoader'
+import Loader from '../../../../../loader/Loader'
 
 export default function FlashcardDetails(){
     const navigate = useNavigate();
     let {deckId,flashcardId} = useParams();
+
+    let [loader,setLoader] = useLoader();
 
     const {deck,setDeckDetailed} = useContext(DeckContext);
     const {user} = useContext(AuthContext);
@@ -33,6 +37,7 @@ export default function FlashcardDetails(){
     useEffect(()=>{
         getFlashcardDetails(flashcardId).then(flashcard=>{
               setFlashcard(flashcard);
+              setLoader(true)
         }).catch(err=>{
             navigate('/404')
         })
@@ -76,6 +81,9 @@ export default function FlashcardDetails(){
   }
 
    return(
+    !loader?
+        <Loader/>
+        :
     <section className='flashcard-details-wrapper'>
         {deck.flashcards?.findIndex(f=>f.id==flashcardId)>0?
         <p onClick={goBack}><FontAwesomeIcon icon={faAngleLeft}/></p> 
@@ -98,5 +106,6 @@ export default function FlashcardDetails(){
         }
        
     </section>
+    
    )
 }
