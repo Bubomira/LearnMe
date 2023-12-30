@@ -26,8 +26,9 @@ export default function CreateMindmap(){
     }
 
     return(
+        <section className="site-wrapper">
         <section className="create-wrapper">
-        <img width={'50%'}  src={mindmap} alt="decks" />
+        <img width={'40%'}  src={mindmap} alt="decks" />
         <section className="create-form-holder">
             <h2>Create Mindmap</h2>
             <form className="create-form" onSubmit={onSubmitHandler} >
@@ -49,6 +50,7 @@ export default function CreateMindmap(){
                 />
                 <button className='creates-btn' type="submit">Submit</button>
             </form>
+        </section>
         </section>
         </section>
     )

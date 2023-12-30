@@ -1,15 +1,18 @@
+.site-wrapper{
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
 .create-wrapper{
     gap: 1.5em;
     display: flex;
     background-color: #ffffffd8;
-    min-width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
     border-radius: 1em;
     justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    align-items: center;
+    flex-wrap: wrap
 }
 
 .create-wrapper img{

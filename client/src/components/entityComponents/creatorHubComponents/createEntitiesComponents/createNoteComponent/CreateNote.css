@@ -1,9 +1,14 @@
 .create-note{
     width: 80%;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 3em;
-    gap: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1em;
+
+}
+
+.create-note-form img{
+    height: auto;
 }
 
 

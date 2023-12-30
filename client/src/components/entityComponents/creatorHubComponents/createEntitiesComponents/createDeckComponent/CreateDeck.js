@@ -27,8 +27,9 @@ export default function CreateDeck(){
      }
 
      return(
+      <section className="site-wrapper">
        <div className="create-wrapper">
-        <img width='50%' src={flashcards} alt="decks" />
+        <img width={'50%'} src={flashcards} alt="decks" />
         <section className="create-form-holder">
             <h2>Create Deck</h2>
             <form className="create-form" onSubmit={onSubmitHandler}>
@@ -52,5 +53,6 @@ export default function CreateDeck(){
             </form>
         </section>
        </div>
+      </section>
      )
 }

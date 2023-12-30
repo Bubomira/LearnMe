@@ -32,6 +32,7 @@ export default function CreateFlashcard(){
 
     }
     return(
+        <section className="site-wrapper">
         <section className="create-wrapper">
         <img width={'50%'}  src={flashcards} alt="decks" />
         <section className="create-form-holder">
@@ -55,6 +56,7 @@ export default function CreateFlashcard(){
                 />
                 <button className='creates-btn' type="submit">Submit</button>
             </form>
+        </section>
         </section>
         </section>
     )

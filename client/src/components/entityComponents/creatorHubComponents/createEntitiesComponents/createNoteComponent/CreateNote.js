@@ -37,8 +37,9 @@ export default function CreateNote(){
          }
     }
     return(
+        <section className="site-wrapper">
         <div className="create-wrapper create-note">
-        <img width='50%' src={notes} alt="decks" />
+        <img width='30%' src={notes} alt="decks" />
         <section className="create-form-holder  create-note-form-holder">
             <h2>Create Note</h2>
             <form className="create-form create-note-form" onSubmit={onSubmit}>
@@ -102,5 +103,6 @@ export default function CreateNote(){
             </form>
         </section>
        </div>
+       </section>
      )
 }

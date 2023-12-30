@@ -9,6 +9,7 @@ export default function CreateTag({attachTagHandler}){
     })
 
     return(
+        <section className="site-wrapper">
         <section className='create-wrapper create-tags'>
         <section className="create-form-holder">
         <h2>Attach Tag</h2>
@@ -27,5 +28,6 @@ export default function CreateTag({attachTagHandler}){
         </form>
         </section>
         </section>
+    </section>
     )
 }
