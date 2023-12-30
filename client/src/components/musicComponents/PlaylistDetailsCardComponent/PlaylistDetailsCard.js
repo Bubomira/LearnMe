@@ -90,7 +90,7 @@ export default function PlaylistDetailsCard(){
                 
             </header>
             <section className='playlist-tracks'>
-                    {detailedPlaylist?.tracks?.items.map(item=><PlaylistTrackComponent onClickImg={playFromChild} track={item?.track} key={item?.track.id} />)}
+                    {detailedPlaylist?.tracks?.items.filter(item=>item?.track.preview_url!=null).map(item=><PlaylistTrackComponent onClickImg={playFromChild} track={item?.track} key={item?.track.id} />)}
             </section>
             <section className="play">
                 {currentTrack.trackName!=''?

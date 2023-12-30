@@ -4,6 +4,8 @@
     justify-content: space-between;
     background-color: rgba(255, 255, 255, 0.5);
     color: #28363d;
+    gap: 0.3em;
+    flex-wrap: wrap;
     padding: 0.5em 1em;
     align-items: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -21,20 +23,20 @@
     gap: 1em;
     font-weight: 400;
     text-align: left;
-    flex: 0 1 40%;
+    flex: 1 1 65%;
 }
 
 .track-info .heading-track img{
     border-radius: 0.74em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 15%;
+   width: 10%;
+   flex: 0 1 10%;
+}
 
+.track-info .heading-track h4{
+    flex: 0 1 70%;
 }
 
 .track-artist{
-    flex: 0 1 30%;
-}
-
-.track-duration{
     flex: 0 1 30%;
 }

@@ -7,11 +7,13 @@
     padding: 2em;
     background-color: white;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .banner img{
-    width: 35%;
+    width: 90%;
     height: auto;
+    flex: 0 1 40%;
    
 }
 

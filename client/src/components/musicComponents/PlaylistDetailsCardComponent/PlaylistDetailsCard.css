@@ -1,3 +1,29 @@
+@media screen and (max-width:957px){
+    .playlist-details-metadata{
+        flex-direction: column;
+    }
+
+    .playlist-details-metadata img{
+        width: 70%;
+    }
+
+    .playlist-details-metadata .playlist-detailed-text{
+       text-align: center;
+    }
+
+    .play-btn{
+        align-self: center;
+    }
+
+    .playlist-detailed-text{
+        padding-bottom: 1.5em ;
+    }
+    .playlist-details-metadata{
+        padding-top: 1.5em;
+    }
+    
+}
+
 .playlist-details-card{
     display: flex;
     flex-direction: column;
@@ -9,23 +35,27 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6em;
+    width: 100%;
     align-items: center;
+    justify-content: flex-start;
     margin: 2em 0;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    
 }
 
 .playlist-details-metadata img{
-    width: 30%;
+    min-width: 30%;
+    flex: 0 1 30%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .playlist-details-metadata .playlist-detailed-text{
-      flex: 0 1 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5em;
 }
 
 .playlist-details-metadata .playlist-detailed-text h2{
@@ -51,7 +81,7 @@
     padding: 0.5em 1em;
     border-radius: 1em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    align-self: flex-start;
+    max-width: 6em;    
 }
 .play-btn:hover{
     transform: scale(1.2);

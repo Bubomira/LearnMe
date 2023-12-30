@@ -17,8 +17,10 @@ export default function Dashboard(){
 
     return(
         <section className="dashboard-wrapper">
+            <section className="dashboard-content">
+                    <h1>Hello, {user?.username}!</h1>        
+            </section>
             <aside className="dashboard-aside">
-               <h2>Your saved collections</h2>
                <section className='owned-items'>
                   <h4>Owned by me:</h4>
                   <ul className="dashboard-owned-link-list">
@@ -59,15 +61,8 @@ export default function Dashboard(){
                        </li>
                     </ul>
                </section>
-            </aside>
-            <section className="dashboard-content">
-                <section className="dashboard-greeting">
-                    <article className='dashboard-wish'>
-                        <div>
-                             <h1>Hello, {user?.username}!</h1>         
-                        </div>
-                        <div className="suggestion">
-                            <h5>To help you with studying:</h5>
+               <section className='suggestion-collection'>
+                            <h4>To help you with studying:</h4>
                             <ul className="suggestions-list">
                                 <li>
                                     <Link to={'/search'}>
@@ -76,7 +71,7 @@ export default function Dashboard(){
                                 </li>
                                 <li>
                                     <Link to={'/agenda'}>
-                                          <FontAwesomeIcon icon={faCalendar}/>Agenda
+                                <FontAwesomeIcon icon={faCalendar} />Agenda
                                     </Link>
                                 </li>
                                 <li>
@@ -85,12 +80,9 @@ export default function Dashboard(){
                                     </Link>
                                 </li>
                             </ul>
-                        </div>
-                     </article>
-                    <img src={welcome} alt="" />
-                </section>
+               </section>
+            </aside>
+         </section>
                 
-            </section>
-        </section>
     )
 }

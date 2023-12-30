@@ -1,28 +1,21 @@
 .dashboard-wrapper{
    display: flex; 
    gap: 5em;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: center;
+   margin: 3em 0;
 }
 
 .dashboard-aside{
-    flex: 0 1 30%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.7em;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1em;
     background-color: #ffffff;
-    margin-top: -6em;
-    height: 110vh;
+    padding:  0.5em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-top-right-radius: 6em;
-}
-
-.dashboard-aside h2{
-    margin: 0;
-    font-size: 2em;
-    color: #3a505a;
-    text-align: center;
-    font-weight: 700;
 }
 
 .dashboard-aside h4{
@@ -48,13 +41,11 @@
 
 .dashboard-aside ul li a{
     color: #ffffff;
-}
-
-.dashboard-aside ul li a{
     text-decoration: none;
     display: flex;
     gap: 1em;
 }
+
 
 .liked-items h4{
     color:#63A375 ;
@@ -63,61 +54,27 @@
 .dashboard-liked-link-list{
     background-color: #63A375;
 }
+.suggestions-list{
+    background-color: #EB5E55;
+}
+
+.suggestion-collection h4{
+    color:#EB5E55 ;
+}
 .dashboard-content{
-    margin-top: 1.3em;
-}
-
-.dashboard-content img{
-    border-radius: 1.5em;
-  
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.dashboard-greeting .dashboard-wish {
-    padding-left: 1em;
-    line-height: 1;
-}
-
-.dashboard-greeting {
     display: flex;
-  align-items: center;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    justify-content: center;
+    padding: 2em;
 }
 
-.dashboard-greeting .dashboard-wish h1{
-      font-size: 2.6em;
+.dashboard-content  h1{
+      font-size: 3em;
       margin: 0em;
-      width: 8em;
       color: #3a505a;
       letter-spacing: 0.1em;
-}
-.dashboard-greeting .dashboard-wish{
-    color: #3a505a;
-    font-size: 1.1em;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-}
-
-.dashboard-greeting h5{
-    font-size: 1.2em;
-    margin: 0 0 1.3em 0;
-}
-
-.dashboard-greeting .suggestions-list{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #EB5E55;
-    padding: 1.4em;
-    list-style: none;
-    display: flex;
-    font-size: 1.1em;
-    flex-direction: column;
-    gap: 1.3em;
-    border-radius: 1em;
-    width: 11em;
-}
-
-.dashboard-greeting .suggestions-list li a{
-    text-decoration: none;
-    color: white;
-    gap: 1.4em;
-    display: flex;
+      text-align: center;
 }

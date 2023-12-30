@@ -1,11 +1,18 @@
+@media screen and (max-width:600px) {
+    .playlist-preview-card h3{
+        font-size: 1em;
+    }
+}
+
 .playlist-preview-card{
     flex: 0 1 30%;
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    gap: 0;
+    gap: 0.3em;
 }
 
-.playlist-preview-card .playlist-preview-header img{
+.playlist-preview-card img{
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
