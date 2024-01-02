@@ -120,6 +120,25 @@ namespace Server.Services
                        Name = mt.Tag.Name
                    }).ToList()));
 
+            CreateMap<LikedUserMindmap, MindmapPreviewDto>()
+                .ForMember(mdd => mdd.Id, opt =>
+                opt.MapFrom(src =>
+                src.Mindmap.Id))
+                .ForMember(mdd => mdd.Name, opt =>
+                opt.MapFrom(src =>
+                src.Mindmap.Name))
+                 .ForMember(m => m.isOwnedByUser,
+                opt => opt.Ignore())
+                   .ForMember(m => m.isLikedByUser,
+                opt => opt.Ignore())
+               .ForMember(mdd => mdd.Tags, opt =>
+               opt.MapFrom(src =>
+                  src.Mindmap.MindmapsTags.Select(mt => new TagDetailsDto
+                  {
+                      Id = mt.Tag.Id,
+                      Name = mt.Tag.Name
+                  }).ToList()));
+
             CreateMap<MindmapTag, MindmapPreviewDto>()
                 .ForMember(mdd => mdd.Id, opt =>
                 opt.MapFrom(src =>

@@ -46,7 +46,7 @@ export default function NoteDetails(){
 
     const likeNoteHandler = ()=>{
         likeNote(note.id).then(()=>{
-            navigate('/welcome')
+            alert('Successfully liked!')
         }).catch(err=>{
             navigate('/404')
         })
@@ -54,7 +54,7 @@ export default function NoteDetails(){
 
     const dislikeNoteHandler=()=>{
         dislikeNote(note.id).then(()=>{
-            navigate('/welcome')
+            alert('Successfully disliked!')
         }).catch(err=>{
             navigate('/404')
         })

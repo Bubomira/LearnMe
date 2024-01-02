@@ -70,7 +70,7 @@ export default function MindmapDetails(){
 
 const likeMindmapHandler = ()=>{
     likeMindmap(mindmapId).then(()=>{
-        navigate('/welcome')
+        alert('Successfully liked!')
     }).catch(err=>{
         navigate('/404')
     })
@@ -78,7 +78,7 @@ const likeMindmapHandler = ()=>{
 
 const dislikeMindmapHandler = ()=>{
     dislikeMindmap(mindmapId).then(()=>{
-        navigate('/welcome')
+        alert('Successfully disliked!')
     }).catch(err=>{
         navigate('/404')
     })

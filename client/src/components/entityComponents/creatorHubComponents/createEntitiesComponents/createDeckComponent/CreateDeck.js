@@ -18,8 +18,8 @@ export default function CreateDeck(){
      const onSubmitHandler =(e)=>{
         e.preventDefault()
        const tags= values.Tags.split(/\s+/)
-        createDeck({Tags:tags,Name:values.name}).then(deck=>{
-              navigate(`/deck/details/${deck.id}`)
+        createDeck({Tags:tags,Name:values.Name}).then(deck=>{
+              navigate(`/deck/${deck.id}`)
         }).catch(err=>{
             alert(err);
         })

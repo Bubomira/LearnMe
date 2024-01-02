@@ -47,7 +47,7 @@ export default function DeckDetails(){
 
     const likeDeckHandler = ()=>{
         likeDeck(deck.id).then(()=>{
-            navigate('/welcome')
+            alert('Successfully liked!')
         }).catch(err=>{
             navigate('/404')
         })
@@ -55,7 +55,7 @@ export default function DeckDetails(){
 
     const dislikeDeckHandler = ()=>{
         dislikeDeck(deck.id).then(()=>{
-            navigate('/welcome')
+            alert('Successfully disliked!')
         }).catch(err=>{
            navigate('/404')
         })

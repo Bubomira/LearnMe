@@ -1,6 +1,8 @@
 import './Agenda.css'
 
-import { ScheduleComponent,Inject, Day,Week,Month } from "@syncfusion/ej2-react-schedule"
+import { ScheduleComponent,Inject, Day,Week,Month} from "@syncfusion/ej2-react-schedule"
+
+import {DataManager, WebApiAdaptor} from '@syncfusion/ej2-data'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -16,13 +18,15 @@ export default function Agenda(){
 
     useEffect(()=>{
         getEvents().then(eventsJSON=>{
-            setEvents(eventsJSON);
+            setEvents(eventsJSON? eventsJSON:[]);
+            console.log(eventsJSON)
         }).catch(err=>{
             navigate('/404')
         })
     },[])
 
     const onSaveEvent = ()=>{
+        console.log(events)
         saveEvents(JSON.stringify(events)).then(()=>{
             alert('Saved!')
         }).catch(err=>{
