@@ -13,9 +13,9 @@ export default function MusicDashboard(){
 
     let [studyPlaylists,setStudyPlaylists] = useState([]);
 
-    let [loader,setLoader] = useLoader()
+    let [loader,setLoader] = useLoader();
 
-    const [getToken] = useMusicAuth({});
+    let [getToken] = useMusicAuth({});
 
     useEffect(()=>{
         getToken().then(()=>{
