@@ -1,50 +1,47 @@
 .deck-preview-wrapper{
     display: flex;
-    width: 90%;
-    background-color: #877fa3;
-    padding: 1em 3em;
-    color: rgba(255, 255, 255, 0.849);
-    border-top-right-radius: 2em;
-    border-bottom-left-radius: 2em;
+    color: #3a505a;
+    padding: 0 2em;
+    background-color: #ffffff63;
+    border-radius: 1em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex: 0 1 90%;
+    gap:1em
 }
 
 .deck-preview-wrapper h3{
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .deck-preview-info-holder{
     display: flex;
     gap: 2em;
+    flex: 0 1 45%;
     align-items: center;
 }
 
-.deck-preview-info-holder img{
-    width: 7em;
-    height: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1em;
-}
-
-.deck-preview-wrapper .deck-preview-tags{
-    display: flex;
-    gap: 2em;
-    font-size: 1.3em;
-    flex-wrap: wrap;
+.deck-preview-tags{
+    font-size: 1.2em;
+    flex: 0 1 40%;
 }
 
 .deck-preview-wrapper  button{
      border: none;
-     padding: 1em 3.5em;
+     background-color: #3a505a;
+     padding: 0.6em 3em;
      border-radius: 1em;
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
 }
 
 .deck-preview-wrapper  button a{
-    color: #877fa3;
+    color: white;
     text-decoration: none;
     font-size: 1.5em;
     font-weight: 500;
+}
+
+.deck-preview-wrapper  button:hover{
+    background-color: #eb5f55c9;
 }

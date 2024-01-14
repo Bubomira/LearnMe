@@ -1,6 +1,7 @@
+
 .collection-header .message{
     font-size: 2.5em;
-    color: #3a505a;
+   color: #3a505a;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     padding: 1.5em;
@@ -10,10 +11,11 @@
 
 .collection{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 3em;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 5em;
+    gap: 2em;
 }
 
 .no-entities-message{
