@@ -3,6 +3,7 @@
     justify-content: center;
     flex-direction: column;
     margin: 0 auto;
+    
     width: 80%;
     margin-bottom: 4em;
 }
@@ -17,6 +18,7 @@
 
 .create-menu-info{
     display: flex;
+    flex-wrap: wrap;
     gap: 3em;
 }
 
