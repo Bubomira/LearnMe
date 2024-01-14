@@ -7,7 +7,7 @@ import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 import MindmapPreviewCard from "../../../PreviewCardComponent/MindmapPreviewCard/MindmapPreviewCard"
 import Loader from '../../../../loader/Loader'
 
-export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSearched,loader}){
+export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSearched,loader,firstTimeSearhed}){
 
     return(
         <div className="collection-wrapper">
@@ -21,7 +21,8 @@ export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSea
                     }
                   </h1>
             </header>
-            {!loader?
+            {firstTimeSearhed?
+            !loader?
             <Loader/>
             :
             <main className="collection">
@@ -37,6 +38,8 @@ export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSea
                  <></>
                 }
             </main>
+            :
+            <></>
             }
         </div>
     )

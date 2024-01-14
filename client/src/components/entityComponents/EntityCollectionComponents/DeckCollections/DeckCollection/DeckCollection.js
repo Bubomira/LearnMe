@@ -7,7 +7,7 @@ import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 import DeckPreviewCard from '../../../PreviewCardComponent/DeckPreviewCard/DeckPreviewCard'
 import Loader from '../../../../loader/Loader'
 
-export default function DeckCollection({decks,areOwned,neededMessage,isSearched,loader}){
+export default function DeckCollection({decks,areOwned,neededMessage,isSearched,loader,firstTimeSearhed}){
 
     return(
             <div className="collection-wrapper">
@@ -22,7 +22,8 @@ export default function DeckCollection({decks,areOwned,neededMessage,isSearched,
                         }
                       </h1>
                 </header>
-                {!loader?
+                {firstTimeSearhed?
+                !loader?
                 <Loader/>
                 :
                 <main className="collection">
@@ -38,6 +39,8 @@ export default function DeckCollection({decks,areOwned,neededMessage,isSearched,
                      <></>
                     }
                 </main>
+                :
+                <></>
                 }
     
             </div>

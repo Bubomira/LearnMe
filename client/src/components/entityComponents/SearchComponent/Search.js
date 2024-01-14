@@ -22,6 +22,8 @@ export default function Search(){
 
     let [collection,setCollection] = useState([]);
 
+    let [firstTimeSearhed,setFirstTimeSearched] = useState(false);
+
     let [isSearched,setIsSearched] = useState(false);
 
     let [loader,setLoader] = useLoader();
@@ -39,6 +41,7 @@ export default function Search(){
 
     const onSearchHandler=(e)=>{
         e.preventDefault();
+        setFirstTimeSearched(true)
         setIsSearched(true)
         setCollection([]);
         if(loader){
@@ -118,13 +121,12 @@ export default function Search(){
             <section className='content-display'>
                 {
                 values.entityType=='mindmaps'?
-                <MindmapCollection neededMessage={true} isSearched={isSearched} mindmaps={collection} loader={loader}/>
+                <MindmapCollection neededMessage={true} isSearched={isSearched} mindmaps={collection} loader={loader} firstTimeSearhed={firstTimeSearhed}/>
                 :
                  values.entityType=='notes'?
-                 <NoteCollection neededMessage={true} isSearched={isSearched}  notes={collection} loader={loader}/>:
-                 <DeckCollection neededMessage={true} isSearched={isSearched}  decks={collection} loader={loader}/>     
-                    
-                }
+                 <NoteCollection neededMessage={true} isSearched={isSearched}  notes={collection} loader={loader} firstTimeSearhed={firstTimeSearhed}/>:
+                 <DeckCollection neededMessage={true} isSearched={isSearched}  decks={collection} loader={loader} firstTimeSearhed={firstTimeSearhed}/>   
+                }  
             </section>
         </section>
     )

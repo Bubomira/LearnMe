@@ -9,7 +9,7 @@ import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 import NotePreviewCard from '../../../PreviewCardComponent/NotePreviewCard/NotePreviewCard'
 import Loader from '../../../../loader/Loader'
 
-export default function NoteCollection({notes,areOwned,neededMessage,isSearched,loader}){
+export default function NoteCollection({notes,areOwned,neededMessage,isSearched,loader,firstTimeSearhed}){
 
     return(
         <section className="note-collection-wrapper">
@@ -23,7 +23,9 @@ export default function NoteCollection({notes,areOwned,neededMessage,isSearched,
                }
             </h1>
             </header>        
-            {!loader?
+            {firstTimeSearhed?
+
+            !loader?
             <Loader/>
             :
             <section className="collection note-collection">
@@ -38,6 +40,8 @@ export default function NoteCollection({notes,areOwned,neededMessage,isSearched,
                  <></>
                 }
             </section>
+            :
+            <></>
             }    
         </section>
     )
