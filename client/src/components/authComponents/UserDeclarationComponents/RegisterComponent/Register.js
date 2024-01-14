@@ -35,13 +35,13 @@ export default function Register(){
   return(
     <div className='auth-holder'>
        <div className="form-holder">
-         <h2 className='auth-heading'>Register</h2>
+         <h2 className='auth-heading'>Регистрирай се!</h2>
          <form className='auth-form' action="" onSubmit={onSubmitHandler}>
             <section className='auth-info-section'>    
                  <input type="text" 
                  name="Username" 
                  id="username" 
-                 placeholder='Username'
+                 placeholder='Потребителско име'
                  onChange={setValues}
                  />
             </section>
@@ -49,7 +49,7 @@ export default function Register(){
                  <input type="text" 
                  name="Email" 
                  id="email" 
-                 placeholder='Email'
+                 placeholder='Имейл'
                  onChange={setValues}
                  />
             </section>
@@ -58,7 +58,7 @@ export default function Register(){
                  type="Password" 
                  name="password" 
                  id="password"
-                  placeholder='Password'
+                  placeholder='Парола'
                   onChange={setValues}
                   />
             </section>
@@ -66,15 +66,15 @@ export default function Register(){
                  <input type="text" 
                  name="RePass" 
                  id="re-pass" 
-                 placeholder='Repeat Password'
+                 placeholder='Повтори паролата'
                  onChange={setValues}
                  />
             </section>
            <section className="auth-submit-section">
-              <button className='submit-auth-button' type="submit">Register</button>
+              <button className='submit-auth-button' type="submit">Регистрация</button>
            </section>
          </form>
-         <p className='auth-message'>Already have an account? <Link to='/login'>Login here</Link></p>
+         <p className='auth-message'>Вече имаш акаунт? <Link to='/login'>Влез оттук!</Link></p>
       </div>
         <img width='60%' src={studyRegisterGirl}/>
      </div>

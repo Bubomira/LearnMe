@@ -38,13 +38,13 @@ export default function Login(){
     <div className='auth-holder'>
       <img src={studyGirl}/>
        <div className="auth-form-holder">
-         <h2 className='auth-heading'>Login</h2>
+         <h2 className='auth-heading'>Влез в <br /> профила си</h2>
          <form className='auth-form' action="" onSubmit={onSubmitHandler}>
             <section className='auth-info-section'>            
                  <input type="text" 
                  name="LoginString" 
                  id="emailOrUsername" 
-                 placeholder='Email or Username'
+                 placeholder='Имейл или потребителско име'
                  onChange={setValues}
                  />
             </section>
@@ -53,15 +53,15 @@ export default function Login(){
                  type="password" 
                  name="Password" 
                  id="password"
-                  placeholder='Password'
+                  placeholder='Парола'
                   onChange={setValues}
                   />
             </section>
            <section className="auth-submit-section">
-              <button className='submit-auth-button' type="submit">Login</button>
+              <button className='submit-auth-button' type="submit">Вход</button>
            </section>
          </form>
-         <p className='auth-message'>Do not have an account? <Link to='/register'>Register here</Link></p>
+         <p className='auth-message'>Нямаш акаунт? <Link to='/register'>Регистрирай се тук!</Link></p>
       </div>
      </div>
     )
