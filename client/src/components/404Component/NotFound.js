@@ -6,10 +6,10 @@ export default function NotFound(){
 
     return(
     <section className="not-found-section">
-        <img src={error} alt="" />
+        <img className='error-img' src={error} alt="" />
         <section className='error-section'>
-           <h2>Ooops...</h2>
-           <h4>We could not find what you were looking for.</h4>
+           <h2>Опа...</h2>
+           <h4>Не успяхме да намерим това, което търсите</h4>
          </section>
     </section>
     )
