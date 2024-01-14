@@ -1,9 +1,15 @@
+.note-collection-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
 .note-collection{
     display: flex;
     flex-direction: row;
     gap: 4em;
     flex-wrap: wrap;
-    margin: 0 4em;
-    justify-self: center;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
     align-items: center;
 }
