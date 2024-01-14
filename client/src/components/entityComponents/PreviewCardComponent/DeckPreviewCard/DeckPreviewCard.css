@@ -1,8 +1,10 @@
+
+
 .deck-preview-wrapper{
     display: flex;
     color: #3a505a;
     padding: 0 2em;
-    background-color: #ffffff63;
+    background-color: #ffffff62;
     border-radius: 1em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
@@ -12,12 +14,12 @@
 }
 
 .deck-preview-wrapper h3{
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .deck-preview-info-holder{
     display: flex;
-    gap: 2em;
+    gap: 1em;
     flex: 0 1 45%;
     align-items: center;
 }
@@ -38,10 +40,24 @@
 .deck-preview-wrapper  button a{
     color: white;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 500;
 }
 
 .deck-preview-wrapper  button:hover{
     background-color: #eb5f55c9;
+}
+
+@media screen and (width<600px) {
+    .deck-preview-wrapper h3{
+        font-size: 1em;
+    }
+
+    .deck-preview-tags{
+        font-size: 0.9em;
+    }
+
+    .deck-preview-wrapper button a{
+        font-size: 1.1em;
+    }
 }

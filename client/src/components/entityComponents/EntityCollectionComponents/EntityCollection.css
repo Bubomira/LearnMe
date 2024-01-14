@@ -1,4 +1,8 @@
+.collection-wrapper{
+    display: flex;
+    flex-direction: column;
 
+}
 .collection-header .message{
     font-size: 2.5em;
    color: #3a505a;
@@ -6,16 +10,18 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
     padding: 1.5em;
     background-color: white;
+    align-items: center;
     margin-bottom: 1.5em;
 }
 
 .collection{
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
+    align-self: center;
+    width: 90%;
     margin-bottom: 5em;
-    gap: 2em;
+    gap: 1em;
 }
 
 .no-entities-message{
@@ -26,4 +32,11 @@
     align-items: center;
    width: 100%;
    justify-content: center;
+}
+
+
+@media screen and (width<730px) {
+    .collection{
+        justify-content: center;
+    }
 }

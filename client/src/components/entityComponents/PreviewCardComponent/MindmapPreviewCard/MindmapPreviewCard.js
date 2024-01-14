@@ -10,16 +10,18 @@ export default function MindmapPreviewCard({mindmap}){
 
     return(
         <article className="mindmap-preview-card">
+            <aside className="mindmap-preview-aside">
+                <FontAwesomeIcon fontSize={'1.5em'} color='white' icon={faChartArea}/>
+            </aside>
+            <main className="mindmap-preview-main">
             <div className="mindmap-preview-header">
-                <FontAwesomeIcon fontSize={'2.5em'} icon={faChartArea}/>
                 <h3 className='mindmap-heading'>{mindmap.name}</h3>
             </div>
-            <div className="mindmap-preview-tags">
-                  {mindmap.tags.map(tag=><p key={tag.id}>{tag.name}</p>)}  
-            </div> 
+            <p className="mindmap-preview-tags">{mindmap?.tags.map(tag=>tag.name).join(', ')}</p>
             <button className='mindmap-preview-details-btn'>
                 <Link to={`/mindmap/${mindmap.id}`}>Details</Link>
             </button>
+            </main>
         </article>
         )
 }
