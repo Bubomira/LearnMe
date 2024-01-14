@@ -26,6 +26,6 @@ export default function OwnedDeckCollection(){
     },[])
 
     return(
-        <DeckCollection areOwned={true} decks={ownedDecks} loader={loader}/>
+        <DeckCollection areOwned={true} decks={ownedDecks} loader={loader} firstTimeSearhed={true} areNormal={true}/>
     )
 }

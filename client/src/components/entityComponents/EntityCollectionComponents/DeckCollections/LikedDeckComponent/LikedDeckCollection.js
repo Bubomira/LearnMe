@@ -26,7 +26,7 @@ export default function LikedDecksCollection(){
     },[])
 
     return (
-        <DeckCollection decks={likedDecks} areOwned={false} loader={loader}/>
+        <DeckCollection decks={likedDecks} areOwned={false} loader={loader} areNormal={true} firstTimeSearhed={true}/>
     )
 
 }

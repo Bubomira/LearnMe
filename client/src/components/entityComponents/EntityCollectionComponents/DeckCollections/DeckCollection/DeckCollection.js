@@ -7,18 +7,18 @@ import { faSadTear } from '@fortawesome/free-solid-svg-icons'
 import DeckPreviewCard from '../../../PreviewCardComponent/DeckPreviewCard/DeckPreviewCard'
 import Loader from '../../../../loader/Loader'
 
-export default function DeckCollection({decks,areOwned,neededMessage,isSearched,loader,firstTimeSearhed}){
+export default function DeckCollection({decks,areOwned,neededMessage,isSearched,loader,firstTimeSearhed,areNormal}){
 
     return(
             <div className="collection-wrapper">
                 <header className="collection-header">
                       <h1 className='message'>
                         {neededMessage?
-                        'Your search results:'
+                        'Резултати от търсенето:'
                         :
                          areOwned?
-                        'Here are your owned decks!':
-                        'These are the decks you have liked!'
+                        'Това са създадените от Вас декове!':
+                        'Това са харесаните ви декове!'
                         }
                       </h1>
                 </header>
@@ -30,9 +30,9 @@ export default function DeckCollection({decks,areOwned,neededMessage,isSearched,
                     {decks?.length>0?
                      decks.map(deck=><DeckPreviewCard deck={deck} key={deck.id}></DeckPreviewCard>)
                      :
-                     (isSearched && neededMessage)||(!isSearched && !neededMessage)? 
+                     (isSearched && neededMessage)||(areNormal)? 
                      <p className="no-entities-message">
-                        This collection is empty
+                          Няма резултати
                         <FontAwesomeIcon icon={faSadTear} />
                      </p>
                      :
@@ -42,7 +42,6 @@ export default function DeckCollection({decks,areOwned,neededMessage,isSearched,
                 :
                 <></>
                 }
-    
             </div>
     )
        

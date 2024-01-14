@@ -24,6 +24,6 @@ export default function LikedNotesColection(){
     },[])
 
     return (
-        <NoteCollection notes={likedNotes} areOwned={false} loader={loader}/>
+        <NoteCollection notes={likedNotes} areOwned={false} loader={loader} firstTimeSearhed={true} areNormal={true}/>
     )
 }

@@ -14,10 +14,10 @@ export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSea
             <header className="collection-header">
                   <h1 className='message'>
                   {neededMessage?
-                    'Your search results:'
+                    'Резултати от търсенето:'
                     :areOwned?
-                    'Here are your owned mindmaps!':
-                    'These are the mindmaps you have liked!'
+                    'Това са създадените от Вас мисловни карти!':
+                    'Това са харесаните ви мисловни карти!'
                     }
                   </h1>
             </header>
@@ -29,13 +29,13 @@ export default function MindmapCollection({mindmaps,areOwned,neededMessage,isSea
                 {mindmaps?.length>0?
                  mindmaps.map(mindmap=><MindmapPreviewCard mindmap={mindmap} key={mindmap.id}></MindmapPreviewCard>)
                  :
-                 (isSearched && neededMessage)||(!isSearched && !neededMessage)? 
+              (isSearched && neededMessage)||(!isSearched && !neededMessage)? 
                  <p className="no-entities-message">
-                    This collection is empty
+                    Няма резултати
                     <FontAwesomeIcon icon={faSadTear} />
                  </p>
-                 :
-                 <></>
+                  :
+              <></>
                 }
             </main>
             :

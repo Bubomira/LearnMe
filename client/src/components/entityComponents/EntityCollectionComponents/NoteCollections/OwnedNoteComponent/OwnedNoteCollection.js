@@ -25,7 +25,7 @@ export default function OwnedNotesCollection(){
     },[])
 
     return (
-        <NoteCollection areOwned={true} notes={ownedNotes} loader={loader}/>
+        <NoteCollection areOwned={true} notes={ownedNotes} loader={loader} firstTimeSearhed={true} areNormal={true}/>
     )
     
 }

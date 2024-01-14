@@ -37,7 +37,7 @@ export default function Search(){
     useEffect(()=>{
         setCollection([]);
         setIsSearched(false)
-    },[values.entityType,values.searchType,isSearched])
+    },[values.entityType,values.searchType])
 
     const onSearchHandler=(e)=>{
         e.preventDefault();
@@ -47,7 +47,6 @@ export default function Search(){
         if(loader){
           setLoader(false);
         }
-        console.log('before search'+loader)
          try {
             switch (values.entityType) {
                 case 'mindmaps':
@@ -96,13 +95,13 @@ export default function Search(){
                 <form className="search-form" onSubmit={onSearchHandler}>
                     <section className="search-entity-section">
                        <select onChange={setValues} name='entityType' >
-                           <option value={'mindmaps'}>Mindmaps</option>
-                           <option value={'notes'}>Notes</option>
-                           <option value={'decks'}>Decks</option>
+                           <option value={'mindmaps'}>Мисловни карти</option>
+                           <option value={'notes'}>Бележки</option>
+                           <option value={'decks'}>Декове</option>
                        </select>
                        <select onChange={setValues} name='searchType' >
-                           <option value={'name'}>By name</option>
-                           <option value={'tag'}>By tag</option>
+                           <option value={'name'}>По име</option>
+                           <option value={'tag'}>По таг</option>
                        </select>
                     </section>
                     <section className="search">

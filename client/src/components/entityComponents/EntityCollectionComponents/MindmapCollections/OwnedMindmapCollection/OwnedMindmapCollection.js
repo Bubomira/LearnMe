@@ -24,5 +24,5 @@ export default function OwnedMindmapCollection(){
         })
     },[])
     
-    return <MindmapCollection mindmaps={ownedMindmaps} areOwned={true} loader={loader}/>
+    return <MindmapCollection mindmaps={ownedMindmaps} areOwned={true} loader={loader} firstTimeSearhed={true}/>
 }

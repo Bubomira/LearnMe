@@ -19,7 +19,7 @@ export default function MindmapPreviewCard({mindmap}){
             </div>
             <p className="mindmap-preview-tags">{mindmap?.tags.map(tag=>tag.name).join(', ')}</p>
             <button className='mindmap-preview-details-btn'>
-                <Link to={`/mindmap/${mindmap.id}`}>Details</Link>
+                <Link to={`/mindmap/${mindmap.id}`}>Детайли</Link>
             </button>
             </main>
         </article>

@@ -26,5 +26,5 @@ export default function LikedMindmapsCollection(){
 
   
     
-    return <MindmapCollection mindmaps={likedMindmaps} areOwned={false} loader={loader}/>
+    return <MindmapCollection mindmaps={likedMindmaps} areOwned={false} loader={loader} firstTimeSearhed={true}/>
 }
