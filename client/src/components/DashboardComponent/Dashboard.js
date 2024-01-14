@@ -16,65 +16,65 @@ export default function Dashboard(){
     return(
         <section className="dashboard-wrapper">
             <section className="dashboard-content">
-                    <h1>Hello, {user?.username}!</h1>        
+                    <h1>Здравей, {user?.username}!</h1>        
             </section>
             <aside className="dashboard-aside">
                <section className='owned-items'>
-                  <h4>Owned by me:</h4>
+                  <h4>Моите колекции:</h4>
                   <ul className="dashboard-owned-link-list">
                     <li>
                         <Link to={'/owned/notes'}>
-                            <FontAwesomeIcon icon={faNoteSticky}/>Notes
+                            <FontAwesomeIcon icon={faNoteSticky}/>Бележки
                         </Link>
                     </li>
                     <li>
                         <Link to={'/owned/decks'}>
-                            <FontAwesomeIcon icon={faRectangleList}/>Decks
+                            <FontAwesomeIcon icon={faRectangleList}/>Декове
                         </Link>
                     </li>
                     <li>
                         <Link to={'/owned/mindmaps'}>
-                            <FontAwesomeIcon icon={faChartArea}/>Mindmaps
+                            <FontAwesomeIcon icon={faChartArea}/>Мисловни карти
                         </Link>
                     </li>
                   </ul>
                </section>
                <section className='liked-items'>
-                    <h4>Liked collections:</h4>
+                    <h4>Харесани колекции:</h4>
                     <ul className="dashboard-liked-link-list">
                        <li>
                            <Link to={'/liked/notes'}>
-                                 <FontAwesomeIcon icon={faNoteSticky}/>Notes
+                                 <FontAwesomeIcon icon={faNoteSticky}/>Бележки
                            </Link>
                        </li>
                        <li>
                            <Link to={'/liked/decks'}>
-                           <FontAwesomeIcon icon={faRectangleList}/>Decks
+                           <FontAwesomeIcon icon={faRectangleList}/>Декове
                             </Link>
                        </li>
                        <li>
                            <Link to={'/liked/mindmaps'}>
-                                <FontAwesomeIcon icon={faChartArea}/>Mindmaps
+                                <FontAwesomeIcon icon={faChartArea}/>Мисловни карти
                            </Link>
                        </li>
                     </ul>
                </section>
                <section className='suggestion-collection'>
-                            <h4>To help you with studying:</h4>
+                            <h4>За още помощ с ученето:</h4>
                             <ul className="suggestions-list">
                                 <li>
                                     <Link to={'/search'}>
-                                          <FontAwesomeIcon icon={faSearch}/>Search
+                                          <FontAwesomeIcon icon={faSearch}/>Търсачка
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/agenda'}>
-                                <FontAwesomeIcon icon={faCalendar} />Agenda
+                                <FontAwesomeIcon icon={faCalendar} />Календар
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to={'/playlists'}>
-                                          <FontAwesomeIcon icon={faMusic}/>Study Playlists
+                                          <FontAwesomeIcon icon={faMusic}/>Учебна музика
                                     </Link>
                                 </li>
                             </ul>

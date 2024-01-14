@@ -42,15 +42,15 @@ export default function EditMindmap(){
 
     return(
         <form className='edit-form edit-deck-mindmap' onSubmit={onSubmitHandler} >
-        <h2 className='edit-heading'>Edit mindmap</h2>
+        <h2 className='edit-heading'>Редактирай <br /> мисловна карта</h2>
         <input className='edit-input'
         type='text'
         name='Name'
-        placeholder='new Mindmap name'
+        placeholder='Ново име'
         defaultValue={mindmap?.name}
         onChange={setValues}
           />
-          <input className='edit-button' type="submit" value="Edit" />
+          <input className='edit-button' type="submit" value="Редактирай" />
           
     </form>
     )

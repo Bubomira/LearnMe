@@ -9,7 +9,7 @@ export default function PlaylistPreviewCard({playlist}){
             <main className="playlist-preview-data">
                 <h3>{playlist.name}</h3>
                 <button className='playlist-details-btn'>
-                   <Link to={`/playlist/${playlist.id}`}>Details</Link>
+                   <Link to={`/playlist/${playlist.id}`}>Детайли</Link>
                 </button>
             </main>
         </article>

@@ -59,7 +59,7 @@ export default function MindmapDetails(){
         
    },[mindmapId])
    const deleteMindmapHandler=()=>{
-    if(window.confirm('Would you like to delete this mindmap?')){
+    if(window.confirm('Наистина ли искате да изтриете тази мисловна карта?')){
        deleteMindmap(mindmapId).then(()=>{
         navigate('/welcome')
        }).catch(err=>{
@@ -70,7 +70,7 @@ export default function MindmapDetails(){
 
 const likeMindmapHandler = ()=>{
     likeMindmap(mindmapId).then(()=>{
-        alert('Successfully liked!')
+        alert('Успешно харесатхе!!')
     }).catch(err=>{
         navigate('/404')
     })
@@ -78,7 +78,7 @@ const likeMindmapHandler = ()=>{
 
 const dislikeMindmapHandler = ()=>{
     dislikeMindmap(mindmapId).then(()=>{
-        alert('Successfully disliked!')
+        alert('Успешно отхаресатхе!')
     }).catch(err=>{
         navigate('/404')
     })
@@ -139,7 +139,7 @@ const detachTagFromMindmapHandler = (tagId)=>{
         <Controls/>
         <Background variant="dots" gap={12} size={1} />
         </ReactFlow>
-        <button className='mindmap-save-btn' onClick={onSaveHandler}>Save mindmap <FontAwesomeIcon color='#2D3142' icon={faSave}/></button>
+        <button className='mindmap-save-btn' onClick={onSaveHandler}>Запази <FontAwesomeIcon color='#2D3142' icon={faSave}/></button>
      </main>
       </section>
     )

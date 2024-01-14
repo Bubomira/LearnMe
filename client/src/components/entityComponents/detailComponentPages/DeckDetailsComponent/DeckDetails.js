@@ -36,7 +36,7 @@ export default function DeckDetails(){
     },[deckId])
 
     const deleteDeckHandler = ()=>{
-        if(window.confirm('Do you want to delete this deck?')){
+        if(window.confirm('Наистина ли искате да изтриете този дек?')){
             deleteDeck(deck.id).then(()=>{
                  navigate('/welcome')
             }).catch(err=>{
@@ -47,7 +47,7 @@ export default function DeckDetails(){
 
     const likeDeckHandler = ()=>{
         likeDeck(deck.id).then(()=>{
-            alert('Successfully liked!')
+            alert('Успешно харесахте!')
         }).catch(err=>{
             navigate('/404')
         })
@@ -55,7 +55,7 @@ export default function DeckDetails(){
 
     const dislikeDeckHandler = ()=>{
         dislikeDeck(deck.id).then(()=>{
-            alert('Successfully disliked!')
+            alert('Успешно отхаресатхе!')
         }).catch(err=>{
            navigate('/404')
         })

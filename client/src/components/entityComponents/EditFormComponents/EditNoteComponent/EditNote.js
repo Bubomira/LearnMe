@@ -55,7 +55,7 @@ export default function EditNote(){
         <div className="edit-container">
 
         <form className='edit-form edit-note-form' onSubmit={onEditHandler} >
-            <h2 className='edit-heading'>Edit note</h2>
+            <h2 className='edit-heading'>Редактирай бележка</h2>
             <input className='edit-input'
             type='text'
             name='Title'
@@ -65,7 +65,7 @@ export default function EditNote(){
               />
                <section className='edit-radio-section'>
                     <article className='edit-radio-holder'>
-                         <label htmlFor="image">Extract content from image</label>
+                         <label htmlFor="image">Прикачи снимка</label>
                          <input
                           type="radio"
                           name="ImageChecked"
@@ -74,7 +74,7 @@ export default function EditNote(){
                           />
                     </article>
                     <article className='edit-radio-holder'>
-                          <label htmlFor="image">Type content directly</label>
+                          <label htmlFor="image">Пиши директно</label>
                           <input
                           defaultChecked={true}
                           type="radio"
@@ -99,12 +99,12 @@ export default function EditNote(){
                       type="text"
                       name="Content"
                       id="note-content"
-                      placeholder="The content of your note"
+                      placeholder="Съдържание на бележката"
                       onChange={setValues}
                       defaultValue={note.content}
                       />
                 }
-              <input className='edit-button' type="submit" value="Edit" />
+              <input className='edit-button' type="submit" value="Редактирай" />
         </form>
         </div>
 

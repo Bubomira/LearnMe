@@ -36,25 +36,25 @@ export default function CreateFlashcard(){
         <section className="create-wrapper">
         <img width={'50%'}  src={flashcards} alt="decks" />
         <section className="create-form-holder">
-            <h2>Create Flashcard</h2>
+            <h2>Създай <br/> флашкарта</h2>
             <form className="create-form" onSubmit={onSubmitHandler} >
                 <input
                 className='create-input'
                  type="text"
                  name="Definition"
                  id="Definition"
-                 placeholder="Definition"
+                 placeholder="Дефиниция"
                  onChange={setValues}
                 />
               <input
                  type="text"
                  name="Explanation"
                  id="Explanation"
-                 placeholder="Explanation"
+                 placeholder="Обяснение"
                  onChange={setValues}
                  className='create-input'
                 />
-                <button className='creates-btn' type="submit">Submit</button>
+                <button className='creates-btn' type="submit">Създай</button>
             </form>
         </section>
         </section>

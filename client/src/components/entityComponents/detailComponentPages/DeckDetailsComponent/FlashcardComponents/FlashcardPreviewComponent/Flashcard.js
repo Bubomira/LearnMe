@@ -17,7 +17,7 @@ export default function Flashcard({flashcard,isSearch}){
     const {deck,removeFlahcardFromDeckState} = useContext(DeckContext);
 
     const removeFlashcardFromDeckHandler = ()=>{
-        if(window.confirm(`Are you sure you want to remove this flashcard from deck ${deck.name}`)){
+        if(window.confirm(`Наистина ли искате да премахнете тази флашкарта от ${deck.name}`)){
               removeFlashcardFromDeck(deck.id,flashcard.id).then(()=>{
                 removeFlahcardFromDeckState(flashcard.id)
               }).catch(err=>{

@@ -29,7 +29,7 @@ export default function MusicDashboard(){
   return(
     <section className="playlist-section">
         <header className="playlist-section-header">
-            <h1>Study playlists to help you concertrate!</h1>
+            <h1>Музика за по-лесна концентрация</h1>
         </header>
         {!loader?
         <Loader/>

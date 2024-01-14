@@ -12,19 +12,19 @@ export default function CreateTag({attachTagHandler}){
         <section className="site-wrapper">
         <section className='create-wrapper create-tags'>
         <section className="create-form-holder">
-        <h2>Attach Tag</h2>
+        <h2>Закачи таг</h2>
         <form className="create-form" onSubmit={(e)=>attachTagHandler(e,values.tagName)}>
           <input 
           type="text" 
           className='create-input' 
-          placeholder='Tag name'
+          placeholder='Име'
           onChange={setValues}
           name='tagName'
           />
-          <input
+          <button
            type="submit"
-           className='creates-btn'          
-            />
+           className='creates-btn'>Закачи
+           </button>
         </form>
         </section>
         </section>

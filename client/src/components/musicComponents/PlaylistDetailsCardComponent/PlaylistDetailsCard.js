@@ -94,7 +94,7 @@ export default function PlaylistDetailsCard(){
                 <section className="playlist-detailed-text">
                     <h2 className="playlist-detailed-name">{detailedPlaylist?.name}</h2>
                     <p className="playlist-detailed-description">{detailedPlaylist?.description}</p>
-                    <button onClick={playInQueue} className='play-btn'><FontAwesomeIcon icon={faPlay}/><span>Play</span></button>
+                    <button onClick={playInQueue} className='play-btn'><FontAwesomeIcon icon={faPlay}/><span>Пусни</span></button>
                 </section>
                 
             </header>
@@ -108,7 +108,7 @@ export default function PlaylistDetailsCard(){
                    <p>{currentTrack.trackName}</p>          
                </section>
                :
-               <p className='no-track-chosen'>Preview a track by clicking on its icon!</p>
+               <p className='no-track-chosen'>Избери си парче като кликнеш на неговата снимка!</p>
                 }
                <audio autoPlay  src={currentTrack?.trackUrl}></audio>
            

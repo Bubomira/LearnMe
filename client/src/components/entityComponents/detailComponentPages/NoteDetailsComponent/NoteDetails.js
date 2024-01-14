@@ -35,7 +35,7 @@ export default function NoteDetails(){
     },[noteId])
 
     const onDeleteHandler = ()=>{
-        if(window.confirm(`Are you sure you want to delete note with id ${note.id}`)){
+        if(window.confirm(`Наистина ли искате да итриете тази бележка?`)){
             deleteNote(note.id).then(()=>{
                 navigate('/welcome')
             }).catch(err=>{
@@ -46,7 +46,7 @@ export default function NoteDetails(){
 
     const likeNoteHandler = ()=>{
         likeNote(note.id).then(()=>{
-            alert('Successfully liked!')
+            alert('Успешно харесатхе!')
         }).catch(err=>{
             navigate('/404')
         })
@@ -54,7 +54,7 @@ export default function NoteDetails(){
 
     const dislikeNoteHandler=()=>{
         dislikeNote(note.id).then(()=>{
-            alert('Successfully disliked!')
+            alert('Успешно отхаресатхе!')
         }).catch(err=>{
             navigate('/404')
         })

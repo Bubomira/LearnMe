@@ -38,15 +38,15 @@ export default function EditDeck(){
     }
     return(
         <form className='edit-form edit-deck-mindmap' onSubmit={editDeckHandler}>
-            <h2 className='edit-heading'>Edit deck</h2>
+            <h2 className='edit-heading'>Редактирай дек</h2>
             <input className='edit-input'
             type='text'
             name='name'
-            placeholder='newDeckName'
+            placeholder='Ново име'
             defaultValue={deck.name}
             onChange={setValues}
               />
-              <input className='edit-button' type="submit" value="Edit" />
+              <input className='edit-button' type="submit" value="Редактирай" />
               
         </form>
     )

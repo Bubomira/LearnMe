@@ -43,13 +43,13 @@ export default function EditFlashcard(){
 
     return (
     <form className='edit-form' onSubmit={editFlashcardHandler}>
-        <h2 className='edit-heading'>Edit flashcard</h2>
+        <h2 className='edit-heading'>Редактирай флашкарта</h2>
         <input 
         className='edit-input'
         type="text"
         name="definition"
         onChange={setValues}
-        placeholder='Flashcard Definition'
+        placeholder='Дефиниция'
         defaultValue={flashcard.definition}
         />
          <input 
@@ -57,11 +57,11 @@ export default function EditFlashcard(){
         type="text"
         name="explanation"
         onChange={setValues}
-        placeholder='Flashcard Explanation'
+        placeholder='Обяснение'
         defaultValue={flashcard.explanation}
         />
 
-        <input className='edit-button' type="submit" value="Edit" />
+        <input className='edit-button' type="submit" value="Редактирай" />
     </form>
     )
 }

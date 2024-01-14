@@ -71,7 +71,7 @@ export default function FlashcardDetails(){
   }
 
   const deleteFlashcardHandler = ()=>{
-      if(window.confirm('Do you want to delete this flashcard?')){
+      if(window.confirm('Наистина ли искате да изтриете тази флашкарта?')){
         deleteFlashcard(flashcard.id).then(()=>{
             navigate(`/deck/${deck.id}`)
         }).catch(err=>{

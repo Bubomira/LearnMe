@@ -30,14 +30,14 @@ export default function CreateMindmap(){
         <section className="create-wrapper">
         <img width={'40%'}  src={mindmap} alt="decks" />
         <section className="create-form-holder">
-            <h2>Create Mindmap</h2>
+            <h2>Създай мисловна<br/> карта</h2>
             <form className="create-form" onSubmit={onSubmitHandler} >
             <input
               className='create-input'
                  type="text"
                  name="Name"
                  id="name"
-                 placeholder="Name of mindmap"
+                 placeholder="Име"
                  onChange={setValues}
                 />
                 <input
@@ -45,10 +45,10 @@ export default function CreateMindmap(){
                  type="text"
                  name="Tags"
                  id="tags"
-                 placeholder="Tags that depict your mindmap!"
+                 placeholder="Опиши картата си с няколко тага!"
                  onChange={setValues}
                 />
-                <button className='creates-btn' type="submit">Submit</button>
+                <button className='creates-btn' type="submit">Създай</button>
             </form>
         </section>
         </section>

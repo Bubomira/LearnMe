@@ -31,14 +31,14 @@ export default function CreateDeck(){
        <div className="create-wrapper">
         <img width={'50%'} src={flashcards} alt="decks" />
         <section className="create-form-holder">
-            <h2>Create Deck</h2>
+            <h2>Създай дек</h2>
             <form className="create-form" onSubmit={onSubmitHandler}>
               <input
               className='create-input'
                  type="text"
                  name="Name"
                  id="name"
-                 placeholder="Name of deck"
+                 placeholder="Име"
                  onChange={setValues}
                 />
                 <input
@@ -46,10 +46,10 @@ export default function CreateDeck(){
                  type="text"
                  name="Tags"
                  id="tags"
-                 placeholder="Few tags that describe your deck!"
+                 placeholder="Опиши дека си с няколко тага!"
                  onChange={setValues}
                 />
-                <button className='creates-btn' type="submit">Submit</button>
+                <button className='creates-btn' type="submit">Създай</button>
             </form>
         </section>
        </div>

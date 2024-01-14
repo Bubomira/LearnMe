@@ -23,10 +23,10 @@ export default function CreateNote(){
     const onSubmit = async(e)=>{
          e.preventDefault();
          if(!values.Title || !values.Tags || (!values.ImageChecked && !values.Content)){
-            alert('Please fill in all fields!')
+            alert('Моля, попълнете всички полета!')
          }else{
             const content = values.ImageChecked? 
-            await recognise(values.ImageUrl).catch(err=>{alert('Unable to convert')}) 
+            await recognise(values.ImageUrl).catch(err=>{alert('Възникна грешка')}) 
             : values.Content;
             const tags=values.Tags.split(/\s+/);
             createNote({Tags:tags,Title:values.Title,Content:content}).then(()=>{
@@ -41,14 +41,14 @@ export default function CreateNote(){
         <div className="create-wrapper create-note">
         <img width='30%' src={notes} alt="decks" />
         <section className="create-form-holder  create-note-form-holder">
-            <h2>Create Note</h2>
+            <h2>Създай бележка</h2>
             <form className="create-form create-note-form" onSubmit={onSubmit}>
               <input
               className='create-input create-note-input'
                  type="text"
                  name="Title"
                  id="title"
-                 placeholder="Note Title"
+                 placeholder="Заглавие"
                  onChange={setValues}
                 />
                 <input
@@ -56,12 +56,12 @@ export default function CreateNote(){
                  type="text"
                  name="Tags"
                  id="tags"
-                 placeholder="Few tags that describe your note!"
+                 placeholder="Опиши бележката си с няколко тага!"
                  onChange={setValues}
                 />
                 <section className='radio-section'>
                     <article className='radio-holder'>
-                         <label htmlFor="image">Extract content from image</label>
+                         <label htmlFor="image">Прикачи снимка</label>
                          <input
                           type="radio"
                           name="ImageChecked"
@@ -71,7 +71,7 @@ export default function CreateNote(){
                           />
                     </article>
                     <article className='radio-holder'>
-                          <label htmlFor="text">Type content directly</label>
+                          <label htmlFor="text">Пиши директно</label>
                           <input
                           type="radio"
                           name="ImageChecked"
@@ -95,11 +95,11 @@ export default function CreateNote(){
                       type="text"
                       name="Content"
                       id="note-content"
-                      placeholder="The content of your note"
+                      placeholder="Съдържание на бележката"
                       onChange={setValues}
                       />
                 }
-                <button className='creates-btn' type="submit">Submit</button>
+                <button className='creates-btn' type="submit">Създай</button>
             </form>
         </section>
        </div>

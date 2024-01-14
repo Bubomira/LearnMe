@@ -28,9 +28,9 @@ export default function Agenda(){
     const onSaveEvent = ()=>{
         console.log(events)
         saveEvents(JSON.stringify(events)).then(()=>{
-            alert('Saved!')
+            alert('Заназено!')
         }).catch(err=>{
-            alert('Unable to save changes. Try again later!')
+            alert('Неуспешно запазване, моля опитайте по- късно!')
         })
     }
 
@@ -40,8 +40,8 @@ export default function Agenda(){
         <Inject services={[Day,Week,Month]} />
     </ScheduleComponent>
     <section className="save-events">
-        <p>Do not forget to save the changes to your agenda!</p>
-        <button onClick={onSaveEvent}>Save</button>
+        <p>Не забравяй да запазиш промените по своята програма!</p>
+        <button onClick={onSaveEvent}>Запази</button>
     </section>
         </>
     )

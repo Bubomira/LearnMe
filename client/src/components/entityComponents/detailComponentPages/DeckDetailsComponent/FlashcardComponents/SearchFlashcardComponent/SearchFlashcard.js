@@ -45,7 +45,7 @@ export default function SearchFlashcard(){
                <form className="search-flashcard-form" onSubmit={onSearchFlashcard}>
                 <input
                  className="search-flashcard-input"
-                 placeholder='Search flashcard...'
+                 placeholder='Търси флашкарта...'
                  name='flashcardName'
                  onChange={setValues}
                  ></input>
@@ -60,7 +60,7 @@ export default function SearchFlashcard(){
                :
               <section className='flashcards-holder'>
                 {flashcards?.length ==0?
-                <h2 className='no-flashcards-message'>No flashcards found...</h2>:
+                <h2 className='no-flashcards-message'>Няма резултати...</h2>:
                  flashcards?.map(flashcard=>
                 <Flashcard flashcard={flashcard} isSearch={true} key={flashcard.id}/>
                 )
