@@ -81,7 +81,8 @@ export default function FlashcardDetails(){
   }
 
    return(
-    !loader?
+    <section className="flashcard-details-section">
+        {!loader?
         <Loader/>
         :
     <section className='flashcard-details-wrapper'>
@@ -106,6 +107,7 @@ export default function FlashcardDetails(){
         }
        
     </section>
-    
+}
+ </section>   
    )
 }

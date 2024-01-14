@@ -1,14 +1,14 @@
+.flashcard-details-section{
+    display: flex;
+    justify-content: center;
+    margin-top: 6em;
+}
+
 .flashcard-details-wrapper{
     display: flex;
     gap: 2em;
     align-items: center;
-   margin: auto;
    width: 50%;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%,-50%);
-  
 }
 
 .flashcard-details-wrapper>p{
