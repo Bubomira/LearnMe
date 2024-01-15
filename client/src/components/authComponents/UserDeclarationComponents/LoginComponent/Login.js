@@ -12,7 +12,7 @@ import { login } from '../../../../services/authServises'
 
 import useChangeInput from '../../../../hooks/useChangeInput'
 
-
+import checkIfFormDataIsInvalid from '../../../../utils/emtyFormChecker'
 
 export default function Login(){
 
@@ -27,12 +27,16 @@ export default function Login(){
 
   const onSubmitHandler = (e)=>{
       e.preventDefault();
-     login(values).then(user=>{
-       loginUser(user);
-       navigate('/welcome');
-     }).catch(err=>
-      alert('Възникна грешка, моля опитайте отново')
-     )
+      if(!checkIfFormDataIsInvalid(values)){
+        window.alert('Моля, попълнете всички полета!')
+      }else{
+        login(values).then(user=>{
+          loginUser(user);
+          navigate('/welcome');
+        }).catch(err=>
+         window.alert('Възникна грешка, моля опитайте отново')
+        )
+      }
   }
 
   return(

@@ -8,6 +8,8 @@ import { NoteContext } from "../../../../../../contexts/entityContexts/NoteConte
 import { getNoteDetails } from "../../../../../../services/entityService/noteService/noteService";
 import { attachTagToNote } from "../../../../../../services/entityService/noteService/noteAdditionalService";
 
+import checkIfFormDataIsInvalid from "../../../../../../utils/emtyFormChecker";
+
 export default function AttachTagToNote (){
 
     const navigate =useNavigate();
@@ -26,11 +28,15 @@ export default function AttachTagToNote (){
 
     const attachTagToNoteHandler = (e,tagName)=>{
          e.preventDefault();
-         attachTagToNote(note.id,tagName).then(()=>{
-             navigate(`/note/${note.id}`)
-         }).catch(err=>{
-            navigate('/404')
-         })
+         if(!checkIfFormDataIsInvalid({tag:tagName})){
+            alert('Моля, попълнете всички полета!')
+         }else{
+             attachTagToNote(note.id,tagName).then(()=>{
+                 navigate(`/note/${note.id}`)
+             }).catch(err=>{
+                navigate('/404')
+             })
+         }
 
     }
 

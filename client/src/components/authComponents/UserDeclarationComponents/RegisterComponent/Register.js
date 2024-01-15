@@ -11,6 +11,8 @@ import { register } from '../../../../services/authServises'
 import { AuthContext } from '../../../../contexts/AuthContext'
 import useChangeInput from '../../../../hooks/useChangeInput'
 
+import checkIfFormDataIsInvalid from '../../../../utils/emtyFormChecker'
+
 export default function Register(){
     const navigate = useNavigate();
 
@@ -24,13 +26,21 @@ export default function Register(){
     })
     const onSubmitHandler=(e)=>{
          e.preventDefault();
-        register(values)
-        .then(user=>{
-            loginUser(user);
-            navigate('/welcome')
-        }).catch(err=>{
-            alert('Възникна грешка, моля опитайте отново')
-        })
+         if(!checkIfFormDataIsInvalid(values)){
+            alert('Моля, попълнете всички полета')
+         }else{
+            if(values.rePass!=values.password){
+              alert('Паролите се раличават!')
+            }else{
+              register(values)
+              .then(user=>{
+                  loginUser(user);
+                  navigate('/welcome')
+              }).catch(err=>{
+                  alert('Възникна грешка, моля опитайте отново')
+              })
+            }
+         }
     }
   return(
     <div className='auth-holder'>
@@ -39,7 +49,7 @@ export default function Register(){
          <form className='auth-form' action="" onSubmit={onSubmitHandler}>
             <section className='auth-info-section'>    
                  <input type="text" 
-                 name="Username" 
+                 name="username" 
                  id="username" 
                  placeholder='Потребителско име'
                  onChange={setValues}
@@ -47,7 +57,7 @@ export default function Register(){
             </section>
             <section className='auth-info-section'>    
                  <input type="text" 
-                 name="Email" 
+                 name="email" 
                  id="email" 
                  placeholder='Имейл'
                  onChange={setValues}
@@ -63,8 +73,8 @@ export default function Register(){
                   />
             </section>
             <section className='auth-info-section'>    
-                 <input type="text" 
-                 name="RePass" 
+                 <input type="password" 
+                 name="rePass" 
                  id="re-pass" 
                  placeholder='Повтори паролата'
                  onChange={setValues}

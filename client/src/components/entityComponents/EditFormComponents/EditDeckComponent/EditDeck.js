@@ -10,6 +10,8 @@ import useChangeInput from '../../../../hooks/useChangeInput'
 
 import { getDeck,updateDeck } from '../../../../services/entityService/deckService/deckServices'
 
+import checkIfFormDataIsInvalid from '../../../../utils/emtyFormChecker'
+
 export default function EditDeck(){
     const navigate = useNavigate();
     const {deckId} = useParams();
@@ -30,11 +32,15 @@ export default function EditDeck(){
 
     const editDeckHandler = (e)=>{
         e.preventDefault();
-        updateDeck(deckId,values.name).then(()=>{
-            navigate(`/deck/${deck.id}`)
-        }).catch(err=>{
-            navigate('/404')
-        })
+        if(!checkIfFormDataIsInvalid(values)){
+            alert('Моля, попълнете всички полета!')
+        }else{
+            updateDeck(deckId,values.name).then(()=>{
+                navigate(`/deck/${deck.id}`)
+            }).catch(err=>{
+                navigate('/404')
+            })
+        }
     }
     return(
         <form className='edit-form edit-deck-mindmap' onSubmit={editDeckHandler}>

@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import useChangeInput from '../../../../../hooks/useChangeInput';
 import { createDeck } from '../../../../../services/entityService/deckService/deckServices';
 
+import checkIfFormDataIsInvalid from '../../../../../utils/emtyFormChecker';
+
 export default function CreateDeck(){
      const navigate = useNavigate();
 
@@ -17,12 +19,16 @@ export default function CreateDeck(){
 
      const onSubmitHandler =(e)=>{
         e.preventDefault()
-       const tags= values.Tags.split(/\s+/)
-        createDeck({Tags:tags,Name:values.Name}).then(deck=>{
-              navigate(`/deck/${deck.id}`)
-        }).catch(err=>{
-            alert(err);
-        })
+        if(!checkIfFormDataIsInvalid(values)){
+            alert('Моля, попълнете всички полета!')
+        }else{        
+            const tags= values.Tags.split(/\s+/)
+             createDeck({Tags:tags,Name:values.Name}).then(deck=>{
+                   navigate(`/deck/${deck.id}`)
+             }).catch(err=>{
+                 alert(err);
+             })
+        }
         
      }
 

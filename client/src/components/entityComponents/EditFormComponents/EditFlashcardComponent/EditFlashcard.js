@@ -9,6 +9,8 @@ import { DeckContext } from '../../../../contexts/entityContexts/DeckContext'
 import useChangeInput from '../../../../hooks/useChangeInput'
 import { getFlashcardDetails,updateFlashcard} from '../../../../services/entityService/flashcardServices';
 
+import checkIfFormDataIsInvalid from '../../../../utils/emtyFormChecker'
+
 export default function EditFlashcard(){
     const navigate =useNavigate();
     const {flashcardId} = useParams();
@@ -33,11 +35,15 @@ export default function EditFlashcard(){
 
     const editFlashcardHandler= (e)=>{
         e.preventDefault();
+        if(!checkIfFormDataIsInvalid(values)){
+            alert('Моля, попълнете всички полета!')
+        }else{
         updateFlashcard(flashcard.id,values).then(()=>{
            navigate(`/deck/${deck.id}/flashcard/${flashcard.id}`)
         }).catch(err=>{
             navigate('/404')
         })
+    }
 
     }
 

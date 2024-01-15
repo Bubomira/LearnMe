@@ -22,7 +22,7 @@ export default function CreateNote(){
 
     const onSubmit = async(e)=>{
          e.preventDefault();
-         if(!values.Title || !values.Tags || (!values.ImageChecked && !values.Content)){
+         if(!values.Title || !values.Tags || (!values.ImageChecked && !values.Content)|| (values.ImageChecked && !values.ImageUrl)){
             alert('Моля, попълнете всички полета!')
          }else{
             const content = values.ImageChecked? 

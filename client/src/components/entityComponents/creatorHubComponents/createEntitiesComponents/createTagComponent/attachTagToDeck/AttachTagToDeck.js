@@ -29,11 +29,15 @@ export default function AttachTagToDeck(){
 
     const onAttachTagHandler = (e,tagName)=>{
         e.preventDefault();
+        if(!tagName){
+            alert('Моля, попълнете всички полета!')
+         }else{
         attachTagToDeck(deck.id,tagName).then(()=>{
             navigate(`/deck/${deckId}`)
         }).catch(()=>{
             navigate('/404')
         })     
+    }
     } 
 
     return <CreateTag attachTagHandler={onAttachTagHandler} />

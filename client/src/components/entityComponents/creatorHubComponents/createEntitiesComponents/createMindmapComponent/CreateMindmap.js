@@ -6,6 +6,8 @@ import useChangeInput from '../../../../../hooks/useChangeInput'
 
 import { createMindmap } from '../../../../../services/entityService/mindmapService/mindmapServices';
 
+import checkIfFormDataIsInvalid from '../../../../../utils/emtyFormChecker';
+
 export default function CreateMindmap(){
     
     const navigate = useNavigate();
@@ -18,11 +20,15 @@ export default function CreateMindmap(){
     const onSubmitHandler = (e)=>{
        e.preventDefault();
        const tags= values.Tags.split(/\s+/)
-       createMindmap({Name:values.Name,Tags:tags}).then(mindmap=>{
-           navigate(`/mindmap/${mindmap.id}`)
-       }).catch(err=>{
-        navigate('/404')
-       })
+       if(!checkIfFormDataIsInvalid(values)){
+           alert('Моля, попълнете всички полета!')
+       }else{
+           createMindmap({Name:values.Name,Tags:tags}).then(mindmap=>{
+               navigate(`/mindmap/${mindmap.id}`)
+           }).catch(err=>{
+            navigate('/404')
+           })
+       }
     }
 
     return(

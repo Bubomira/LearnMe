@@ -8,6 +8,8 @@ import { MindmapContext } from "../../../../contexts/entityContexts/MindmapConte
 
 import { getMindmapDetails,updateMindmap } from "../../../../services/entityService/mindmapService/mindmapServices"
 
+import checkIfFormDataIsInvalid from '../../../../utils/emtyFormChecker'
+
 import useChangeInput from "../../../../hooks/useChangeInput"
 
 export default function EditMindmap(){
@@ -33,11 +35,15 @@ export default function EditMindmap(){
 
     const onSubmitHandler =(e)=>{
         e.preventDefault();
+        if(!checkIfFormDataIsInvalid(values)){
+            alert('Моля, попълнете всички полета!')
+        }else{
         updateMindmap(mindmap?.id,values.Name).then(()=>{
             navigate(`/mindmap/${mindmap?.id}`)
         }).catch(err=>{
             navigate('/404')
         })
+    }  
     }
 
     return(

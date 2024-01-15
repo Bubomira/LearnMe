@@ -8,6 +8,8 @@ import { DeckContext } from '../../../../../contexts/entityContexts/DeckContext'
 import useChangeInput from '../../../../../hooks/useChangeInput'
 import { addFlashcard } from '../../../../../services/entityService/flashcardServices';
 
+import checkIfFormDataIsInvalid from '../../../../../utils/emtyFormChecker';
+
 export default function CreateFlashcard(){
 
     const navigate =useNavigate();
@@ -22,14 +24,17 @@ export default function CreateFlashcard(){
 
     const onSubmitHandler =(e)=>{
         e.preventDefault();
-        values.DeckId = deck.id;
-        values.Type= 'Text';
-        addFlashcard(values).then(()=>{
-            navigate(`/deck/${deck.id}`)
-        }).catch(err=>{
-            alert(err)
-        })
-
+        if(!checkIfFormDataIsInvalid(values)){
+            alert('Моля, попълнете всички полета!')
+        }else{
+            values.DeckId = deck.id;
+            values.Type= 'Text';
+            addFlashcard(values).then(()=>{
+                navigate(`/deck/${deck.id}`)
+            }).catch(err=>{
+                alert(err)
+            })
+        }
     }
     return(
         <section className="site-wrapper">

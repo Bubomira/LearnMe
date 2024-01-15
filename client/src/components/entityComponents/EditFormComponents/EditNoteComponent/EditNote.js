@@ -37,7 +37,11 @@ export default function EditNote(){
         
         
         const onEditHandler =async(e)=>{
-            e.preventDefault();
+          e.preventDefault();
+           console.log(values)
+            if(!values.Title ||  (!values.ImageChecked && !values.Content) || (values.ImageChecked && !values.ImageUrl)){
+              alert('Моля, попълнете всички полета!')
+           }else{
         
         let content = values.ImageChecked? await recognise(values.ImageUrl).catch(err=>{
             navigate('/404')
@@ -47,6 +51,7 @@ export default function EditNote(){
         navigate(`/note/${note.id}`);
        }).catch(err=>{
         console.log(err)}) 
+       }
     }
 
 

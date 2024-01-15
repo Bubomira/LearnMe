@@ -10,6 +10,8 @@ import { getMindmapDetails } from "../../../../../../services/entityService/mind
 
 import { attachTagToMindmap } from "../../../../../../services/entityService/mindmapService/mindmapAdditionalService";
 
+import checkIfFormDataIsInvalid from "../../../../../../utils/emtyFormChecker";
+
 export default function AttachTagToMindmap(){
     
     const navigate =useNavigate();
@@ -31,11 +33,15 @@ export default function AttachTagToMindmap(){
 
     const onAttachTagToMindmap  =(e,tagName)=>{
         e.preventDefault();
+        if(!checkIfFormDataIsInvalid({tag:tagName})){
+            alert('Моля, попълнете всички полета!')
+         }else{
         attachTagToMindmap(mindmap.id,tagName).then(()=>{
             navigate(`/mindmap/${mindmap.id}`)
         }).catch(err=>{
             navigate('/404')
         })
+    }
 
     }
 
