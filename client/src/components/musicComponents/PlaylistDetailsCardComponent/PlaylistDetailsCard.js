@@ -31,7 +31,7 @@ export default function PlaylistDetailsCard(){
 
     const [getToken] = useMusicAuth({});
 
-    let [detailedPlaylist,setDetailedPlaylist] = useState();
+    let [detailedPlaylist,setDetailedPlaylist] = useState({});
 
     const navigate = useNavigate();
 
@@ -40,7 +40,12 @@ export default function PlaylistDetailsCard(){
     useEffect(()=>{
         getToken().then(()=>{
             getPlaylistDetails(playlistId).then(playlist=>{
-                setDetailedPlaylist(playlist)
+                setDetailedPlaylist({
+                    name:playlist.name,
+                    imgUrl:playlist?.images[0].url,
+                    description:playlist.description,
+                    tracks: playlist?.tracks?.items.filter(item=>item?.track.preview_url!=null)               
+                })
                 setLoader(true)
             }).catch(err=>{
                 navigate('/404')
@@ -67,14 +72,14 @@ export default function PlaylistDetailsCard(){
 
     const playInQueue = ()=>{
        let counter = 1;
-       let firstTrack =  detailedPlaylist.tracks?.items[0].track;
+       let firstTrack =  detailedPlaylist?.tracks[0].track;
        setCurrentTrack({
         trackImg:firstTrack?.album?.images[0].url,
         trackName:firstTrack?.name,
         trackUrl:firstTrack?.preview_url
     })
         setInterval(()=>{
-            let track = detailedPlaylist.tracks?.items[counter].track;
+            let track = detailedPlaylist?.tracks[counter].track;
            setCurrentTrack({
                trackImg:track?.album?.images[0].url,
                trackName:track?.name,
@@ -90,16 +95,15 @@ export default function PlaylistDetailsCard(){
         :
         <article className="playlist-details-card">
             <header className="playlist-details-metadata">
-                <img src={detailedPlaylist?.images[0].url} alt="" />
+                <img src={detailedPlaylist?.imgUrl} alt="" />
                 <section className="playlist-detailed-text">
                     <h2 className="playlist-detailed-name">{detailedPlaylist?.name}</h2>
                     <p className="playlist-detailed-description">{detailedPlaylist?.description}</p>
                     <button onClick={playInQueue} className='play-btn'><FontAwesomeIcon icon={faPlay}/><span>Пусни</span></button>
-                </section>
-                
+                </section>               
             </header>
             <section className='playlist-tracks'>
-                    {detailedPlaylist?.tracks?.items.filter(item=>item?.track.preview_url!=null).map(item=><PlaylistTrackComponent onClickImg={playFromChild} track={item?.track} key={item?.track.id} />)}
+                    {detailedPlaylist?.tracks.map(item=><PlaylistTrackComponent onClickImg={playFromChild} track={item?.track} key={item?.track.id} />)}
             </section>
             <section className="play">
                 {currentTrack.trackName!=''?
