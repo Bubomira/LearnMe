@@ -29,7 +29,7 @@ export default function Register(){
             loginUser(user);
             navigate('/welcome')
         }).catch(err=>{
-            alert(err)
+            alert('Възникна грешка, моля опитайте отново')
         })
     }
   return(
