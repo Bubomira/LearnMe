@@ -13,7 +13,7 @@ export default function CreateTag({attachTagHandler}){
         <section className='create-wrapper create-tags'>
         <section className="create-form-holder">
         <h2>Закачи таг</h2>
-        <form className="create-form" onSubmit={(e)=>attachTagHandler(e,values.tagName)}>
+        <form  className="create-form create-tag-form" onSubmit={(e)=>attachTagHandler(e,values.tagName)}>
           <input 
           type="text" 
           className='create-input' 

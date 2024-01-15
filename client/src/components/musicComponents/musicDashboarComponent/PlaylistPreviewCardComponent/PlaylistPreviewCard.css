@@ -5,7 +5,7 @@
 }
 
 .playlist-preview-card{
-    flex: 0 1 30%;
+    flex: 0 1 25%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -13,18 +13,17 @@
 }
 
 .playlist-preview-card img{
-    width: 80%;
+    width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .playlist-preview-card .playlist-preview-data{
    background-color: white;
-   width: 80%;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    display: flex;
    align-items: center;
    flex-direction: column;
-   padding: 1em 0;
+   padding: 1em;
 }
 
 .playlist-preview-card .playlist-preview-data h3{
@@ -37,7 +36,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #EB5E55;
     border: none;
-    padding: 0.5em 3em;
+    padding: 0.5em 2.5em;
     border-radius: 1em;
 }
 
