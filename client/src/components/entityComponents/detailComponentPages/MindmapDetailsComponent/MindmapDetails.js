@@ -134,12 +134,24 @@ const detachTagFromMindmapHandler = (tagId)=>{
             onConnectEnd={onConnectEnd}
             connectionLineStyle={connectionLineStyle}
             defaultEdgeOptions={defaultEdgeOptions}
+            edgesUpdatable={mindmap?.isOwnedByUser}
+            edgesFocusable={mindmap?.isOwnedByUser}
+            nodesDraggable={mindmap?.isOwnedByUser}
+            nodesConnectable={mindmap?.isOwnedByUser}
+            nodesFocusable={mindmap?.isOwnedByUser}
+            draggable={mindmap?.isOwnedByUser}
+            panOnDrag={mindmap?.isOwnedByUser}
+            elementsSelectable={mindmap?.isOwnedByUser}     
            >
         <MiniMap />
         <Controls/>
         <Background variant="dots" gap={12} size={1} />
         </ReactFlow>
+        {mindmap?.isOwnedByUser?
         <button className='mindmap-save-btn' onClick={onSaveHandler}>Запази <FontAwesomeIcon color='#2D3142' icon={faSave}/></button>
+        :
+        <></>
+        }
      </main>
       </section>
     )
