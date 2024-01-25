@@ -17,9 +17,17 @@ export const MindmapProvier =({children})=>{
             tags:filteredTags
         }))
     }
+
+    const changeIsLikedFromUser=(isLikedByCurrentUser)=>{
+        setMindmapDetailed(oldstate=>({
+             ...oldstate,
+             isLikedByUser:isLikedByCurrentUser
+        }))
+      }
+
     
         return(
-            <MindmapContext.Provider value={{mindmap:mindmap,setMindmapDetailed,detachTagFromMindmapState}}>
+            <MindmapContext.Provider value={{mindmap:mindmap,setMindmapDetailed,detachTagFromMindmapState,changeIsLikedFromUser}}>
                {children}
             </MindmapContext.Provider>
         )

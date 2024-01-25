@@ -36,7 +36,7 @@ export default function Flashcard({flashcard,isSearch}){
 
     return(
          <article className="flashcard-preview-wrapper flashcard-wrap-final">
-            {flashcard.isOwnedByUser && !isSearch?
+            {deck.isOwnedByUser && !isSearch?
              <p className='remove-flashcard'><FontAwesomeIcon  onClick={removeFlashcardFromDeckHandler} icon={faRemove}/> </p>
              :
              <></>

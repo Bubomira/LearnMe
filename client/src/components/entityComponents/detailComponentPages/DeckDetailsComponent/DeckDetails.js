@@ -24,7 +24,7 @@ export default function DeckDetails(){
 
     let [loader,setLoader]=useLoader();
     
-    const {deck,setDeckDetailed,detachTagFromDeckState} = useContext(DeckContext);
+    const {deck,setDeckDetailed,detachTagFromDeckState,changeIsLikedByUser} = useContext(DeckContext);
 
     useEffect(()=>{
         getDeck(deckId).then(deckDetailed=>{
@@ -47,7 +47,8 @@ export default function DeckDetails(){
 
     const likeDeckHandler = ()=>{
         likeDeck(deck.id).then(()=>{
-            alert('Успешно харесахте!')
+            changeIsLikedByUser(true)
+            alert('Успешно харесахте!!')
         }).catch(err=>{
             navigate('/404')
         })
@@ -55,7 +56,8 @@ export default function DeckDetails(){
 
     const dislikeDeckHandler = ()=>{
         dislikeDeck(deck.id).then(()=>{
-            alert('Успешно отхаресатхе!')
+            changeIsLikedByUser(false)
+            alert('Успешно отхаресахте!!')
         }).catch(err=>{
            navigate('/404')
         })

@@ -29,8 +29,15 @@ export const DeckProvider = ({children})=>{
         ))
     }
 
+    const changeIsLikedByUser=(likedByUser)=>{
+      setDeck(oldState=>({
+        ...oldState,
+        isLikedByUser:likedByUser
+      }))
+    }
+
     return (
-    <DeckContext.Provider  value={{deck:deckDetails, setDeckDetailed,removeFlahcardFromDeckState,detachTagFromDeckState}}>
+    <DeckContext.Provider  value={{deck:deckDetails, setDeckDetailed,removeFlahcardFromDeckState,detachTagFromDeckState,changeIsLikedByUser}}>
          {children}
     </DeckContext.Provider>
     )

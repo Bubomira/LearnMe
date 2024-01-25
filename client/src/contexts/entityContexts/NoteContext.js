@@ -19,8 +19,15 @@ export const NoteProvider = ({children})=>{
            }))
       }
 
+      const changeIsLikedFromUser=(isLikedByCurrentUser)=>{
+        setNote(oldstate=>({
+             ...oldstate,
+             isLikedByUser:isLikedByCurrentUser
+        }))
+      }
+
       return (
-      <NoteContext.Provider value={{note, setNoteDetailed,detachTagFromNoteState}} >
+      <NoteContext.Provider value={{note, setNoteDetailed,detachTagFromNoteState,changeIsLikedFromUser}} >
        {children}
       </NoteContext.Provider>
       )

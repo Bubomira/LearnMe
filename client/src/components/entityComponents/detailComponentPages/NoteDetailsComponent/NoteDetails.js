@@ -21,7 +21,7 @@ export default function NoteDetails(){
     const navigate = useNavigate();
     const {noteId} = useParams();
 
-    const {note,setNoteDetailed,detachTagFromNoteState} = useContext(NoteContext);
+    const {note,setNoteDetailed,detachTagFromNoteState,changeIsLikedFromUser} = useContext(NoteContext);
 
     let [loader,setLoader] = useLoader();
 
@@ -46,7 +46,8 @@ export default function NoteDetails(){
 
     const likeNoteHandler = ()=>{
         likeNote(note.id).then(()=>{
-            alert('Успешно харесатхе!')
+            alert('Успешно харесахте!!')
+            changeIsLikedFromUser(true);
         }).catch(err=>{
             navigate('/404')
         })
@@ -54,7 +55,8 @@ export default function NoteDetails(){
 
     const dislikeNoteHandler=()=>{
         dislikeNote(note.id).then(()=>{
-            alert('Успешно отхаресатхе!')
+            alert('Успешно отхаресахте!')
+            changeIsLikedFromUser(false);
         }).catch(err=>{
             navigate('/404')
         })

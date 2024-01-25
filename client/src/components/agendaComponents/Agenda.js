@@ -28,7 +28,7 @@ export default function Agenda(){
     const onSaveEvent = ()=>{
         console.log(events)
         saveEvents(JSON.stringify(events)).then(()=>{
-            alert('Заназено!')
+            alert('Запазено!')
         }).catch(err=>{
             alert('Неуспешно запазване, моля опитайте по- късно!')
         })

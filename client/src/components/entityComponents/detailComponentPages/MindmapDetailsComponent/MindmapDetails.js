@@ -37,7 +37,7 @@ export default function MindmapDetails(){
 
     let [loader,setLoader] = useLoader()
 
-    let {mindmap,setMindmapDetailed,detachTagFromMindmapState} = useContext(MindmapContext); 
+    let {mindmap,setMindmapDetailed,detachTagFromMindmapState,changeIsLikedFromUser} = useContext(MindmapContext); 
 
     let {nodes,edges,onEdgesChange,onNodesChange,onConnectStart,onConnectEnd,onLoadFromDatabase} = useContext(DiagramContext)
 
@@ -70,17 +70,19 @@ export default function MindmapDetails(){
 
 const likeMindmapHandler = ()=>{
     likeMindmap(mindmapId).then(()=>{
-        alert('Успешно харесатхе!!')
+        alert('Успешно харесахте!!')
+        changeIsLikedFromUser(true)
     }).catch(err=>{
-        navigate('/404')
+         navigate('/404')
     })
 }
 
 const dislikeMindmapHandler = ()=>{
     dislikeMindmap(mindmapId).then(()=>{
-        alert('Успешно отхаресатхе!')
+        alert('Успешно отхаресахте!')
+        changeIsLikedFromUser(false)
     }).catch(err=>{
-        navigate('/404')
+         navigate('/404')
     })
 }
 
