@@ -40,7 +40,7 @@ namespace Server.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Decks");
+                    b.ToTable("Decks", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.DeckFlashcard", b =>
@@ -55,7 +55,7 @@ namespace Server.Migrations
 
                     b.HasIndex("FlashcardId");
 
-                    b.ToTable("DecksFlashcards");
+                    b.ToTable("DecksFlashcards", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.DeckTag", b =>
@@ -70,7 +70,7 @@ namespace Server.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("DecksTags");
+                    b.ToTable("DecksTags", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.Flashcard", b =>
@@ -94,7 +94,7 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Flashcards");
+                    b.ToTable("Flashcards", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.FlashcardUser", b =>
@@ -109,7 +109,7 @@ namespace Server.Migrations
 
                     b.HasIndex("FlashcardId");
 
-                    b.ToTable("OwnedUserFlashcards");
+                    b.ToTable("OwnedUserFlashcards", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.InvalidToken", b =>
@@ -126,7 +126,7 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InvalidTokens");
+                    b.ToTable("InvalidTokens", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.LikedUserDeck", b =>
@@ -141,7 +141,7 @@ namespace Server.Migrations
 
                     b.HasIndex("LikerUserId");
 
-                    b.ToTable("LikedUserDecks");
+                    b.ToTable("LikedUserDecks", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.LikedUserMindmap", b =>
@@ -156,7 +156,7 @@ namespace Server.Migrations
 
                     b.HasIndex("LikerUserId");
 
-                    b.ToTable("LikedUsersMindmaps");
+                    b.ToTable("LikedUsersMindmaps", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.Mindmap", b =>
@@ -182,7 +182,7 @@ namespace Server.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Mindmaps");
+                    b.ToTable("Mindmaps", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.MindmapTag", b =>
@@ -197,7 +197,7 @@ namespace Server.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("MindmapsTags");
+                    b.ToTable("MindmapsTags", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.Note", b =>
@@ -223,7 +223,7 @@ namespace Server.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Notes");
+                    b.ToTable("Notes", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.NoteTag", b =>
@@ -238,7 +238,7 @@ namespace Server.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("NotesTags");
+                    b.ToTable("NotesTags", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.NoteUser", b =>
@@ -253,7 +253,7 @@ namespace Server.Migrations
 
                     b.HasIndex("NoteId");
 
-                    b.ToTable("LikedNotesUsers");
+                    b.ToTable("LikedNotesUsers", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.Tag", b =>
@@ -270,7 +270,7 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.User", b =>
@@ -298,7 +298,7 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Server.Models.Deck", b =>

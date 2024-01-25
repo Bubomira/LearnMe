@@ -54,6 +54,8 @@ namespace Server.Services
                opt => opt.MapFrom(nt => nt.Title));
 
             CreateMap<LikedUserDeck, DeckPreviewDto>()
+                .ForMember(lud=>lud.Id,
+                opt=>opt.MapFrom(src=>src.DeckId))
                 .ForMember(lud => lud.Name,
                 opt => opt.MapFrom(src => src.Deck.Name))
                 .ForMember(lud => lud.OwnerId,
@@ -74,6 +76,8 @@ namespace Server.Services
                      }).ToList()));
 
             CreateMap<NoteUser, NotePreviewDto>()
+                .ForMember(nu=>nu.Id,
+                opt=>opt.MapFrom(src=>src.NoteId))
                 .ForMember(nu => nu.Title,
                 opt => opt.MapFrom(src => src.Note.Title))
                   .ForMember(nu => nu.OwnerId,
