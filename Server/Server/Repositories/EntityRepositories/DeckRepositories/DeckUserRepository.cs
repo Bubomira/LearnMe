@@ -26,7 +26,7 @@ namespace Server.Repositories.EntityRepositories.DeckRepositories
             await _learnMeDbContext.SaveChangesAsync();
         }
         //!!
-        public Task<List<LikedUserDeck>> GetLikedDecks(int userId) =>
+        public  Task<List<LikedUserDeck>> GetLikedDecks(int userId) =>
             _learnMeDbContext.LikedUserDecks.Where(lud => lud.LikerUserId == userId)
             .Include(lud => lud.Deck.DecksTags.Take(3))
             .ThenInclude(dt => dt.Tag)
