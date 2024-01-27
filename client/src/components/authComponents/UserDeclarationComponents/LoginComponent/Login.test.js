@@ -2,41 +2,23 @@ import {render, cleanup,waitFor, screen } from "@testing-library/react"
 
 import userEvent from "@testing-library/user-event"
 
+import { changeAlert,serviceMockingFunction,navigationMock,navigationMockingFunction } from "../../../../utils/testHelper"
+
+import { AuthProvider } from "../../../../contexts/AuthContext"
+
 import { BrowserRouter } from "react-router-dom"
 
 import Login from "./Login"
-import { AuthProvider } from "../../../../contexts/AuthContext"
 
-const changeAlert=(btn)=>{
-  window.alert = jest.fn(()=>{
-     btn.textContent='Error'
-  });
-}
-
-
-const mockedUsedNavigate = jest.fn();
-
-jest.mock('react-router-dom', () => ({
-   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUsedNavigate,
-}));
+navigationMockingFunction()
 
 afterEach(cleanup)
-
-const mockLoginFunction = (mockingData)=>{
-  jest.mock('../../../../services/authServises',async()=>{       
-    return{
-       login: Promise.resolve(mockingData)
-      }
- })
-}
 
 describe('Login tests',()=>{
     
     it('Should login user with correct username and password',async()=>{
 
-      mockLoginFunction({ Username:'Student', Password:12345678})
-
+      serviceMockingFunction('../services/authServises','login',{ Username:'Student', Password:12345678})
         render(<BrowserRouter>
                 <AuthProvider>
                      <Login/>
@@ -47,12 +29,12 @@ describe('Login tests',()=>{
          userEvent.click(loginButton);
          
          waitFor(()=>{
-           expect(mockedUsedNavigate).toHaveBeenCalledWith('/welcome')
+           expect(navigationMock).toHaveBeenCalledWith('/welcome')
           })  
     })
     it('Should not login user when the server trows an error',async()=>{
       
-        mockLoginFunction(new Error('Trouble login in'))
+      serviceMockingFunction('../services/authServises','login',new Error('Trouble loging in'))
 
          render(<BrowserRouter>
             <AuthProvider>
@@ -61,7 +43,7 @@ describe('Login tests',()=>{
         </BrowserRouter> )
 
            const loginButton = document.querySelector('.submit-auth-button')
-           changeAlert(loginButton)
+           changeAlert(loginButton,'Error')
            userEvent.click(loginButton);
 
      await waitFor(()=>{
@@ -79,11 +61,11 @@ describe('Login tests',()=>{
         </BrowserRouter> )
 
       const loginButton = document.querySelector('.submit-auth-button')
-      changeAlert(loginButton)
+      changeAlert(loginButton,'Error')
       userEvent.click(loginButton);
 
     waitFor(async()=>{
-        expect(mockedUsedNavigate).not.toHaveBeenCalled();
+        expect(navigationMock).not.toHaveBeenCalled();
         expect(await screen.findByText('Error')).toBeInTheDocument
     })  
 })

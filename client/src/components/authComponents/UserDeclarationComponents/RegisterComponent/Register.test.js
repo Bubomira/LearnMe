@@ -2,24 +2,16 @@ import { render,cleanup,waitFor, screen } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event"
 
-import { BrowserRouter } from "react-router-dom"
+import { changeAlert,serviceMockingFunction,navigationMock,navigationMockingFunction } from "../../../../utils/testHelper"
 
 import { AuthProvider } from "../../../../contexts/AuthContext"
 
+import { BrowserRouter } from "react-router-dom"
+
 import Register from './Register'
 
-const changeAlert=(btn)=>{
-    window.alert = jest.fn(()=>{
-       btn.textContent='Error'
-    });
-  }
-    
-const mockedUsedNavigate = jest.fn();
 
-jest.mock('react-router-dom', () => ({
-   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUsedNavigate,
-}));
+navigationMockingFunction()
 
 afterEach(cleanup)
 
@@ -35,7 +27,7 @@ describe('Register tests',()=>{
 
     it('Should register user with correct data',()=>{
 
-        mockRegisterFunction({ Username:'Student', Email:'student@abv.bg', Password:12345678})
+    serviceMockingFunction('../services/authServises','register',{ Username:'Student', Email:'student@abv.bg', Password:12345678})
 
         render(
             <BrowserRouter>
@@ -50,7 +42,7 @@ describe('Register tests',()=>{
         userEvent.click(registerBtn)
 
         waitFor(()=>{
-            expect(mockedUsedNavigate).toHaveBeenCalledWith('/welcome')
+            expect(navigationMock).toHaveBeenCalledWith('/welcome')
         })
         
     })
@@ -68,11 +60,11 @@ describe('Register tests',()=>{
         )
 
         const registerBtn = document.querySelector('.submit-auth-button')
-        changeAlert(registerBtn);
+        changeAlert(registerBtn,'Error');
         userEvent.click(registerBtn);
         
         await waitFor(()=>{
-            expect(mockedUsedNavigate).not.toHaveBeenCalled();
+            expect(navigationMock).not.toHaveBeenCalled();
             expect( screen.getByText('Error')).toBeInTheDocument;
         })
         
@@ -89,11 +81,11 @@ describe('Register tests',()=>{
         )
         
         const registerBtn = document.querySelector('.submit-auth-button')
-        changeAlert(registerBtn);
+        changeAlert(registerBtn,'Error');
         userEvent.click(registerBtn);
         
          await waitFor(async()=>{
-            expect(mockedUsedNavigate).not.toHaveBeenCalled();
+            expect(navigationMock).not.toHaveBeenCalled();
             expect( screen.getByText('Error')).toBeInTheDocument;
         })
 
