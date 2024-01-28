@@ -8,7 +8,6 @@ import { useContext,useEffect,useState } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 
 import { DeckContext } from '../../../../../../contexts/entityContexts/DeckContext'
-import { AuthContext } from '../../../../../../contexts/AuthContext'
 
 import { deleteFlashcard, getFlashcardDetails } from '../../../../../../services/entityService/flashcardServices'
 
@@ -24,7 +23,6 @@ export default function FlashcardDetails(){
     let [loader,setLoader] = useLoader();
 
     const {deck,setDeckDetailed} = useContext(DeckContext);
-    const {user} = useContext(AuthContext);
 
     const [flashcard,setFlashcard] = useState({})
 
