@@ -16,7 +16,7 @@ export default function NotePreviewCard({note}){
                     {note.title}
                  </h2>
                     {note?.tags?
-                      <p className='tags'>{note?.tags.map(tag=>tag.name).join(', ')}</p>
+                      <p className='tags'>{note?.tags?.map(tag=>tag.name).join(', ')}</p>
                       :
                       <></>
                     }
